@@ -42,7 +42,7 @@ public class CambioEstadoTurno {
         return false;
     }
 
-    public String obtenerEstado(){
-        return this.estado.getNombre();
-    }
+//    public String obtenerEstado(){
+//        return this.estado.getNombre();
+//    }
 }
