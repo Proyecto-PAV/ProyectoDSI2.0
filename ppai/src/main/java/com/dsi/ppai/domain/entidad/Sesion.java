@@ -33,6 +33,10 @@ public class Sesion {
     @Column(name = "hora_inicio")
     private Date horaInicio;
 
+    @OneToOne
+    @JoinColumn(name = "usuario")
+    private Usuario usuario;
+
 
     public String mostrarCliente(){
         return this.empleadoSesion;

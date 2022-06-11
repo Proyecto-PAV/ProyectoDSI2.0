@@ -22,8 +22,7 @@ public class Marca {
     @ReadOnlyProperty
     private String nombre;
 
-    @OneToMany
-    @JoinColumn(name = "nombre_modelo")
+    @OneToMany(mappedBy = "marcaDelModelo")
     private List<Modelo> modelos;
 
 
