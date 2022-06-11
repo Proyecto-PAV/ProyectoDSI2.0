@@ -36,8 +36,6 @@ public class PersonalCientifico {
     @Column(name = "telefono_celular")
     private String telefonoCelular;
 
-    private Usuario usuario;
-
     public void mostrarPersonalCientifico(){
 
     }
