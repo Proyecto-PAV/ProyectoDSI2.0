@@ -72,17 +72,17 @@ public class Turno {
         }
     }
 
-    public List mostrarDatos(){
-        List arrayDatos = new ArrayList();
-        for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
-            if (cambiosEstadoTurno.get(i).esActual()){
-                this.cambioEstadoActual = cambiosEstadoTurno.get(i);
-            }
-        }
-        this.estadoActual = this.cambioEstadoActual.obtenerEstado();
-        arrayDatos.add(getFechaHoraInicio(), getFechaHoraFin(), this.estadoActual);
-        return arrayDatos;
-    }
+//    public List mostrarDatos(){
+//        List arrayDatos = new ArrayList();
+//        for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
+//            if (cambiosEstadoTurno.get(i).esActual()){
+//                this.cambioEstadoActual = cambiosEstadoTurno.get(i);
+//            }
+//        }
+//        this.estadoActual = this.cambioEstadoActual.obtenerEstado();
+//        arrayDatos.add(getFechaHoraInicio(), getFechaHoraFin(), this.estadoActual);
+//        return arrayDatos;
+//    }
 
 
 }
