@@ -35,12 +35,10 @@ public class RecursoTecnologico {
     @Column(name = "periodicidad_mant_preventivo")
     private String periodicidadMantenimientoPreventivo;
 
-    @OneToMany
-    @JoinColumn(name = "id_turno")
+    @OneToMany(mappedBy = "recursoTecnologicoDelTurno")
     private List<Turno> turnos;
 
-    @OneToMany
-    @JoinColumn(name = "id_ce_rt")
+    @OneToMany(mappedBy = "recursoTecnologicoDelCE")
     private List<CambioEstadoRT> cambioEstadoRTS;
 
     @OneToOne

@@ -44,6 +44,10 @@ public class Turno {
     @JoinColumn(name = "id_asignacion_cientifico")
     private AsignacionCientificoDelCI asignacionCientificoCI;
 
+    @ManyToOne
+    @JoinColumn(name = "id_recurso_tecnologico")
+    private RecursoTecnologico recursoTecnologicoDelTurno;
+
     //@Column(name = "cambio_estado_actual")
     //private CambioEstadoTurno cambioEstadoActual;
 
