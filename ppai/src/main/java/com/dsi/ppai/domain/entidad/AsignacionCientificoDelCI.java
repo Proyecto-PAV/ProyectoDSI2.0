@@ -32,8 +32,7 @@ public class AsignacionCientificoDelCI {
 
     private String eMail;
 
-    @OneToMany
-    @JoinColumn(name = "id_turno")
+    @OneToMany(mappedBy = "asignacionCientificoCI")
     private List<Turno> turnos;
 
     @OneToOne

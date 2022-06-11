@@ -40,8 +40,9 @@ public class Turno {
     @JoinColumn(name = "id_cambio_estado_turno")
     private List<CambioEstadoTurno> cambiosEstadoTurno;
 
-    //@Column(name = "estado_actual")
-    //private Estado estadoActual;
+    @ManyToOne
+    @JoinColumn(name = "id_asignacion_cientifico")
+    private AsignacionCientificoDelCI asignacionCientificoCI;
 
     //@Column(name = "cambio_estado_actual")
     //private CambioEstadoTurno cambioEstadoActual;
