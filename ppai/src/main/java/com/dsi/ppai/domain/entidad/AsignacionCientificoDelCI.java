@@ -39,6 +39,10 @@ public class AsignacionCientificoDelCI {
     @JoinColumn(name = "legajo")
     private PersonalCientifico cientifico;
 
+    @ManyToOne()
+    @JoinColumn(name = "id_centro")
+    private CentroDeInvestigacion centroDeInvestigacion;
+
     public boolean esCientificoActivo(){
         //todo Hacer un loop q recorra los cientificos
         if (this.fechaHasta == null){

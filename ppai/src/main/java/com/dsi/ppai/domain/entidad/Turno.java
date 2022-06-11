@@ -36,8 +36,7 @@ public class Turno {
     @Column(name = "fecha_hora_inicio")
     private Date fechaHoraInicio;
 
-    @OneToMany
-    @JoinColumn(name = "id_cambio_estado_turno")
+    @OneToMany(mappedBy = "turno")
     private List<CambioEstadoTurno> cambiosEstadoTurno;
 
     @ManyToOne
