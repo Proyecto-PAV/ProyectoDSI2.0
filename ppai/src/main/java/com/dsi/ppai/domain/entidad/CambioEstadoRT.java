@@ -29,6 +29,7 @@ public class CambioEstadoRT {
     @Column(name = "fecha_hasta")
     private Date fechaHoraHasta;
 
-    @OneToOne("nombre_estado")
+    @OneToOne
+    @JoinColumn(name = "nombre_estado")
     private Estado estado;
 }
