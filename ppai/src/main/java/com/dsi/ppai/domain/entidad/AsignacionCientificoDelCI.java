@@ -30,8 +30,6 @@ public class AsignacionCientificoDelCI {
     @Column(name = "fecha_hasta")
     private Date fechaHasta;
 
-    private String eMail;
-
     @OneToMany(mappedBy = "asignacionCientificoCI")
     private List<Turno> turnos;
 

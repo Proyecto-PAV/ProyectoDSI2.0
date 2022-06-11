@@ -21,11 +21,12 @@ public class Estado {
     private String nombre;
 
     private String ambito;
+
     private String descripcion;
+
     private boolean esCancelable;
+
     private boolean esReservable;
-
-
 
     public String mostrarEstado() {
         return this.nombre;

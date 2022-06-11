@@ -26,7 +26,7 @@ public class CentroDeInvestigacion {
     @Column(name = "id_centro")
     private String idCentroInvestigacion;
 
-    @Column(name="aracteristicas_generales")
+    @Column(name="caracteristicas_generales")
     private String caracteristicasGenerales;
 
     private String coordenadas;
