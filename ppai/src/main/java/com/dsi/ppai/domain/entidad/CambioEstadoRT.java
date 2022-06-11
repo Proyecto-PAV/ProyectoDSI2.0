@@ -21,7 +21,7 @@ public class CambioEstadoRT {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ce_rt_id")
+    @Column(name = "id_ce_rt")
     private String cambioEstadoRTId;
 
     @Column(name = "fecha_desde")
