@@ -33,4 +33,8 @@ public class CambioEstadoRT {
     @OneToOne
     @JoinColumn(name = "nombre_estado")
     private Estado estado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_recurso_tecnologico")
+    private RecursoTecnologico recursoTecnologicoDelCE;
 }
