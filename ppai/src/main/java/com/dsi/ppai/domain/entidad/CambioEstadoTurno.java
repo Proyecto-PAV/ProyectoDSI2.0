@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,9 +18,10 @@ import java.util.Date;
 public class CambioEstadoTurno {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id_cambio_estado_turno")
-    private int id;
+    private String idCambioEstadoTurno;
 
     @Column(name = "fecha_hora_desde")
     private Date fechaHoraDesde;

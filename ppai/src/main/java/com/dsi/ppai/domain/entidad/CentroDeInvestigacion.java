@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,24 +15,22 @@ import java.util.Date;
 @Builder
 @Data
 @Entity
-@Table(name = "centro")
+@Table(name = "centro_investigacion")
 public class CentroDeInvestigacion {
 
     //Atributos
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id_centro")
-    private Integer id;
+    private String idCentroInvestigacion;
 
     @Column(name="aracteristicas_generales")
     private String caracteristicasGenerales;
-    @Column(name="coordenadas")
     private String coordenadas;
     @Column(name="correo_electronico")
     private String correoElectronico;
-    @Column(name="direccion")
     private String direccion;
-    @Column(name="edificio")
     private String edificio;
     @Column(name="fecha_alta")
     private Date fechaAlta;
@@ -39,17 +38,14 @@ public class CentroDeInvestigacion {
     private Date fechaBaja;
     @Column(name="fecha_resolucion_creacion")
     private Date fechaResolucionCreacion;
-    @Column(name="motivo_Baja")
+    @Column(name="motivo_baja")
     private String motivoBaja;
     @Column(name="nombre_centro")
     private String nombre;
     @Column(name="numeor_resolucion_creacion")
     private int numeroResolucionCreacion;
-    @Column(name="piso")
     private String piso;
-    @Column(name="reglamento")
     private String reglamento;
-    @Column(name="sigla")
     private String sigla;
     @Column(name="telefono_contacto")
     private String telefonoContacto;

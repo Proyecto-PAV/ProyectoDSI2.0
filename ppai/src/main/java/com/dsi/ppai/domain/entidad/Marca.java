@@ -18,7 +18,6 @@ import java.util.List;
 public class Marca {
 
     @Id
-    @GeneratedValue
     @Column(name = "nombre_marca")
     @ReadOnlyProperty
     private String nombre;

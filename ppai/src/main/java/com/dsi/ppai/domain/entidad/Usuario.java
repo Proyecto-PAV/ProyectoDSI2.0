@@ -12,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "usuario")
 public class Usuario {
     @Id
     private String usuario;
@@ -32,6 +33,8 @@ public class Usuario {
 
     public void modificarPassword(){}
 
-    public void obtenerCientifico(){}
+    public String obtenerCientifico(){
+        return sesion.getEmpleadoSesion();
+    }
 
 }
