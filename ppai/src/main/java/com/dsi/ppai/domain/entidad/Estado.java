@@ -17,9 +17,7 @@ import javax.persistence.*;
 public class Estado {
 
     @Id
-    @GeneratedValue
     @Column(name = "nombre_estado")
-    @ReadOnlyProperty
     private String nombre;
 
     private String ambito;

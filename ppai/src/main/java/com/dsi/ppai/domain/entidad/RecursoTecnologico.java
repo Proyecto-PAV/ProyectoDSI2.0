@@ -43,7 +43,7 @@ public class RecursoTecnologico {
     @JoinColumn(name = "id_ce_rt")
     private List<CambioEstadoRT> cambioEstadoRTS;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "id_tipo_recurso")
     private TipoRecursoTecnologico tipoRecursoTecnologico;
 

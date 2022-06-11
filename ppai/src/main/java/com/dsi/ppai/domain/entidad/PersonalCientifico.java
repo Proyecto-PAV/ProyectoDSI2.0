@@ -16,9 +16,9 @@ import javax.persistence.*;
 public class PersonalCientifico {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "legajo")
-    private int legajo;
+    private Long legajo;
 
     private String nombre;
 
@@ -27,7 +27,7 @@ public class PersonalCientifico {
     @Column(name = "numero_documento")
     private int numeroDocumento;
 
-    @Column(name = "correo_elzectronico_institucional")
+    @Column(name = "correo_electronico_institucional")
     private String correoElectronicoInstitucional;
 
     @Column(name = "correo_electronico_personal")

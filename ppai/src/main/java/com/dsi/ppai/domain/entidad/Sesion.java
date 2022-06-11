@@ -18,7 +18,6 @@ import java.util.Date;
 public class Sesion {
 
     @Id
-    @GeneratedValue
     @Column(name = "empleado_sesion")
     private String empleadoSesion;
 
