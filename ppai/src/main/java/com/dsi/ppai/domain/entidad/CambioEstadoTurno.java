@@ -18,7 +18,7 @@ public class CambioEstadoTurno {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_asignacion_cientifico")
+    @Column(name = "id_cambio_estado_turno")
     private int id;
 
     @Column(name = "fecha_hora_desde")
