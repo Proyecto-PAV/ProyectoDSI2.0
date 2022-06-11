@@ -4,18 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "estado")
 @Data
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Estado {
 
-    private Object ambito;
+    @Id
+    @GeneratedValue
+    @Column(name = "nombre_estado")
+    @ReadOnlyProperty
+    private String nombre;
+
+    private String ambito;
     private String descripcion;
     private boolean esCancelable;
     private boolean esReservable;
-    private String nombre;
+
 
 
     public String mostrarEstado() {

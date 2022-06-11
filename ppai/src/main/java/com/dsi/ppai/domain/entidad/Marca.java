@@ -4,23 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "marca")
 @Data
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Marca {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "nombre_marca")
+    @ReadOnlyProperty
     private String nombre;
-    private ArrayList<Modelo> modelos;
 
-    public String mostrarMarca() {
-        return this.nombre;
-    }
+    @OneToMany
+    @JoinColumn(name = "nombre_modelo")
+    private List<Modelo> modelos;
 
-    public ArrayList<Modelo> mostrarMisModelos() {
-        return this.modelos;
-    }
+
 }
