@@ -4,9 +4,10 @@ import com.dsi.ppai.domain.entidad.Estado;
 import com.dsi.ppai.domain.entidad.RecursoTecnologico;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.repository.TipoRTRepository;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,14 +26,22 @@ public class GestorReservaTurno {
     private RecursoTecnologico recursoTecnologicoSeleccionado;
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
     private Turno turnoSeleccionado;
+    private TipoRTRepository tipoRTRepository;
 
-    public void reservarTurnoRecursoTecnologico() {};
+    public void reservarTurnoRecursoTecnologico() {
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.buscarTipoRecurso();
+        tipoRecursoTecnologicos.forEach(tipoRecursoTecnologico -> System.out.println(tipoRecursoTecnologico));
+    };
 
-    //public TipoRecursoTecnologico buscarTipoRecurso() {};
+    public List<TipoRecursoTecnologico> buscarTipoRecurso() {
+        return tipoRTRepository.finAllRT();
+    };
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {};
 
-    //public RecursoTecnologico obtenerRTActivos() {};
+    public RecursoTecnologico obtenerRTActivos() {
+        return null;
+    };
 
     public void agruparPorCentroDeInvestigacion() {};
 
@@ -40,21 +49,31 @@ public class GestorReservaTurno {
 
     public void verificarClienteLogueado(){};
 
-    //public List<Turno> obtenerTurnosRT(){};
+    public List<Turno> obtenerTurnosRT(){
+        return null;
+    };
 
-    //public Date getFechaHoraActual(){};
+    public Date getFechaHoraActual(){
+        return null;
+    };
 
     public void agruparYOrdenarTurnos(){};
 
     //definirColorTurnos
 
-    //public Turno tomarSeleccionTurno(){};
+    public Turno tomarSeleccionTurno(){
+        return null;
+    };
 
-    //public Boolean tomarConfirmacionYMododeNotificacion(){};
+    public Boolean tomarConfirmacionYMododeNotificacion(){
+        return null;
+    };
 
     public void registrarReservaTurno(){};
 
-    //public Estado buscarEstadoReservado(){};
+    public Estado buscarEstadoReservado(){
+        return null;
+    };
 
     public void notificarCientifico(){};
 

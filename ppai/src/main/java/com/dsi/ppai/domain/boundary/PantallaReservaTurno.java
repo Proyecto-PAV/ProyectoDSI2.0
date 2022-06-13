@@ -3,6 +3,8 @@ package com.dsi.ppai.domain.boundary;
 import com.dsi.ppai.domain.entidad.RecursoTecnologico;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.domain.gestor.GestorReservaTurno;
+import com.dsi.ppai.repository.TipoRTRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +28,7 @@ public class PantallaReservaTurno {
     private String tipoRecursoSeleccionado;
     private String turnoSeleccionado;
     private String ventanaHabilitada;
+    private GestorReservaTurno gestorReservaTurno;
 
     public void habilitarPantalla(){}
 
@@ -33,7 +36,11 @@ public class PantallaReservaTurno {
 
     public void mostrarTiposRecursos(){}
 
-    public void opcionReservarTurnoRecursoTecnologico(){}
+    public void opcionReservarTurnoRecursoTecnologico(){
+        habilitarPantalla();
+        this.gestorReservaTurno = new GestorReservaTurno();
+        gestorReservaTurno.reservarTurnoRecursoTecnologico();
+    }
 
     public void pedirSeleccionTurnos(){}
 
