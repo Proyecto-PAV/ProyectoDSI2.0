@@ -4,7 +4,6 @@ import com.dsi.ppai.domain.entidad.RecursoTecnologico;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Turno;
 import com.dsi.ppai.domain.gestor.GestorReservaTurno;
-import com.dsi.ppai.repository.TipoRTRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,16 +29,20 @@ public class PantallaReservaTurno {
     private String ventanaHabilitada;
     private GestorReservaTurno gestorReservaTurno;
 
+    public void opcionReservarTurnoRecursoTecnologico(){
+        habilitarPantalla();
+        this.gestorReservaTurno = new GestorReservaTurno();
+
+        //comentar para q levante el pryecto xq no esta implementada la bd
+        gestorReservaTurno.reservarTurnoRecursoTecnologico();
+    }
+
     public void habilitarPantalla(){}
 
     public void mostrarRecursosTecnologicos(){}
 
-    public void mostrarTiposRecursos(){}
-
-    public void opcionReservarTurnoRecursoTecnologico(){
-        habilitarPantalla();
-        this.gestorReservaTurno = new GestorReservaTurno();
-        gestorReservaTurno.reservarTurnoRecursoTecnologico();
+    public void mostrarTiposRecursos(List<TipoRecursoTecnologico> tipoRecursoTecnologicos){
+        tipoRecursoTecnologicos.forEach(tipoRecursoTecnologico -> System.out.println(tipoRecursoTecnologicos));
     }
 
     public void pedirSeleccionTurnos(){}

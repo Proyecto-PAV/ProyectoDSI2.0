@@ -1,17 +1,23 @@
 package com.dsi.ppai.domain.gestor;
 
+import com.dsi.ppai.domain.boundary.PantallaReservaTurno;
 import com.dsi.ppai.domain.entidad.Estado;
 import com.dsi.ppai.domain.entidad.RecursoTecnologico;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Turno;
-import com.dsi.ppai.repository.TipoRTRepository;
+import com.dsi.ppai.repository.Repository;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class GestorReservaTurno {
     private String cientificoLogueado;
     private Boolean confirmacionTurno;
@@ -26,15 +32,20 @@ public class GestorReservaTurno {
     private RecursoTecnologico recursoTecnologicoSeleccionado;
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
     private Turno turnoSeleccionado;
-    private TipoRTRepository tipoRTRepository;
+    private PantallaReservaTurno pantallaReservaTurno;
+    private Repository tipoRTRepository;
 
     public void reservarTurnoRecursoTecnologico() {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.buscarTipoRecurso();
-        tipoRecursoTecnologicos.forEach(tipoRecursoTecnologico -> System.out.println(tipoRecursoTecnologico));
+        //creo una nueva instancia de pantalla?
+        this.pantallaReservaTurno = new PantallaReservaTurno();
+        this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
     };
 
     public List<TipoRecursoTecnologico> buscarTipoRecurso() {
-        return tipoRTRepository.finAllRT();
+        //falta hacer la conceccion con la bd
+        //return tipoRTRepository.finAllRT();
+        return null;
     };
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {};
