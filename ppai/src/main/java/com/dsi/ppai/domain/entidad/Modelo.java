@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "modelo")
@@ -21,6 +18,10 @@ public class Modelo {
     @Id
     @Column(name = "nombre_modelo")
     private String nombre;
+
+    @ManyToOne
+    @JoinColumn(name = "nombre_marca")
+    private Marca marcaDelModelo;
 
     public void mostrarMarcaYModelo() {
         // Aca hay que obtener la marca de ese modelo pero no se como hacerlo por la relacion xd

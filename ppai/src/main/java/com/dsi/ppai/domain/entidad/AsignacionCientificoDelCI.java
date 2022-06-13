@@ -30,14 +30,16 @@ public class AsignacionCientificoDelCI {
     @Column(name = "fecha_hasta")
     private Date fechaHasta;
 
-    private String eMail;
-
     @OneToMany(mappedBy = "asignacionCientificoCI")
     private List<Turno> turnos;
 
     @OneToOne
     @JoinColumn(name = "legajo")
     private PersonalCientifico cientifico;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_centro")
+    private CentroDeInvestigacion centroDeInvestigacion;
 
     public boolean esCientificoActivo(){
         //todo Hacer un loop q recorra los cientificos

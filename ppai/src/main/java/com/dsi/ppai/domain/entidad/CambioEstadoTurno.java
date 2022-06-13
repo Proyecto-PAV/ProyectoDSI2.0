@@ -33,6 +33,10 @@ public class CambioEstadoTurno {
     @JoinColumn(name = "nombre_estado")
     private Estado estado;
 
+    @ManyToOne
+    @JoinColumn(name = "id_turno")
+    private Turno turno;
+
     private void mostrarCambioEstadoTurno(){
 
     }

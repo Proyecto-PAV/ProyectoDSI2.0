@@ -49,6 +49,10 @@ public class RecursoTecnologico {
     @JoinColumn(name = "nombre_modelo")
     private Modelo modelo;
 
+    @ManyToOne()
+    @JoinColumn(name = "id_centro")
+    private CentroDeInvestigacion centroDeInvestigacion;
+
     public void conocerCaracteristicasRecursos(){};
     public void conocerCategoria(){};
     public void crear(){};

@@ -19,9 +19,8 @@ public class Usuario {
     private String clave;
     private Boolean habilitado;
     @OneToOne
-    @JoinColumn(name = "empleado_sesion")
-    private Sesion sesion;
-
+    @JoinColumn(name = "legajo")
+    private PersonalCientifico personalCientifico;
 
     public void habilitar(){
         this.habilitado = true;
@@ -34,7 +33,7 @@ public class Usuario {
     public void modificarPassword(){}
 
     public String obtenerCientifico(){
-        return sesion.getEmpleadoSesion();
+        return null;
     }
 
 }
