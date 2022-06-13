@@ -44,8 +44,7 @@ public class GestorReservaTurno {
 
     public List<TipoRecursoTecnologico> buscarTipoRecurso() {
         //falta hacer la conceccion con la bd
-        //return tipoRTRepository.finAllRT();
-        return null;
+        return tipoRTRepository.findAllTipoRT();
     };
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {};
