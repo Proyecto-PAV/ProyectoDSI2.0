@@ -55,10 +55,14 @@ public class GestorReservaTurno {
         List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
         for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
             String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
-            String idTipoRecursoBD = recursoTecnologicoBD.getTipoRecursoTecnologico().getIdTipoRecurso();
 
+            //true si el RT tiene el mismo id del tipo de recurso selec
             if(recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)){
-                System.out.println(recursoTecnologicoBD);
+                //si es true se lo agrega a la lista de RT activos
+                if (recursoTecnologicoBD.esReservable()){
+                    System.out.println(recursoTecnologicoBD);
+                    this.listadoRecursosTecnologicosActivos.add(recursoTecnologicoBD);
+                }
             }
         }
         return null;
