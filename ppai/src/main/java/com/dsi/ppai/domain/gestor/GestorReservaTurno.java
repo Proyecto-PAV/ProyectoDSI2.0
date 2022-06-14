@@ -35,20 +35,21 @@ public class GestorReservaTurno {
     private PantallaReservaTurno pantallaReservaTurno;
     private Repository tipoRTRepository;
 
-    public void reservarTurnoRecursoTecnologico() {
+    public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.buscarTipoRecurso();
         //creo una nueva instancia de pantalla?
-        this.pantallaReservaTurno = new PantallaReservaTurno();
+        this.pantallaReservaTurno = pantallaReservaTurno;
         this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
     };
 
     public List<TipoRecursoTecnologico> buscarTipoRecurso() {
         //falta hacer la conceccion con la bd
         //return tipoRTRepository.finAllRT();
-        return null;
     };
 
-    public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {};
+    public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
+        this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
+    };
 
     public RecursoTecnologico obtenerRTActivos() {
         return null;
