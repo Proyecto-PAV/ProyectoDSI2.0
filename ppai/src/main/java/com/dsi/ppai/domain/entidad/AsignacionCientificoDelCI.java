@@ -58,4 +58,5 @@ public class AsignacionCientificoDelCI {
     public void setTurno(Turno turno){
         this.turnos.add(turno);
     }
+
 }

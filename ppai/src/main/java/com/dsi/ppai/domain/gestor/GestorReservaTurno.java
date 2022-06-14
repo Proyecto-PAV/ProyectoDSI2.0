@@ -1,10 +1,7 @@
 package com.dsi.ppai.domain.gestor;
 
 import com.dsi.ppai.domain.boundary.PantallaReservaTurno;
-import com.dsi.ppai.domain.entidad.Estado;
-import com.dsi.ppai.domain.entidad.RecursoTecnologico;
-import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
-import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.domain.entidad.*;
 import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -72,9 +69,16 @@ public class GestorReservaTurno {
 
     public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
 
-    public void verificarClienteLogueado(){};
 
     public List<Turno> obtenerTurnosRT(){
+
+        /**
+         * Traer fecha y hora actual
+         */
+        //fechaActual = Date;
+
+        //this.recursoTecnologicoSeleccionado.mostrarTurnos(fechaActual);
+
         return null;
     };
 

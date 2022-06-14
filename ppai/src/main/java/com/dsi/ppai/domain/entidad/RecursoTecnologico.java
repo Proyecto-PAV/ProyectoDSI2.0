@@ -88,4 +88,18 @@ public class RecursoTecnologico {
     public void mostrarRT(){};
 
     public void nuevoMantenimientoPreventivo(){};
+
+    public List<Turno> mostrarTurnos(Date fechaActual) {
+
+        List<Turno> turnosPosteriorFechaActual = null;
+
+        for (Turno turno : turnos) {
+            if (turno.esPosteriorFechaActual(fechaActual)) {
+                turnosPosteriorFechaActual.add(turno.mostrarDatos());
+
+            }
+        }
+
+        return turnosPosteriorFechaActual;
+    }
 }

@@ -76,9 +76,6 @@ public class CentroDeInvestigacion {
 
 
     //Métodos.
-    public Boolean esAsignado() {
-        return null;
-    }
 
     public void asignarTurno() {}
 
