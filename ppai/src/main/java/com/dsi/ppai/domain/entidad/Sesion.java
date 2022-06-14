@@ -18,7 +18,10 @@ import java.util.Date;
 public class Sesion {
 
     @Id
+<<<<<<< HEAD
     @GeneratedValue
+=======
+>>>>>>> dev
     @Column(name = "empleado_sesion")
     private String empleadoSesion;
 
@@ -34,8 +37,19 @@ public class Sesion {
     @Column(name = "hora_inicio")
     private Date horaInicio;
 
+<<<<<<< HEAD
+=======
+    @OneToOne
+    @JoinColumn(name = "usuario")
+    private Usuario usuario;
+
+>>>>>>> dev
 
     public String mostrarCliente(){
         return this.empleadoSesion;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev

@@ -4,9 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+<<<<<<< HEAD
 
 import javax.persistence.*;
 import java.util.ArrayList;
+=======
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+>>>>>>> dev
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +25,16 @@ import java.util.List;
 public class Turno {
 
     @Id
+<<<<<<< HEAD
     @GeneratedValue
     @Column(name = "id_turno")
     private int idTurno;
+=======
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id_turno")
+    private String idTurno;
+>>>>>>> dev
 
     @Column(name = "dia_semana")
     private Date diaSemana;
@@ -35,6 +48,7 @@ public class Turno {
     @Column(name = "fecha_hora_inicio")
     private Date fechaHoraInicio;
 
+<<<<<<< HEAD
     @OneToMany
     @JoinColumn(name = "id_cambio_estado_turno")
     private List<CambioEstadoTurno> cambiosEstadoTurno;
@@ -44,6 +58,21 @@ public class Turno {
 
     @Column(name = "cambio_estado_actual")
     private CambioEstadoTurno cambioEstadoActual;
+=======
+    @OneToMany(mappedBy = "turno")
+    private List<CambioEstadoTurno> cambiosEstadoTurno;
+
+    @ManyToOne
+    @JoinColumn(name = "id_asignacion_cientifico")
+    private AsignacionCientificoDelCI asignacionCientificoCI;
+
+    @ManyToOne
+    @JoinColumn(name = "numero_rt")
+    private RecursoTecnologico recursoTecnologicoDelTurno;
+
+    //@Column(name = "cambio_estado_actual")
+    //private CambioEstadoTurno cambioEstadoActual;
+>>>>>>> dev
 
     public boolean estoyDisponible(){
         if (fechaHoraFin == null) {

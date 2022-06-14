@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/ProyectoDSI2.0.iml" filepath="$PROJECT_DIR$/.idea/ProyectoDSI2.0.iml" />
+=======
+>>>>>>> dev
       <module fileurl="file://$PROJECT_DIR$/ppai/ppai.iml" filepath="$PROJECT_DIR$/ppai/ppai.iml" />
     </modules>
   </component>
