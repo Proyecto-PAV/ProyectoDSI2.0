@@ -43,6 +43,23 @@ public class GestorReservaTurno {
         return this.repository.findAllTipoRT();
     };
 
+    /*
+    public List<String> buscarTipoRecurso() {
+        this.repository = new Repository();
+
+        List<String> nombresTipoRT = null;
+
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.repository.findAllTipoRT();
+
+        for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicos) {
+            nombresTipoRT.add(tipoRecursoTecnologico.getNombre());
+        }
+
+        return nombresTipoRT;
+    }
+     */
+
+
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
@@ -98,11 +115,29 @@ public class GestorReservaTurno {
         return null;
     };
 
-    public void registrarReservaTurno(){};
-
-    public Estado buscarEstadoReservado(){
-        return null;
+    public void registrarReservaTurno(){
+        this.buscarEstadoReservado();
     };
+
+    public void buscarEstadoReservado(){
+
+        this.repository = new Repository();
+
+        List<Estado> estadosBD = this.repository.findEstados();
+        List<Estado> estadosAmbitoTurno = null;
+
+        for (Estado estado : estadosBD) {
+            if (estado.esAmbitoTurno()) {
+                estadosAmbitoTurno.add(estado);
+            }
+        }
+
+        for (Estado estado : estadosAmbitoTurno) {
+            if (estado.esReservado()) {
+                this.estadoReservado = estado;
+            }
+        }
+    }
 
     public void notificarCientifico(){};
 

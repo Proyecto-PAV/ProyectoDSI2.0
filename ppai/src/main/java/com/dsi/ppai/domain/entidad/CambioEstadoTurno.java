@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,7 +52,9 @@ public class CambioEstadoTurno {
         return false;
     }
 
-//    public String obtenerEstado(){
-//        return this.estado.getNombre();
-//    }
+    public void obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
+        Repository repository = new Repository();
+        Estado estadoDelTurnoBD = repository.findEstadoDelCE(cambioEstadoTurno.getEstado().getNombre(), "Turno");
+        cambioEstadoTurno.setEstado(estadoDelTurnoBD);
+    }
 }

@@ -97,4 +97,26 @@ public class Repository {
         }
         return estado;
     }
+
+    public static List<Estado> findEstados() {
+        ArrayList<Estado> arrayEstadosAmbitoTurno = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Estado estado = new Estado();
+                estado.setNombre(rs.getString(1));
+                estado.setAmbito(rs.getString(2));
+                estado.setDescripcion(rs.getString(3));
+                estado.setEsCancelable(rs.getBoolean(4));
+                estado.setEsReservable(rs.getBoolean(5));
+                arrayEstadosAmbitoTurno.add(estado);
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return arrayEstadosAmbitoTurno;
+    }
+
 }

@@ -32,4 +32,18 @@ public class Estado {
     public Boolean esReservable(){
         return this.getEsReservable();
     };
+
+    public Boolean esAmbitoTurno() {
+        if (this.ambito.equals("Turno")) {
+            return true;
+        }
+        else return false;
+    }
+
+    public Boolean esReservado() {
+        if (this.nombre.equals("Reservado")) {
+            return true;
+        }
+        else return false;
+    }
 }

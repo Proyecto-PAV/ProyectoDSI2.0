@@ -97,6 +97,7 @@ public class Turno {
         for (CambioEstadoTurno cambioEstadoTurno : this.cambiosEstadoTurno) {
             if (cambioEstadoTurno.esActual()) {
                 this.cambioEstadoActual = cambioEstadoTurno;
+                //this.cambioEstadoActual.setEstado(this.cambioEstadoActual.obtenerEstado(this.cambioEstadoActual));
             }
         }
         return this;
