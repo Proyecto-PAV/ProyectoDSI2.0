@@ -31,8 +31,12 @@ public class CambioEstadoRT {
     private Date fechaHoraHasta;
 
     @OneToOne
-    @JoinColumn(name = "nombre_estado")
+    @JoinColumns({
+            @JoinColumn(name = "ambito"),
+            @JoinColumn(name = "nombre_estado")
+    })
     private Estado estado;
+
 
     @ManyToOne
     @JoinColumn(name = "numero_rt")

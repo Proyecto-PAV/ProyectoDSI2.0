@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "estado")
+@IdClass(EstadoId.class)
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class Estado {
     @Id
     @Column(name = "nombre_estado")
     private String nombre;
-
+    @Id
     private String ambito;
 
     private String descripcion;
