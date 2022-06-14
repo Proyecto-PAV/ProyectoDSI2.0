@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -55,6 +56,21 @@ public class RecursoTecnologico {
 
     public Boolean esDelTiporRTSeleccionado(String tipoRecursoTecnologicoSelec){
         return this.getTipoRecursoTecnologico().getIdTipoRecurso().equals(tipoRecursoTecnologicoSelec);
+    };
+
+    public Boolean esReservable(){
+        CambioEstadoRT actualCE;
+        Repository repository = new Repository();
+        List<CambioEstadoRT> cambioEstadoRTS = repository.findCEDelRT(this.numeroRT);
+        for (CambioEstadoRT cambioEstadoRT : cambioEstadoRTS){
+            if(cambioEstadoRT.esActual()){
+                actualCE = cambioEstadoRT;
+                if(actualCE.esReservable(actualCE)){
+                    return true;
+                };
+            };
+        };
+        return false;
     };
 
     public void conocerCaracteristicasRecursos(){};

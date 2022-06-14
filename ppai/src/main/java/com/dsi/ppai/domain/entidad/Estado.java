@@ -25,11 +25,11 @@ public class Estado {
 
     private String descripcion;
 
-    private boolean esCancelable;
+    private Boolean esCancelable;
 
-    private boolean esReservable;
+    private Boolean esReservable;
 
-    public String mostrarEstado() {
-        return this.nombre;
-    }
+    public Boolean esReservable(){
+        return this.getEsReservable();
+    };
 }

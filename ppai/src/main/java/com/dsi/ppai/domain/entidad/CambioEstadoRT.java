@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,4 +42,16 @@ public class CambioEstadoRT {
     @ManyToOne
     @JoinColumn(name = "numero_rt")
     private RecursoTecnologico recursoTecnologicoDelCE;
+
+    public Boolean esActual(){
+        return this.getFechaHoraHasta() == null;
+    };
+
+    public Boolean esReservable(CambioEstadoRT cambioEstadoRT){
+        Repository repository = new Repository();
+        Estado estadoDelRTBD = repository.findEstadoDelCE(cambioEstadoRT.getEstado().getNombre(), "RT");
+        cambioEstadoRT.setEstado(estadoDelRTBD);
+        System.out.println(this.getEstado().esReservable());
+        return this.getEstado().esReservable();
+    };
 }
