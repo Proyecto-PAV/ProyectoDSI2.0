@@ -67,8 +67,8 @@ public class Repository {
                 cambioEstado.setCambioEstadoRTId(rs.getString(1));
                 cambioEstado.setFechaHoraDesde(rs.getDate(2));
                 cambioEstado.setFechaHoraHasta(rs.getDate(3));
-                cambioEstado.setEstado(Estado.builder().nombre(rs.getString(4)).build());
-                cambioEstado.setRecursoTecnologicoDelCE(RecursoTecnologico.builder().numeroRT(rs.getInt(5)).build());
+                cambioEstado.setEstado(Estado.builder().nombre(rs.getString(5)).build());
+                cambioEstado.setRecursoTecnologicoDelCE(RecursoTecnologico.builder().numeroRT(rs.getInt(6)).build());
                 arrayCEDelRT.add(cambioEstado);
             }
         } catch (SQLException e) {
