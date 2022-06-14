@@ -39,7 +39,7 @@ public class PantallaReservaTurno {
 
     public void mostrarRecursosTecnologicos(){}
 
-    public void mostrarTiposRecursos(List<TipoRecursoTecnologico> tipoRecursoTecnologicos){
+    public void mostrarTiposRecursos(List<String> tipoRecursoTecnologicos){
         //esto eliminar es para probar el flujo
         this.tomarSeleccionTipoRecurso();
         //el metodo tomarSeleccionTipoRecurso se ejecuta por un evento del front
