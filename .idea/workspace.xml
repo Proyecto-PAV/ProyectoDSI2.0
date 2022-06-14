@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1654898084139</updated>
       <workItem from="1654898087925" duration="8106000" />
-      <workItem from="1655123540813" duration="15505000" />
+      <workItem from="1655123540813" duration="15837000" />
     </task>
     <servers />
   </component>
