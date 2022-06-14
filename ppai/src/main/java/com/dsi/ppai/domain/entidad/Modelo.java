@@ -26,4 +26,7 @@ public class Modelo {
     public void mostrarMarcaYModelo() {
         // Aca hay que obtener la marca de ese modelo pero no se como hacerlo por la relacion xd
     }
+
+    public void setMarcaDelModelo() {
+    }
 }

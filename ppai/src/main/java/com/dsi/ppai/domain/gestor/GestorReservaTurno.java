@@ -1,10 +1,7 @@
 package com.dsi.ppai.domain.gestor;
 
 import com.dsi.ppai.domain.boundary.PantallaReservaTurno;
-import com.dsi.ppai.domain.entidad.Estado;
-import com.dsi.ppai.domain.entidad.RecursoTecnologico;
-import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
-import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.domain.entidad.*;
 import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -68,9 +66,18 @@ public class GestorReservaTurno {
             }
         }
         System.out.println(this.listadoRecursosTecnologicosActivos);
+        this.listadoRecursosTecnologicos = new ArrayList<>();
+
+        for (RecursoTecnologico recursoTecnologicoActivo : this.listadoRecursosTecnologicosActivos) {
+            this.listadoRecursosTecnologicos.add(recursoTecnologicoActivo.mostrarDatosRT());
+        }
+
     }
 
-    public void agruparPorCentroDeInvestigacion() {};
+    public void agruparPorCentroDeInvestigacion() {
+        List<String> idsCI = this.repository.findIDDelCI();
+        this.listadoRecursosTecnologicos.sort(idsCI.get(1));
+    };
 
     public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
 

@@ -85,7 +85,19 @@ public class RecursoTecnologico {
 
     public void misTurnosDisponibles(){};
 
-    public void mostrarRT(){};
+    public RecursoTecnologico mostrarDatosRT(){
+        RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
+        recursoTecnologico.setNumeroRT(this.getNumeroRT());
+        recursoTecnologico.setDuracionManteniientoPreventivo(this.getDuracionManteniientoPreventivo());
+        recursoTecnologico.setFraccionHorarioTurno(this.getFraccionHorarioTurno());
+        recursoTecnologico.setPeriodicidadMantenimientoPreventivo(this.getPeriodicidadMantenimientoPreventivo());
+        recursoTecnologico.setCambioEstadoRTS(this.getCambioEstadoRTS());
+        recursoTecnologico.setCentroDeInvestigacion(this.getCentroDeInvestigacion()); //TODO aca se tiene que invocar al metodo de getNombre en la pantalla
+        recursoTecnologico.setModelo(this.getModelo());
+        recursoTecnologico.getModelo().setMarcaDelModelo();
+
+        return recursoTecnologico;
+    };
 
     public void nuevoMantenimientoPreventivo(){};
 }
