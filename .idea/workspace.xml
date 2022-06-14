@@ -72,7 +72,7 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.PpaiApplication">
+  <component name="RunManager" selected="Spring Boot.PpaiApplication">
     <configuration name="PpaiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dsi.ppai.PpaiApplication" />
       <module name="ppai" />
