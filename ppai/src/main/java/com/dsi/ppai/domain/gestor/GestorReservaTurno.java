@@ -8,10 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -27,6 +24,7 @@ public class GestorReservaTurno {
     private List<String> listadoNombresTipoRecurso;
     private List<RecursoTecnologico> listadoRecursosTecnologicos;
     private List<RecursoTecnologico> listadoRecursosTecnologicosActivos;
+    private HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados;
     private List<Turno> listadoTurnosRecursoTecnologico;
     private RecursoTecnologico recursoTecnologicoSeleccionado;
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
@@ -75,43 +73,61 @@ public class GestorReservaTurno {
         for (RecursoTecnologico recursoTecnologicoActivo : this.listadoRecursosTecnologicosActivos) {
             this.listadoRecursosTecnologicos.add(recursoTecnologicoActivo.mostrarDatosRT());
         }
-
+        //Esto eliminarlo dsp
+        this.agruparPorCentroDeInvestigacion();
     }
 
     public void agruparPorCentroDeInvestigacion() {
-    };
+        HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados = new HashMap<>();
+        ArrayList<RecursoTecnologico> arrayRecursos = new ArrayList<>();
+        for (int i = 0; i < this.listadoRecursosTecnologicos.size(); i++) {
+            String rTKey = this.listadoRecursosTecnologicos.get(i).getCentroDeInvestigacion().getIdCentroInvestigacion();
+            RecursoTecnologico rTValue = this.listadoRecursosTecnologicos.get(i);
 
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
+            if (!recursosTecnologicosAgrupados.containsKey(rTKey)){
+                arrayRecursos.add(rTValue);
+                recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
+            }else{
+                arrayRecursos = recursosTecnologicosAgrupados.get(rTKey);
+                arrayRecursos.add(rTValue);
+                recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
+            }
+        }
+        this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
+        this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
+    }
 
-    public void verificarClienteLogueado(){};
+    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {}
+
+    public void verificarClienteLogueado(){}
 
     public List<Turno> obtenerTurnosRT(){
         return null;
-    };
+    }
 
     public Date getFechaHoraActual(){
         return null;
-    };
+    }
 
-    public void agruparYOrdenarTurnos(){};
+    public void agruparYOrdenarTurnos(){}
 
     //definirColorTurnos
 
     public Turno tomarSeleccionTurno(){
         return null;
-    };
+    }
 
     public Boolean tomarConfirmacionYMododeNotificacion(){
         return null;
-    };
+    }
 
-    public void registrarReservaTurno(){};
+    public void registrarReservaTurno(){}
 
     public Estado buscarEstadoReservado(){
         return null;
-    };
+    }
 
-    public void notificarCientifico(){};
+    public void notificarCientifico(){}
 
-    public void finCU(){};
+    public void finCU(){}
 }

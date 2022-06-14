@@ -72,7 +72,7 @@ public class RecursoTecnologico {
                 this.cambioEstadoRTS = new ArrayList<>();
                 this.cambioEstadoRTS.add(actualCE);
                 //verifico en el CE actual si su estado es reservable
-                if(actualCE.esReservable(actualCE)){
+                if(actualCE.esReservable()){ //Aca saque el parametro ya que no va, el CE identifica a su objeto
                     return true;
                 };
             };

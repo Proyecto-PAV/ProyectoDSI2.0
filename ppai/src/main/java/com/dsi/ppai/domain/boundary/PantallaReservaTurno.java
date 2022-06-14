@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -20,11 +22,12 @@ public class PantallaReservaTurno {
     private String botonReservarTurno;
     private Boolean confirmacionTurno;
     private List<RecursoTecnologico> listadoRecursosTecnologico;
+    private HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados;
     private List<TipoRecursoTecnologico> listadoTipoRecursos;
     private List<Turno> listadoTurno;
     private String modoNotificacion;
     private String recursoTecnologicoSeleccionado;
-    private String tipoRecursoSeleccionado;
+    private TipoRecursoTecnologico tipoRecursoSeleccionado;
     private String turnoSeleccionado;
     private String ventanaHabilitada;
     private GestorReservaTurno gestorReservaTurno;
@@ -37,7 +40,14 @@ public class PantallaReservaTurno {
 
     public void habilitarPantalla(){}
 
-    public void mostrarRecursosTecnologicos(){}
+    public void mostrarRecursosTecnologicos(HashMap<String, ArrayList<RecursoTecnologico>> hashMap){
+//        this.gestorReservaTurno.obtenerRTActivos(this.tipoRecursoSeleccionado);
+//        this.listadoRecursosTecnologico = this.gestorReservaTurno.getListadoRecursosTecnologicos();
+//        this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
+//        this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
+        this.recursosTecnologicosAgrupados = hashMap;
+        System.out.println(this.recursosTecnologicosAgrupados.toString());
+    }
 
     public void mostrarTiposRecursos(List<String> tipoRecursoTecnologicos){
         //esto eliminar es para probar el flujo
