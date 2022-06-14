@@ -53,6 +53,10 @@ public class RecursoTecnologico {
     @JoinColumn(name = "id_centro")
     private CentroDeInvestigacion centroDeInvestigacion;
 
+    public Boolean esDelTiporRTSeleccionado(String tipoRecursoTecnologicoSelec){
+        return this.getTipoRecursoTecnologico().getIdTipoRecurso().equals(tipoRecursoTecnologicoSelec);
+    };
+
     public void conocerCaracteristicasRecursos(){};
 
     public void conocerCategoria(){};

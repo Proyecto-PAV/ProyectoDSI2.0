@@ -56,9 +56,10 @@ public class GestorReservaTurno {
         for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
             String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
             String idTipoRecursoBD = recursoTecnologicoBD.getTipoRecursoTecnologico().getIdTipoRecurso();
-            if (idTipoRecursoSelec.equals(idTipoRecursoBD)){
+
+            if(recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)){
                 System.out.println(recursoTecnologicoBD);
-            };
+            }
         }
         return null;
     };
