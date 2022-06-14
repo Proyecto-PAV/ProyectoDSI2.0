@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,9 +19,10 @@ import java.util.List;
 public class AsignacionCientificoDelCI {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id_asignacion_cientifico")
-    private int id;
+    private String id;
 
     @Column(name = "fecha_desde")
     private Date fechaDesde;
@@ -28,15 +30,16 @@ public class AsignacionCientificoDelCI {
     @Column(name = "fecha_hasta")
     private Date fechaHasta;
 
-    private String eMail;
-
-    @OneToMany
-    @JoinColumn(name = "id_turno")
+    @OneToMany(mappedBy = "asignacionCientificoCI")
     private List<Turno> turnos;
 
     @OneToOne
     @JoinColumn(name = "legajo")
     private PersonalCientifico cientifico;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_centro")
+    private CentroDeInvestigacion centroDeInvestigacion;
 
     public boolean esCientificoActivo(){
         //todo Hacer un loop q recorra los cientificos
