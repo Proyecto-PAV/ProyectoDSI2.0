@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="branch-belu" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -98,6 +96,8 @@
         <item itemvalue="Application.PpaiApplication" />
         <item itemvalue="Application.PpaiApplication" />
         <item itemvalue="Application.PpaiApplication" />
+        <item itemvalue="Application.PpaiApplication" />
+        <item itemvalue="Application.PpaiApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -111,6 +111,8 @@
       <updated>1654898084139</updated>
       <workItem from="1654898087925" duration="8106000" />
       <workItem from="1655123540813" duration="15837000" />
+      <workItem from="1655215247144" duration="1528000" />
+      <workItem from="1655216811103" duration="8034000" />
     </task>
     <servers />
   </component>
@@ -131,5 +133,51 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.Integer" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

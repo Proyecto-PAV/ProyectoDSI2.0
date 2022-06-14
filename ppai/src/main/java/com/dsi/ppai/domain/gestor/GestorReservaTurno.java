@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,8 +52,10 @@ public class GestorReservaTurno {
         this.obtenerRTActivos(tipoRecurso);
     };
 
-    public RecursoTecnologico obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
+    public void obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
         List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
+        this.listadoRecursosTecnologicosActivos = new ArrayList<>();
+
         for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
             String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
 
@@ -60,13 +63,12 @@ public class GestorReservaTurno {
             if(recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)){
                 //si es true se lo agrega a la lista de RT activos
                 if (recursoTecnologicoBD.esReservable()){
-                    System.out.println(recursoTecnologicoBD);
                     this.listadoRecursosTecnologicosActivos.add(recursoTecnologicoBD);
                 }
             }
         }
-        return null;
-    };
+        System.out.println(this.listadoRecursosTecnologicosActivos);
+    }
 
     public void agruparPorCentroDeInvestigacion() {};
 
