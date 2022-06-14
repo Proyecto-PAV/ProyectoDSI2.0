@@ -37,7 +37,10 @@ public class PantallaReservaTurno {
 
     public void habilitarPantalla(){}
 
-    public void mostrarRecursosTecnologicos(){}
+    public void mostrarRecursosTecnologicos(){
+        gestorReservaTurno.obtenerTurnosRT();
+        this.listadoRecursosTecnologico = gestorReservaTurno.getListadoRecursosTecnologicos();
+    }
 
     public void mostrarTiposRecursos(List<String> tipoRecursoTecnologicos){
         //esto eliminar es para probar el flujo
