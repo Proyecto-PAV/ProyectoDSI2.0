@@ -79,8 +79,6 @@ public class GestorReservaTurno {
     }
 
     public void agruparPorCentroDeInvestigacion() {
-        List<String> idsCI = this.repository.findIDDelCI();
-        this.listadoRecursosTecnologicos.sort(idsCI.get(1));
     };
 
     public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
