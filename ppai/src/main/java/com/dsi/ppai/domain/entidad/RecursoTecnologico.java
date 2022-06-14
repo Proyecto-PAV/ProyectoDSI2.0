@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,10 +62,16 @@ public class RecursoTecnologico {
     public Boolean esReservable(){
         CambioEstadoRT actualCE;
         Repository repository = new Repository();
+        //obtengo todos los cambios de estados del RT
         List<CambioEstadoRT> cambioEstadoRTS = repository.findCEDelRT(this.numeroRT);
         for (CambioEstadoRT cambioEstadoRT : cambioEstadoRTS){
+            //de todos los CE busco el actual
             if(cambioEstadoRT.esActual()){
                 actualCE = cambioEstadoRT;
+                //le seteo al RT el CE actual por si se necesita posteriormente
+                this.cambioEstadoRTS = new ArrayList<>();
+                this.cambioEstadoRTS.add(actualCE);
+                //verifico en el CE actual si su estado es reservable
                 if(actualCE.esReservable(actualCE)){
                     return true;
                 };
