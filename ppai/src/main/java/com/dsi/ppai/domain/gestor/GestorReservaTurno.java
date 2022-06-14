@@ -24,6 +24,7 @@ public class GestorReservaTurno {
     private List<String> listadoNombresTipoRecurso;
     private List<RecursoTecnologico> listadoRecursosTecnologicos;
     private List<RecursoTecnologico> listadoRecursosTecnologicosActivos;
+    private HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados;
     private List<Turno> listadoTurnosRecursoTecnologico;
     private RecursoTecnologico recursoTecnologicoSeleccionado;
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
@@ -72,7 +73,8 @@ public class GestorReservaTurno {
         for (RecursoTecnologico recursoTecnologicoActivo : this.listadoRecursosTecnologicosActivos) {
             this.listadoRecursosTecnologicos.add(recursoTecnologicoActivo.mostrarDatosRT());
         }
-
+        //Esto eliminarlo dsp
+        this.agruparPorCentroDeInvestigacion();
     }
 
     public void agruparPorCentroDeInvestigacion() {
@@ -91,6 +93,8 @@ public class GestorReservaTurno {
                 recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
             }
         }
+        this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
+        this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
     }
 
     public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {}
