@@ -33,25 +33,33 @@ public class GestorReservaTurno {
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
     private Turno turnoSeleccionado;
     private PantallaReservaTurno pantallaReservaTurno;
-    private Repository tipoRTRepository;
+    private Repository repository;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.buscarTipoRecurso();
-        //creo una nueva instancia de pantalla?
         this.pantallaReservaTurno = pantallaReservaTurno;
         this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
     };
 
     public List<TipoRecursoTecnologico> buscarTipoRecurso() {
-        return tipoRTRepository.findAllTipoRT();
-
+        this.repository = new Repository();
+        return this.repository.findAllTipoRT();
     };
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
+        this.obtenerRTActivos(tipoRecurso);
     };
 
-    public RecursoTecnologico obtenerRTActivos() {
+    public RecursoTecnologico obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
+        List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
+        for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
+            String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
+            String idTipoRecursoBD = recursoTecnologicoBD.getTipoRecursoTecnologico().getIdTipoRecurso();
+            if (idTipoRecursoSelec.equals(idTipoRecursoBD)){
+                System.out.println(recursoTecnologicoBD);
+            };
+        }
         return null;
     };
 

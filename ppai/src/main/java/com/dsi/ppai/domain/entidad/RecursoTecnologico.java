@@ -22,18 +22,18 @@ public class RecursoTecnologico {
     private Integer numeroRT;
 
     @Column(name = "duracion_mantenimiento_preventivo")
-    private String duracionManteniientoPreventivo;
+    private Integer duracionManteniientoPreventivo;
 
     @Column(name = "fecha_alta")
     private Date fechaAlta;
 
     @Column(name = "fraccion_hora_turno")
-    private String fraccionHorarioTurno;
+    private Integer fraccionHorarioTurno;
 
     private String imagenes;
 
     @Column(name = "periodicidad_mant_preventivo")
-    private String periodicidadMantenimientoPreventivo;
+    private Integer periodicidadMantenimientoPreventivo;
 
     @OneToMany(mappedBy = "recursoTecnologicoDelTurno")
     private List<Turno> turnos;
@@ -54,11 +54,18 @@ public class RecursoTecnologico {
     private CentroDeInvestigacion centroDeInvestigacion;
 
     public void conocerCaracteristicasRecursos(){};
+
     public void conocerCategoria(){};
+
     public void crear(){};
+
     public void habilitar(){};
+
     public void miModeloYMarca(){};
+
     public void misTurnosDisponibles(){};
+
     public void mostrarRT(){};
+
     public void nuevoMantenimientoPreventivo(){};
 }

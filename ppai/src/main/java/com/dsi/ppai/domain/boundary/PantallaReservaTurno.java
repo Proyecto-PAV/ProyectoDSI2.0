@@ -32,8 +32,6 @@ public class PantallaReservaTurno {
     public void opcionReservarTurnoRecursoTecnologico(){
         habilitarPantalla();
         this.gestorReservaTurno = new GestorReservaTurno();
-
-        //comentar para q levante el pryecto xq no esta implementada la bd
         gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
     }
 
@@ -42,12 +40,15 @@ public class PantallaReservaTurno {
     public void mostrarRecursosTecnologicos(){}
 
     public void mostrarTiposRecursos(List<TipoRecursoTecnologico> tipoRecursoTecnologicos){
-        tipoRecursoTecnologicos.forEach(tipoRecursoTecnologico -> System.out.println(tipoRecursoTecnologicos));
+        //esto eliminar es para probar el flujo
+        this.tomarSeleccionTipoRecurso();
+        //el metodo tomarSeleccionTipoRecurso se ejecuta por un evento del front
     }
 
     public void tomarSeleccionTipoRecurso(){
         //eliminar cuando obtengamos el tipo recurso seleccionado de pantalla
         TipoRecursoTecnologico tipoRecursoTecnologicoSelec = TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build();
+
         this.gestorReservaTurno.tomarSeleccionTipoRecurso(tipoRecursoTecnologicoSelec);
     }
 
