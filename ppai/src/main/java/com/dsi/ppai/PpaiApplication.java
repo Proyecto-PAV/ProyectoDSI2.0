@@ -1,6 +1,7 @@
 package com.dsi.ppai;
 
 import com.dsi.ppai.domain.boundary.PantallaReservaTurno;
+import com.dsi.ppai.domain.gestor.GestorReservaTurno;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,8 +13,8 @@ public class PpaiApplication {
 
 		SpringApplication.run(PpaiApplication.class, args);
 		PantallaReservaTurno pantallaReservaTurno = new PantallaReservaTurno();
-		pantallaReservaTurno.opcionReservarTurnoRecursoTecnologico();
-		pantallaReservaTurno.tomarSeleccionRecursoTecnologico();
+		GestorReservaTurno gestorReservaTurno = new GestorReservaTurno();
+		gestorReservaTurno.obtenerTurnosRT();
 
 	}
 }
