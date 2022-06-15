@@ -132,7 +132,7 @@ public class GestorReservaTurno {
         }
         this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
         PersonalCientifico pc = sesionActual.mostrarCliente();
-        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
+        this.emailCientifico = recursoTecnologico.esCientificoDeTuCI(pc);
     }
 
 
