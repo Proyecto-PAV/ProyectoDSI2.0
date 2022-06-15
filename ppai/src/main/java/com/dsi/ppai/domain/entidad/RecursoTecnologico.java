@@ -93,8 +93,10 @@ public class RecursoTecnologico {
     public List<Turno> mostrarTurnos(Date fechaActual) {
 
         List<Turno> turnosPosteriorFechaActual = new ArrayList<>();
+        this.setTurnos();
 
-        for (Turno turno : turnos) {
+        for (Turno turno : this.turnos) {
+            System.out.println(turno.esPosteriorFechaActual(fechaActual));
             if (turno.esPosteriorFechaActual(fechaActual)) {
                 turnosPosteriorFechaActual.add(turno.mostrarDatos());
 
@@ -102,5 +104,9 @@ public class RecursoTecnologico {
         }
 
         return turnosPosteriorFechaActual;
+    }
+
+    private void setTurnos(){
+        this.turnos = Repository.findTurnos();
     }
 }

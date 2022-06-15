@@ -122,4 +122,47 @@ public class Repository {
         return arrayEstadosAmbitoTurno;
     }
 
+    public static List<Turno> findTurnos(){
+        ArrayList<Turno> turnos = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from turno");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Turno turno = new Turno();
+                turno.setIdTurno(rs.getString(1));
+                turno.setDiaSemana(rs.getDate(2));
+                turno.setFechaGeneracion(rs.getDate(3));
+                turno.setFechaHoraFin(rs.getDate(4));
+                turno.setFechaHoraInicio(rs.getDate(5));
+                turno.setAsignacionCientificoCI(AsignacionCientificoDelCI.builder().id(rs.getString(6)).build());
+                turno.setRecursoTecnologicoDelTurno(RecursoTecnologico.builder().numeroRT(rs.getInt(7)).build());
+                turnos.add(turno);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return turnos;
+    }
+
+    public static  List<CambioEstadoTurno> findCETurnos(){
+        ArrayList<CambioEstadoTurno> cETurnos = new ArrayList<>();
+        try{
+            PreparedStatement ps = con.prepareStatement("select  * from cambio_estado_turno");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                CambioEstadoTurno cambioEstado = new CambioEstadoTurno();
+                cambioEstado.setIdCambioEstadoTurno(rs.getString(1));
+                cambioEstado.setFechaHoraDesde(rs.getDate(2));
+                cambioEstado.setFechaHoraHasta(rs.getDate(3));
+                cambioEstado.setEstado(Estado.builder().ambito(rs.getString(4)).nombre(rs.getString(5)).build());
+                cambioEstado.setTurno(Turno.builder().idTurno(rs.getString(6)).build());
+                cETurnos.add(cambioEstado);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cETurnos;
+    }
+
 }

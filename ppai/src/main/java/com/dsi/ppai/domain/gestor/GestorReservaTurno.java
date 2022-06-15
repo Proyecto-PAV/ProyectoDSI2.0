@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -89,20 +91,18 @@ public class GestorReservaTurno {
 
 
     public List<Turno> obtenerTurnosRT(){
-
+        this.setFechaHoraActual();
         /**
          * Traer fecha y hora actual
          */
-        //fechaActual = Date;
-
-        //this.recursoTecnologicoSeleccionado.mostrarTurnos(fechaActual);
+        this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
 
         return null;
     };
 
-    public Date getFechaHoraActual(){
-        return null;
-    };
+    public void setFechaHoraActual(){
+        this.fechaHoraActual = new Date();
+    }
 
     public void agruparYOrdenarTurnos(){};
 

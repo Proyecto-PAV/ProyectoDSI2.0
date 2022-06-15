@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -98,14 +99,18 @@ public class Turno {
     public Turno mostrarDatos() {
 
         // Consulta cambios de estado
+        this.setCambiosEstadoTurno();
 
         for (CambioEstadoTurno cambioEstadoTurno : this.cambiosEstadoTurno) {
             if (cambioEstadoTurno.esActual()) {
-                cambioEstadoTurno.getTurno();
                 //this.cambioEstadoActual = cambioEstadoTurno;
                 //this.cambioEstadoActual.setEstado(this.cambioEstadoActual.obtenerEstado(this.cambioEstadoActual));
             }
         }
         return this;
+    }
+
+    private void setCambiosEstadoTurno(){
+        this.cambiosEstadoTurno = Repository.findCETurnos();
     }
 }
