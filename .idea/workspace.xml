@@ -8,6 +8,7 @@
       <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/ICUService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/impl/CUServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/PpaiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/PpaiApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" afterDir="false" />
@@ -38,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="branch-belu" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,29 +62,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.13908207" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.PpaiApplication">
+  <component name="RunManager" selected="Spring Boot.PpaiApplication">
     <configuration name="PpaiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dsi.ppai.PpaiApplication" />
       <module name="ppai" />
@@ -126,6 +111,7 @@
       <workItem from="1655123540813" duration="15837000" />
       <workItem from="1655215247144" duration="1528000" />
       <workItem from="1655216811103" duration="8034000" />
+      <workItem from="1655241900032" duration="6761000" />
     </task>
     <servers />
   </component>

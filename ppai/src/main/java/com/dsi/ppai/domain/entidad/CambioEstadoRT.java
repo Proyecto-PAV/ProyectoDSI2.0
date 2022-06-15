@@ -47,10 +47,10 @@ public class CambioEstadoRT {
         return this.getFechaHoraHasta() == null;
     };
 
-    public Boolean esReservable(CambioEstadoRT cambioEstadoRT){
+    public Boolean esReservable(){//En este metodo saque el parametro que tenia pq cada clase identifica a su propio objeto
         Repository repository = new Repository();
-        Estado estadoDelRTBD = repository.findEstadoDelCE(cambioEstadoRT.getEstado().getNombre(), "RT");
-        cambioEstadoRT.setEstado(estadoDelRTBD);
+        Estado estadoDelRTBD = repository.findEstadoDelCE(this.getEstado().getNombre(), "RT");
+        this.setEstado(estadoDelRTBD);
         System.out.println(this.getEstado().esReservable());
         return this.getEstado().esReservable();
     };
