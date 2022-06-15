@@ -1,0 +1,77 @@
+.container-reservar-turno{
+    background-color: #ffffff ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 350px;
+    height: auto;
+    width:  800px;
+    border-radius: 20px;
+    padding: 35px;
+}
+
+.container-selectores-recurso{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.container-mostrar-recursos{
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+    border-top: 1px solid #26262648;  
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 1px solid #26262648;  
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-right: 10px;
+}
+
+.container-buttons-navigation{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px
+}
+
+.container-buttons-navigation > .btn{
+    width:20%;
+}
+
+select{
+    background-color: #6f99da;
+    color: #fff;
+    width: 20%;
+    border-radius: 6px;
+    border: 0px solid !important;
+}
+
+option{
+    background-color: #fff !important;
+    color:black !important;
+}
+
+thead tbody {
+    text-align: center !important; 
+}
+
+td{
+    text-align: center !important;
+}
+
+tr{
+    text-align: center; 
+}
+
+.table>:not(caption)>*>* {
+    padding: 0.5rem 1.5rem;
+}
+
