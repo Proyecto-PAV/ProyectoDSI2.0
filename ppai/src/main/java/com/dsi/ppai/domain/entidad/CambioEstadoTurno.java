@@ -37,7 +37,7 @@ public class CambioEstadoTurno {
     })
     private Estado estado;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_turno")
     private Turno turno;
 
@@ -52,12 +52,7 @@ public class CambioEstadoTurno {
         return false;
     }
 
-    public void obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
-
-        cambioEstadoTurno.getEstado().getNombre();
-
-        Repository repository = new Repository();
-        Estado estadoDelTurnoBD = repository.findEstadoDelCE(cambioEstadoTurno.getEstado().getNombre(), "Turno");
-        cambioEstadoTurno.setEstado(estadoDelTurnoBD);
+    public String obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
+        return cambioEstadoTurno.getEstado().getNombre();
     }
 }

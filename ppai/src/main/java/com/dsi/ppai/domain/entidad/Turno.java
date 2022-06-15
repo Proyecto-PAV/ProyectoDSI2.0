@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class Turno {
     @Column(name = "fecha_hora_inicio")
     private Date fechaHoraInicio;
 
-    @OneToMany(mappedBy = "turno")
+    @OneToMany(mappedBy = "turno", fetch = FetchType.LAZY)
     private List<CambioEstadoTurno> cambiosEstadoTurno;
 
     @ManyToOne
@@ -48,12 +49,8 @@ public class Turno {
     @JoinColumn(name = "numero_rt")
     private RecursoTecnologico recursoTecnologicoDelTurno;
 
-    /*
-    @OneToOne
-    @Column(name = "cambio_estado_actual")
-    private CambioEstadoTurno cambioEstadoActual;
-     */
-
+    @Column(name = "Nombre_estado_actual")
+    private String nombreEstadoCambioEstadoActual;
 
     public boolean estoyDisponible(){
         if (fechaHoraFin == null) {
@@ -103,14 +100,30 @@ public class Turno {
 
         for (CambioEstadoTurno cambioEstadoTurno : this.cambiosEstadoTurno) {
             if (cambioEstadoTurno.esActual()) {
-                //this.cambioEstadoActual = cambioEstadoTurno;
-                //this.cambioEstadoActual.setEstado(this.cambioEstadoActual.obtenerEstado(this.cambioEstadoActual));
+                CambioEstadoTurno cambioEstadoActual = cambioEstadoTurno;
+                this.nombreEstadoCambioEstadoActual = cambioEstadoActual.obtenerEstado(cambioEstadoActual);
             }
         }
+
+        //System.out.println("Nombre estado cambio estado actual " + this.nombreEstadoCambioEstadoActual);
+
         return this;
     }
 
     private void setCambiosEstadoTurno(){
         this.cambiosEstadoTurno = Repository.findCETurnos();
+
+        List<CambioEstadoTurno> temporal = new ArrayList<>();
+
+        for (CambioEstadoTurno cambioEstadoTurno : this.cambiosEstadoTurno) {
+            if (cambioEstadoTurno.getTurno().getIdTurno().equals(this.idTurno)) {
+                temporal.add(cambioEstadoTurno);
+            }
+        }
+
+        this.cambiosEstadoTurno = temporal;
+
+
+        //System.out.println("Cambios estado turno " + this.cambiosEstadoTurno);
     }
 }

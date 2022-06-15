@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -107,21 +105,39 @@ public class GestorReservaTurno {
     public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
 
 
-    public List<Turno> obtenerTurnosRT(){
+    public void obtenerTurnosRT() {
         this.setFechaHoraActual();
-        /**
-         * Traer fecha y hora actual
-         */
-        this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
 
-        return null;
-    };
+        RecursoTecnologico recursoTecnologico = RecursoTecnologico.builder()
+                .numeroRT(1)
+                .duracionManteniientoPreventivo(5)
+                .fechaAlta(null)
+                .fraccionHorarioTurno(5)
+                .imagenes(null)
+                .periodicidadMantenimientoPreventivo(30)
+                .centroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion("a2cd091e-37f4-4295-8213-68d286a5248a").build())
+                .modelo(Modelo.builder().nombre("MM-400/800").build())
+                .tipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build())
+                .build();
+
+        this.recursoTecnologicoSeleccionado = recursoTecnologico;
+
+        this.listadoTurnosRecursoTecnologico = this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
+
+        agruparYOrdenarTurnos();
+    }
+
+
 
     public void setFechaHoraActual(){
         this.fechaHoraActual = new Date();
     }
 
-    public void agruparYOrdenarTurnos(){};
+    public void agruparYOrdenarTurnos() {
+        listadoTurnosRecursoTecnologico.sort(Comparator.comparing(Turno::getFechaHoraInicio));
+    }
+
+
 
     //definirColorTurnos
 
@@ -161,4 +177,6 @@ public class GestorReservaTurno {
     public void notificarCientifico(){};
 
     public void finCU(){};
+
+
 }

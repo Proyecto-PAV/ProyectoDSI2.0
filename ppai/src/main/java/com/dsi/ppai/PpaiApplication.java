@@ -12,7 +12,6 @@ public class PpaiApplication {
 
 		SpringApplication.run(PpaiApplication.class, args);
 		GestorReservaTurno gestorReservaTurno = new GestorReservaTurno();
-		gestorReservaTurno.setFechaHoraActual();
-		System.out.println(gestorReservaTurno.obtenerTurnosRT());
+		gestorReservaTurno.obtenerTurnosRT();
 	}
 }

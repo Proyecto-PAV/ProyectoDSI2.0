@@ -134,8 +134,9 @@ public class Repository {
                 turno.setFechaGeneracion(rs.getDate(3));
                 turno.setFechaHoraFin(rs.getDate(4));
                 turno.setFechaHoraInicio(rs.getDate(5));
-                turno.setAsignacionCientificoCI(AsignacionCientificoDelCI.builder().id(rs.getString(6)).build());
-                turno.setRecursoTecnologicoDelTurno(RecursoTecnologico.builder().numeroRT(rs.getInt(7)).build());
+                turno.setNombreEstadoCambioEstadoActual(rs.getString(6));
+                turno.setAsignacionCientificoCI(AsignacionCientificoDelCI.builder().id(rs.getString(7)).build());
+                turno.setRecursoTecnologicoDelTurno(RecursoTecnologico.builder().numeroRT(rs.getInt(8)).build());
                 turnos.add(turno);
             }
 

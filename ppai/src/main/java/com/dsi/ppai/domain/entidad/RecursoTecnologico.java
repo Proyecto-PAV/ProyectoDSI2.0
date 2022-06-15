@@ -96,17 +96,21 @@ public class RecursoTecnologico {
         this.setTurnos();
 
         for (Turno turno : this.turnos) {
-            System.out.println(turno.esPosteriorFechaActual(fechaActual));
-            if (turno.esPosteriorFechaActual(fechaActual)) {
-                turnosPosteriorFechaActual.add(turno.mostrarDatos());
-
+            if (turno.getRecursoTecnologicoDelTurno().getNumeroRT() == this.numeroRT) {
+                if (turno.esPosteriorFechaActual(fechaActual)) {
+                    turnosPosteriorFechaActual.add(turno.mostrarDatos());
+                }
             }
         }
+
+        //System.out.println("Turnos posterior fecha actual " + turnosPosteriorFechaActual);
 
         return turnosPosteriorFechaActual;
     }
 
     private void setTurnos(){
         this.turnos = Repository.findTurnos();
+
+        //System.out.println("Turnos BD " + this.turnos);
     }
 }
