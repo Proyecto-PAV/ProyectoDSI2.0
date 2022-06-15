@@ -54,9 +54,16 @@ public class PantallaReservaTurno {
 
     public void pedirSeleccionTurnos(){}
 
-    public void solicitarConfirmacionYModoNotificacion(){}
+    public void solicitarConfirmacionYModoNotificacion(){
 
-    public void tomarConfirmacionTurno(){}
+    }
+
+    public void tomarConfirmacionTurno(){
+
+        this.gestorReservaTurno = new GestorReservaTurno();
+        this.gestorReservaTurno.registrarReservaTurno();
+
+    }
 
     public void tomarModoNotificacion(){}
 

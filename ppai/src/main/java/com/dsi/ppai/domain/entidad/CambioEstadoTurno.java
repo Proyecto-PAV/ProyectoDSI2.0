@@ -53,6 +53,9 @@ public class CambioEstadoTurno {
     }
 
     public void obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
+
+        cambioEstadoTurno.getEstado().getNombre();
+
         Repository repository = new Repository();
         Estado estadoDelTurnoBD = repository.findEstadoDelCE(cambioEstadoTurno.getEstado().getNombre(), "Turno");
         cambioEstadoTurno.setEstado(estadoDelTurnoBD);

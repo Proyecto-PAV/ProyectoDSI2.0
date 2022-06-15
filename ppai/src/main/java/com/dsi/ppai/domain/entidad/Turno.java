@@ -51,6 +51,7 @@ public class Turno {
     @Column(name = "cambio_estado_actual")
     private CambioEstadoTurno cambioEstadoActual;
 
+
     public boolean estoyDisponible(){
         if (fechaHoraFin == null) {
             return true;
@@ -94,9 +95,12 @@ public class Turno {
 
     public Turno mostrarDatos() {
 
+        // Consulta cambios de estado
+
         for (CambioEstadoTurno cambioEstadoTurno : this.cambiosEstadoTurno) {
             if (cambioEstadoTurno.esActual()) {
-                this.cambioEstadoActual = cambioEstadoTurno;
+                cambioEstadoTurno.getTurno();
+                //this.cambioEstadoActual = cambioEstadoTurno;
                 //this.cambioEstadoActual.setEstado(this.cambioEstadoActual.obtenerEstado(this.cambioEstadoActual));
             }
         }

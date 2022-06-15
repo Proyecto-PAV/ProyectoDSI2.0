@@ -101,12 +101,12 @@ public class Repository {
     public static List<Estado> findEstados() {
         ArrayList<Estado> arrayEstadosAmbitoTurno = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO");
+            PreparedStatement ps = con.prepareStatement("select * from estado");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Estado estado = new Estado();
-                estado.setNombre(rs.getString(1));
-                estado.setAmbito(rs.getString(2));
+                estado.setAmbito(rs.getString(1));
+                estado.setNombre(rs.getString(2));
                 estado.setDescripcion(rs.getString(3));
                 estado.setEsCancelable(rs.getBoolean(4));
                 estado.setEsReservable(rs.getBoolean(5));
@@ -116,6 +116,9 @@ public class Repository {
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println(arrayEstadosAmbitoTurno.toString());
+
         return arrayEstadosAmbitoTurno;
     }
 

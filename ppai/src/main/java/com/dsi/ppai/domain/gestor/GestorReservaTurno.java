@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -124,7 +125,8 @@ public class GestorReservaTurno {
         this.repository = new Repository();
 
         List<Estado> estadosBD = this.repository.findEstados();
-        List<Estado> estadosAmbitoTurno = null;
+
+        List<Estado> estadosAmbitoTurno = new ArrayList<>();
 
         for (Estado estado : estadosBD) {
             if (estado.esAmbitoTurno()) {

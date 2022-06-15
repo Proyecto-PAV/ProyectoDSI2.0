@@ -34,7 +34,8 @@ public class Estado {
     };
 
     public Boolean esAmbitoTurno() {
-        if (this.ambito.equals("Turno")) {
+
+        if (this.ambito.equals("TURNO")) {
             return true;
         }
         else return false;
