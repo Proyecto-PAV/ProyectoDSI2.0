@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ppai/src/main/webapp/WEB-INF/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ppai/src/main/webapp/WEB-INF/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +19,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -50,22 +49,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.13908207" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/alefo/ProyectoDSI2.0",
+    "list.type.of.created.stylesheet": "CSS"
+  }
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
@@ -82,6 +74,19 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ProyectoDSI2.0" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ProyectoDSI2.0" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +116,9 @@
       <updated>1654898084139</updated>
       <workItem from="1654898087925" duration="8106000" />
       <workItem from="1655123540813" duration="15837000" />
+      <workItem from="1655172463711" duration="16000" />
+      <workItem from="1655172492124" duration="66000" />
+      <workItem from="1655172912740" duration="2865000" />
     </task>
     <servers />
   </component>

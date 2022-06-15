@@ -1,0 +1,24 @@
+.container-button-accionar{
+    background-color: #ffffff ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    padding: 50px;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+}
+
+.container-title{
+    width: 100%;
+    margin-bottom: 20px;
+}
