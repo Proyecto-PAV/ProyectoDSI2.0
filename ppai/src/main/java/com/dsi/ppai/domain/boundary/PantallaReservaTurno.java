@@ -45,6 +45,8 @@ public class PantallaReservaTurno {
         //el metodo tomarSeleccionTipoRecurso se ejecuta por un evento del front
     }
 
+
+
     public void tomarSeleccionTipoRecurso(){
         //eliminar cuando obtengamos el tipo recurso seleccionado de pantalla
         TipoRecursoTecnologico tipoRecursoTecnologicoSelec = TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build();

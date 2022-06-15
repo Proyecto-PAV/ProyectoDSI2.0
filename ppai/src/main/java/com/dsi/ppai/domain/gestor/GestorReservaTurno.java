@@ -41,11 +41,27 @@ public class GestorReservaTurno {
         this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
     };
 
+    /**
+     * reservarTurnoRecurosTecnologico pero con los cambios de la lista de strings
+     */
+
+    /*
+    public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
+        List<String> tipoRecursoTecnologicos = this.buscarTipoRecurso();
+        this.pantallaReservaTurno = pantallaReservaTurno;
+        this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
+    };
+
+     */
+
     public List<TipoRecursoTecnologico> buscarTipoRecurso() {
         this.repository = new Repository();
         return this.repository.findAllTipoRT();
     };
 
+    /**
+     * buscarTipoRecurso pero te trae una lista de strings, esto sigue el diagrama
+     */
     /*
     public List<String> buscarTipoRecurso() {
         this.repository = new Repository();
@@ -67,6 +83,7 @@ public class GestorReservaTurno {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     };
+
 
     public RecursoTecnologico obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
         List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
