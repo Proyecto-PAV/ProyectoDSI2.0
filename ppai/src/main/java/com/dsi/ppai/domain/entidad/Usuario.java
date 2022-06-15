@@ -1,11 +1,14 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -32,8 +35,16 @@ public class Usuario {
 
     public void modificarPassword(){}
 
-    public String obtenerCientifico(){
-        return null;
+    public PersonalCientifico obtenerCientifico(){
+        //TODO no hace falta crear la lista si el usuario siempre va a tener un cientifico
+        List<PersonalCientifico> pcs = Repository.findPersonalCientifico();
+        PersonalCientifico cientificoLogueado = new PersonalCientifico();
+        for(PersonalCientifico pc : pcs){
+            if(Objects.equals(pc.getLegajo(), this.personalCientifico.getLegajo())){
+                cientificoLogueado = pc;
+            }
+        }
+        return cientificoLogueado;
     }
 
 }
