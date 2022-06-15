@@ -18,13 +18,11 @@
             <div class="container-selectores-recurso">
 
                 <h6>Seleccione el tipo de recurso: </h6>
-                <select name="tipoRecursos" id="tipoRecursos">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
+
+                <select name="tipoRecursos" id="selectTiposRecurso" onselect="Todos">
+
                 </select>
-                <button class="btn btn-primary">Buscar</button>
+                <button class="btn btn-primary" onclick="getTiposRecurso()">Buscar</button>
             </div>
            
 
@@ -49,109 +47,10 @@
                             <td>UTN FRC</td>
                             <td>
                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
+                                   >
                             </td>
                         </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>231</td>
-                            <td>Genex</td>
-                            <td>Genex 2.0</td>
-                            <td>En uso</td>
-                            <td>UTN FRC</td>
-                            <td>
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                            </td>
-                        </tr>
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -183,25 +82,10 @@
                                                 <td>2022-08-25</td>
                                                 <td>
                                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
+                                                       >
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2022-08-24</td>
-                                                <td>2022-08-25</td>
-                                                <td>
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2022-08-24</td>
-                                                <td>2022-08-25</td>
-                                                <td>
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                     <div class="container-buttons-first-instance container-buttons-navigation">
@@ -228,7 +112,10 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <script src="js/reservar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.0/mark.min.js"></script>
+
+    <script src="js/reservar.js" async></script>
 </body>
 
 </html>

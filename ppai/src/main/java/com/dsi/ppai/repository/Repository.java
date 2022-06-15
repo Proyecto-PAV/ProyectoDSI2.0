@@ -23,8 +23,8 @@ public class Repository {
             while (rs.next()) {
                 TipoRecursoTecnologico tipoRT = new TipoRecursoTecnologico();
                 tipoRT.setIdTipoRecurso(rs.getString(1));
-                tipoRT.setNombre(rs.getString(2));
-                tipoRT.setDescripcion(rs.getString(3));
+                tipoRT.setDescripcion(rs.getString(2));
+                tipoRT.setNombre(rs.getString(3));
                 arrayTipoRT.add(tipoRT);
             }
 

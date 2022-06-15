@@ -33,23 +33,24 @@ public class GestorReservaTurno {
     private Repository repository;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
-        this.buscarTipoRecurso();
         this.pantallaReservaTurno = pantallaReservaTurno;
-        this.pantallaReservaTurno.mostrarTiposRecursos(this.listadoNombresTipoRecurso);
+        this.buscarTipoRecurso();
+        this.pantallaReservaTurno.mostrarTiposRecursos();
     }
 
 
     public void buscarTipoRecurso() {
         this.repository = new Repository();
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        this.listadoNombresTipoRecurso = new ArrayList<>();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
-            this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
         }
+
     }
 
 
-    public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
+    public void tomarSeleccionTipoRecurso(String nombreTipoRecursso) {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     }
