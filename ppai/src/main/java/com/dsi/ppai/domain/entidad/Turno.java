@@ -47,9 +47,11 @@ public class Turno {
     @JoinColumn(name = "numero_rt")
     private RecursoTecnologico recursoTecnologicoDelTurno;
 
+    /*
     @OneToOne
     @Column(name = "cambio_estado_actual")
     private CambioEstadoTurno cambioEstadoActual;
+     */
 
 
     public boolean estoyDisponible(){
