@@ -39,13 +39,9 @@ public class PantallaReservaTurno {
 
     public void habilitarPantalla(){}
 
-    public void mostrarRecursosTecnologicos(){
-//      this.gestorReservaTurno.obtenerRTActivos(this.tipoRecursoSeleccionado);
-//      this.listadoRecursosTecnologico = this.gestorReservaTurno.getListadoRecursosTecnologicos();
-//      this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
-//      this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
-        this.recursosTecnologicosAgrupados = hashMap;
-        System.out.println(this.recursosTecnologicosAgrupados.toString());
+    public HashMap<String, ArrayList<RecursoTecnologico>> mostrarRecursosTecnologicos(){
+      this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
+      return this.recursosTecnologicosAgrupados;
     }
 
     public List<String> mostrarTiposRecursos(){
@@ -61,19 +57,8 @@ public class PantallaReservaTurno {
         //this.gestorReservaTurno.tomarSeleccionTipoRecurso(tipoRecursoTecnologicoSelec);
     }
 
-    public void tomarSeleccionRecursoTecnologico(){
-        RecursoTecnologico recursoTecnologico = RecursoTecnologico.builder()
-                .numeroRT(1)
-                .duracionManteniientoPreventivo(5)
-                .fechaAlta(null)
-                .fraccionHorarioTurno(5)
-                .imagenes(null)
-                .periodicidadMantenimientoPreventivo(30)
-                .centroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion("a2cd091e-37f4-4295-8213-68d286a5248a").build())
-                .modelo(Modelo.builder().nombre("MM-400/800").build())
-                .tipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build())
-                .build();
-        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(recursoTecnologico);
+    public void tomarSeleccionRecursoTecnologico(Integer numRecurso){
+        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(numRecurso);
     }
 
     public void pedirSeleccionTurnos(){}

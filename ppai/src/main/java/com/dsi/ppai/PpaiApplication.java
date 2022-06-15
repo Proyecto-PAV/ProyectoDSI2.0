@@ -12,11 +12,6 @@ import java.util.HashMap;
 public class PpaiApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(PpaiApplication.class, args);
-		PantallaReservaTurno pantallaReservaTurno = new PantallaReservaTurno();
-		pantallaReservaTurno.opcionReservarTurnoRecursoTecnologico();
-		pantallaReservaTurno.tomarSeleccionRecursoTecnologico();
-
 	}
 }

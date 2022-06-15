@@ -51,6 +51,13 @@ public class GestorReservaTurno {
 
 
     public void tomarSeleccionTipoRecurso(String nombreTipoRecursso) {
+        TipoRecursoTecnologico tipoRecurso = new TipoRecursoTecnologico();
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
+            if (tipoRecursoTecnologico.getNombre() == nombreTipoRecursso){
+                tipoRecurso = tipoRecursoTecnologico;
+            }
+        }
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     }
@@ -79,6 +86,7 @@ public class GestorReservaTurno {
         }
         //Esto eliminarlo dsp
         this.agruparPorCentroDeInvestigacion();
+        this.pantallaReservaTurno.mostrarRecursosTecnologicos();
     }
 
     public void agruparPorCentroDeInvestigacion() {
@@ -98,11 +106,16 @@ public class GestorReservaTurno {
             }
         }
         this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
-        this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
     }
 
 
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
+    public void tomarSeleccionRecursoTecnologico(Integer numRecurso) {
+        RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
+        for (RecursoTecnologico rt : this.listadoRecursosTecnologicosActivos) {
+            if (recursoTecnologico.getNumeroRT() == numRecurso){
+                recursoTecnologico = rt;
+            }
+        }
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
         this.verificarClienteLogueado(recursoTecnologico);
     }
