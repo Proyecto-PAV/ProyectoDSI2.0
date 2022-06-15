@@ -31,6 +31,7 @@ public class GestorReservaTurno {
     private Turno turnoSeleccionado;
     private PantallaReservaTurno pantallaReservaTurno;
     private Repository repository;
+    private HashMap<Integer, List<Turno>> turnosAgrupados;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
         this.buscarTipoRecurso();
@@ -168,6 +169,28 @@ public class GestorReservaTurno {
 
     public void agruparYOrdenarTurnos() {
         listadoTurnosRecursoTecnologico.sort(Comparator.comparing(Turno::getFechaHoraInicio));
+
+        HashMap<Integer, List<Turno>> hashTurnosAgrupados = new HashMap<>();
+        List<Turno> temporal = new ArrayList<>();
+
+        for (int i = 0; i < this.listadoTurnosRecursoTecnologico.size(); i++) {
+            Integer dia = this.listadoTurnosRecursoTecnologico.get(i).getFechaHoraInicio().getDate();
+            Turno turno = this.listadoTurnosRecursoTecnologico.get(i);
+
+            if(!hashTurnosAgrupados.containsKey(dia)) {
+                temporal.add(turno);
+                hashTurnosAgrupados.put(dia, temporal);
+            }
+            else
+            {
+                temporal = hashTurnosAgrupados.get(dia);
+                temporal.add(turno);
+                hashTurnosAgrupados.put(dia, temporal);
+            }
+        }
+
+        this.turnosAgrupados = hashTurnosAgrupados; // Aca agrupamos por dia, pero sin mirar el mes, creemos instancias de un solo mes asi no renegamos
+        System.out.println(turnosAgrupados);
     }
 
 
