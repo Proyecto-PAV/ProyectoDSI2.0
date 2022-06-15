@@ -12,6 +12,7 @@ public class PpaiApplication {
 		SpringApplication.run(PpaiApplication.class, args);
 		PantallaReservaTurno pantallaReservaTurno = new PantallaReservaTurno();
 		pantallaReservaTurno.opcionReservarTurnoRecursoTecnologico();
+		pantallaReservaTurno.tomarSeleccionRecursoTecnologico();
 
 	}
 }

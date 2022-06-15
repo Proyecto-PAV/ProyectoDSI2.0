@@ -16,5 +16,10 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="dad-central" />
+      <option name="name" value="dad-central" />
+      <option name="url" value="https://pkgs.dev.azure.com/e2eInretail/Copernico/_packaging/dad-central/maven/v1" />
+    </remote-repository>
   </component>
 </project>

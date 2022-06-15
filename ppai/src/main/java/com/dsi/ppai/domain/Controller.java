@@ -2,6 +2,8 @@ package com.dsi.ppai.domain;
 
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.repository.TipoRTRepository;
+import com.dsi.ppai.service.ICUService;
+import com.dsi.ppai.service.impl.CUServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,9 @@ import java.util.List;
 @RequestMapping("/")
 public class Controller {
 
+    @Autowired
+    ICUService icuService;
+
     private final TipoRTRepository tipoRTRepository;
 
     @Autowired
@@ -24,9 +29,12 @@ public class Controller {
     }
 
     @GetMapping(path = "/tipoRT")
-    public List<TipoRecursoTecnologico> getTipoRT() {
-        log.info("All products requested successfully");
-        return tipoRTRepository.finAllRT();
+    public void getTipoRT() {
+        icuService.opcionReservarTurnoRecursoTecnologico();
+    }
+
+    @GetMapping(path = "/sesion")
+    public void getSesionActual(){
     }
 
 }

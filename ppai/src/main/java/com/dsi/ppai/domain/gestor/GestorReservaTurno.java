@@ -1,10 +1,7 @@
 package com.dsi.ppai.domain.gestor;
 
 import com.dsi.ppai.domain.boundary.PantallaReservaTurno;
-import com.dsi.ppai.domain.entidad.Estado;
-import com.dsi.ppai.domain.entidad.RecursoTecnologico;
-import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
-import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.domain.entidad.*;
 import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,17 +37,23 @@ public class GestorReservaTurno {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.buscarTipoRecurso();
         this.pantallaReservaTurno = pantallaReservaTurno;
         this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
-    };
+    }
+
+    ;
 
     public List<TipoRecursoTecnologico> buscarTipoRecurso() {
         this.repository = new Repository();
         return this.repository.findAllTipoRT();
-    };
+    }
+
+    ;
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
-    };
+    }
+
+    ;
 
     public void obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
         List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
@@ -60,9 +63,9 @@ public class GestorReservaTurno {
             String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
 
             //true si el RT tiene el mismo id del tipo de recurso selec
-            if(recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)){
+            if (recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)) {
                 //si es true se lo agrega a la lista de RT activos
-                if (recursoTecnologicoBD.esReservable()){
+                if (recursoTecnologicoBD.esReservable()) {
                     this.listadoRecursosTecnologicosActivos.add(recursoTecnologicoBD);
                 }
             }
@@ -70,39 +73,81 @@ public class GestorReservaTurno {
         System.out.println(this.listadoRecursosTecnologicosActivos);
     }
 
-    public void agruparPorCentroDeInvestigacion() {};
+    public void agruparPorCentroDeInvestigacion() {
+    }
 
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
+    ;
 
-    public void verificarClienteLogueado(){};
+    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
+        this.recursoTecnologicoSeleccionado = recursoTecnologico;
+        this.verificarClienteLogueado(recursoTecnologico);
+    }
 
-    public List<Turno> obtenerTurnosRT(){
+    public void verificarClienteLogueado(RecursoTecnologico recursoTecnologico) {
+        List<Sesion> sesiones = repository.findSesiones();
+        Sesion sesionActual = null;
+        for (Sesion sesion : sesiones) {
+            if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
+                sesionActual = sesion;
+                break;
+            }
+        }
+        this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
+        PersonalCientifico pc = sesionActual.mostrarCliente();
+        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
+    }
+
+    ;
+
+    public List<Turno> obtenerTurnosRT() {
         return null;
-    };
+    }
 
-    public Date getFechaHoraActual(){
+    ;
+
+    public Date getFechaHoraActual() {
         return null;
-    };
+    }
 
-    public void agruparYOrdenarTurnos(){};
+    ;
+
+    public void agruparYOrdenarTurnos() {
+    }
+
+    ;
 
     //definirColorTurnos
 
-    public Turno tomarSeleccionTurno(){
+    public Turno tomarSeleccionTurno() {
         return null;
-    };
+    }
 
-    public Boolean tomarConfirmacionYMododeNotificacion(){
+    ;
+
+    public Boolean tomarConfirmacionYMododeNotificacion() {
         return null;
-    };
+    }
 
-    public void registrarReservaTurno(){};
+    ;
 
-    public Estado buscarEstadoReservado(){
+    public void registrarReservaTurno() {
+    }
+
+    ;
+
+    public Estado buscarEstadoReservado() {
         return null;
-    };
+    }
 
-    public void notificarCientifico(){};
+    ;
 
-    public void finCU(){};
+    public void notificarCientifico() {
+    }
+
+    ;
+
+    public void finCU() {
+    }
+
+    ;
 }
