@@ -190,7 +190,6 @@ public class GestorReservaTurno {
         }
 
         this.turnosAgrupados = hashTurnosAgrupados; // Aca agrupamos por dia, pero sin mirar el mes, creemos instancias de un solo mes asi no renegamos
-        System.out.println(turnosAgrupados);
     }
 
 
