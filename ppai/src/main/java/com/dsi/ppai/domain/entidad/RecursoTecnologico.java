@@ -62,17 +62,27 @@ public class RecursoTecnologico {
     public Boolean esReservable(){
         CambioEstadoRT actualCE;
         Repository repository = new Repository();
+        //obtengo todos los cambios de estados del RT
         List<CambioEstadoRT> cambioEstadoRTS = repository.findCEDelRT(this.numeroRT);
         for (CambioEstadoRT cambioEstadoRT : cambioEstadoRTS){
+            //de todos los CE busco el actual
             if(cambioEstadoRT.esActual()){
                 actualCE = cambioEstadoRT;
-                if(actualCE.esReservable(actualCE)){
+                //le seteo al RT el CE actual por si se necesita posteriormente
+                this.cambioEstadoRTS = new ArrayList<>();
+                this.cambioEstadoRTS.add(actualCE);
+                //verifico en el CE actual si su estado es reservable
+                if(actualCE.esReservable()){ //Aca saque el parametro ya que no va, el CE identifica a su objeto
                     return true;
                 };
             };
         };
         return false;
     };
+
+    public String esCientificoDeTuCI(PersonalCientifico personalCientifico){
+        return this.centroDeInvestigacion.esAsignado(personalCientifico);
+    }
 
     public void conocerCaracteristicasRecursos(){};
 
@@ -86,7 +96,19 @@ public class RecursoTecnologico {
 
     public void misTurnosDisponibles(){};
 
-    public void mostrarRT(){};
+    public RecursoTecnologico mostrarDatosRT(){
+        RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
+        recursoTecnologico.setNumeroRT(this.getNumeroRT());
+        recursoTecnologico.setDuracionManteniientoPreventivo(this.getDuracionManteniientoPreventivo());
+        recursoTecnologico.setFraccionHorarioTurno(this.getFraccionHorarioTurno());
+        recursoTecnologico.setPeriodicidadMantenimientoPreventivo(this.getPeriodicidadMantenimientoPreventivo());
+        recursoTecnologico.setCambioEstadoRTS(this.getCambioEstadoRTS());
+        recursoTecnologico.setCentroDeInvestigacion(this.getCentroDeInvestigacion()); //TODO aca se tiene que invocar al metodo de getNombre en la pantalla
+        recursoTecnologico.setModelo(this.getModelo());
+        recursoTecnologico.getModelo().setMarcaDelModelo();
+
+        return recursoTecnologico;
+    };
 
     public void nuevoMantenimientoPreventivo(){};
 

@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "asignacion_cientifico_ci")
@@ -44,6 +45,13 @@ public class AsignacionCientificoDelCI {
     public boolean esCientificoActivo(){
         //todo Hacer un loop q recorra los cientificos
         if (this.fechaHasta == null){
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean esTucientifico(PersonalCientifico personalCientifico){
+        if (Objects.equals(cientifico.getLegajo(), personalCientifico.getLegajo())){
             return true;
         }
         return false;

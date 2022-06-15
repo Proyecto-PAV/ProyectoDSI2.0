@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -26,6 +24,7 @@ public class GestorReservaTurno {
     private List<String> listadoNombresTipoRecurso;
     private List<RecursoTecnologico> listadoRecursosTecnologicos;
     private List<RecursoTecnologico> listadoRecursosTecnologicosActivos;
+    private HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados;
     private List<Turno> listadoTurnosRecursoTecnologico;
     private RecursoTecnologico recursoTecnologicoSeleccionado;
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
@@ -34,10 +33,11 @@ public class GestorReservaTurno {
     private Repository repository;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
-        List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.buscarTipoRecurso();
+        this.buscarTipoRecurso();
         this.pantallaReservaTurno = pantallaReservaTurno;
-        this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
-    };
+        this.pantallaReservaTurno.mostrarTiposRecursos(this.listadoNombresTipoRecurso);
+    }
+
 
     /**
      * reservarTurnoRecurosTecnologico pero con los cambios de la lista de strings
@@ -52,10 +52,16 @@ public class GestorReservaTurno {
 
      */
 
-    public List<TipoRecursoTecnologico> buscarTipoRecurso() {
+
+    public void buscarTipoRecurso() {
         this.repository = new Repository();
-        return this.repository.findAllTipoRT();
-    };
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
+            this.listadoNombresTipoRecurso = new ArrayList<>();
+            this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
+        }
+    }
+
 
     /**
      * buscarTipoRecurso pero te trae una lista de strings, esto sigue el diagrama
@@ -80,29 +86,56 @@ public class GestorReservaTurno {
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
-    };
+    }
 
 
-    public RecursoTecnologico obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
+
+
+    public void obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
         List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
+        this.listadoRecursosTecnologicosActivos = new ArrayList<>();
+
         for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
             String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
 
             //true si el RT tiene el mismo id del tipo de recurso selec
-            if(recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)){
+            if (recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)) {
                 //si es true se lo agrega a la lista de RT activos
-                if (recursoTecnologicoBD.esReservable()){
-                    System.out.println(recursoTecnologicoBD);
+                if (recursoTecnologicoBD.esReservable()) {
                     this.listadoRecursosTecnologicosActivos.add(recursoTecnologicoBD);
                 }
             }
         }
-        return null;
-    };
+        System.out.println(this.listadoRecursosTecnologicosActivos);
+        this.listadoRecursosTecnologicos = new ArrayList<>();
 
-    public void agruparPorCentroDeInvestigacion() {};
+        for (RecursoTecnologico recursoTecnologicoActivo : this.listadoRecursosTecnologicosActivos) {
+            this.listadoRecursosTecnologicos.add(recursoTecnologicoActivo.mostrarDatosRT());
+        }
+        //Esto eliminarlo dsp
+        this.agruparPorCentroDeInvestigacion();
+    }
 
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {};
+    public void agruparPorCentroDeInvestigacion() {
+        HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados = new HashMap<>();
+        ArrayList<RecursoTecnologico> arrayRecursos = new ArrayList<>();
+        for (int i = 0; i < this.listadoRecursosTecnologicos.size(); i++) {
+            String rTKey = this.listadoRecursosTecnologicos.get(i).getCentroDeInvestigacion().getIdCentroInvestigacion();
+            RecursoTecnologico rTValue = this.listadoRecursosTecnologicos.get(i);
+
+            if (!recursosTecnologicosAgrupados.containsKey(rTKey)) {
+                arrayRecursos.add(rTValue);
+                recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
+            } else {
+                arrayRecursos = recursosTecnologicosAgrupados.get(rTKey);
+                arrayRecursos.add(rTValue);
+                recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
+            }
+        }
+        this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
+        this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
+    }
+
 
 
     public void obtenerTurnosRT() {
@@ -139,15 +172,43 @@ public class GestorReservaTurno {
 
 
 
+    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
+        this.recursoTecnologicoSeleccionado = recursoTecnologico;
+        this.verificarClienteLogueado(recursoTecnologico);
+    }
+
+
+    public void verificarClienteLogueado(RecursoTecnologico recursoTecnologico) {
+        List<Sesion> sesiones = repository.findSesiones();
+        Sesion sesionActual = null;
+        for (Sesion sesion : sesiones) {
+            if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
+                sesionActual = sesion;
+                break;
+            }
+        }
+        this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
+        PersonalCientifico pc = sesionActual.mostrarCliente();
+        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
+    }
+
+
+
+    public Date getFechaHoraActual() {
+        return null;
+    }
+
+
     //definirColorTurnos
 
-    public Turno tomarSeleccionTurno(){
+    public Turno tomarSeleccionTurno() {
         return null;
-    };
+    }
 
-    public Boolean tomarConfirmacionYMododeNotificacion(){
+
+    public Boolean tomarConfirmacionYMododeNotificacion() {
         return null;
-    };
+    }
 
     public void registrarReservaTurno(){
         this.buscarEstadoReservado();
@@ -174,9 +235,13 @@ public class GestorReservaTurno {
         }
     }
 
-    public void notificarCientifico(){};
-
-    public void finCU(){};
 
 
+    public void notificarCientifico() {
+    }
+
+
+    public void finCU() {
+    }
 }
+
