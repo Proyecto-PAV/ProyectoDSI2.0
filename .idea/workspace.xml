@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/ICUService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/impl/CUServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/PpaiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/PpaiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/AsignacionCientificoDelCI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/AsignacionCientificoDelCI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/CentroDeInvestigacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/CentroDeInvestigacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Sesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Sesion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,6 +43,12 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
