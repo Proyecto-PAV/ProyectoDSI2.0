@@ -80,6 +80,10 @@ public class RecursoTecnologico {
         return false;
     };
 
+    public String esCientificoDeTuCI(PersonalCientifico personalCientifico){
+        return this.centroDeInvestigacion.esAsignado(personalCientifico);
+    }
+
     public void conocerCaracteristicasRecursos(){};
 
     public void conocerCategoria(){};

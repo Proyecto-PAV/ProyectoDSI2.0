@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -38,7 +41,16 @@ public class Sesion {
     private Usuario usuario;
 
 
-    public String mostrarCliente(){
-        return this.empleadoSesion;
+    public PersonalCientifico mostrarCliente(){
+        //TODO no hace falta la lista porque la sesion solo tiene un usuario
+        List<Usuario> usuarios = Repository.findUsuarioDeSesion();
+        Usuario usuarioSesion = null;
+        for (Usuario usuario : usuarios){
+            if (Objects.equals(usuario.getUsuario(), this.usuario.getUsuario())){
+                usuarioSesion = usuario;
+                break;
+            }
+        }
+        return usuarioSesion.obtenerCientifico();
     }
 }

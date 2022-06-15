@@ -1,8 +1,6 @@
 package com.dsi.ppai.domain.boundary;
 
-import com.dsi.ppai.domain.entidad.RecursoTecnologico;
-import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
-import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.domain.entidad.*;
 import com.dsi.ppai.domain.gestor.GestorReservaTurno;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,6 +60,21 @@ public class PantallaReservaTurno {
         this.gestorReservaTurno.tomarSeleccionTipoRecurso(tipoRecursoTecnologicoSelec);
     }
 
+    public void tomarSeleccionRecursoTecnologico(){
+        RecursoTecnologico recursoTecnologico = RecursoTecnologico.builder()
+                .numeroRT(1)
+                .duracionManteniientoPreventivo(5)
+                .fechaAlta(null)
+                .fraccionHorarioTurno(5)
+                .imagenes(null)
+                .periodicidadMantenimientoPreventivo(30)
+                .centroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion("a2cd091e-37f4-4295-8213-68d286a5248a").build())
+                .modelo(Modelo.builder().nombre("MM-400/800").build())
+                .tipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build())
+                .build();
+        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(recursoTecnologico);
+    }
+
     public void pedirSeleccionTurnos(){}
 
     public void solicitarConfirmacionYModoNotificacion(){}
@@ -69,8 +82,6 @@ public class PantallaReservaTurno {
     public void tomarConfirmacionTurno(){}
 
     public void tomarModoNotificacion(){}
-
-    public void tomarSeleccionRecursoTecnologico(){}
 
     public void tomarSeleccionTurno(){}
 }

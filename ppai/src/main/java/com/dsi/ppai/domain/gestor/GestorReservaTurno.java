@@ -36,21 +36,24 @@ public class GestorReservaTurno {
         this.buscarTipoRecurso();
         this.pantallaReservaTurno = pantallaReservaTurno;
         this.pantallaReservaTurno.mostrarTiposRecursos(this.listadoNombresTipoRecurso);
-    };
+    }
+
 
     public void buscarTipoRecurso() {
         this.repository = new Repository();
-        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD =  this.repository.findAllTipoRT();
-        for(TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD){
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
             this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
         }
-    };
+    }
+
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
-    };
+    }
+
 
     public void obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
         List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
@@ -60,9 +63,9 @@ public class GestorReservaTurno {
             String idTipoRecursoSelec = tipoRecursoTecnologicoSeleccionado.getIdTipoRecurso();
 
             //true si el RT tiene el mismo id del tipo de recurso selec
-            if(recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)){
+            if (recursoTecnologicoBD.esDelTiporRTSeleccionado(idTipoRecursoSelec)) {
                 //si es true se lo agrega a la lista de RT activos
-                if (recursoTecnologicoBD.esReservable()){
+                if (recursoTecnologicoBD.esReservable()) {
                     this.listadoRecursosTecnologicosActivos.add(recursoTecnologicoBD);
                 }
             }
@@ -84,10 +87,10 @@ public class GestorReservaTurno {
             String rTKey = this.listadoRecursosTecnologicos.get(i).getCentroDeInvestigacion().getIdCentroInvestigacion();
             RecursoTecnologico rTValue = this.listadoRecursosTecnologicos.get(i);
 
-            if (!recursosTecnologicosAgrupados.containsKey(rTKey)){
+            if (!recursosTecnologicosAgrupados.containsKey(rTKey)) {
                 arrayRecursos.add(rTValue);
                 recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
-            }else{
+            } else {
                 arrayRecursos = recursosTecnologicosAgrupados.get(rTKey);
                 arrayRecursos.add(rTValue);
                 recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
@@ -97,37 +100,66 @@ public class GestorReservaTurno {
         this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
     }
 
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {}
 
-    public void verificarClienteLogueado(){}
+    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
+        this.recursoTecnologicoSeleccionado = recursoTecnologico;
+        this.verificarClienteLogueado(recursoTecnologico);
+    }
 
-    public List<Turno> obtenerTurnosRT(){
+
+    public void verificarClienteLogueado(RecursoTecnologico recursoTecnologico) {
+        List<Sesion> sesiones = repository.findSesiones();
+        Sesion sesionActual = null;
+        for (Sesion sesion : sesiones) {
+            if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
+                sesionActual = sesion;
+                break;
+            }
+        }
+        this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
+        PersonalCientifico pc = sesionActual.mostrarCliente();
+        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
+    }
+
+
+    public List<Turno> obtenerTurnosRT() {
         return null;
     }
 
-    public Date getFechaHoraActual(){
+
+    public Date getFechaHoraActual() {
         return null;
     }
 
-    public void agruparYOrdenarTurnos(){}
+
+    public void agruparYOrdenarTurnos() {
+    }
 
     //definirColorTurnos
 
-    public Turno tomarSeleccionTurno(){
+    public Turno tomarSeleccionTurno() {
         return null;
     }
 
-    public Boolean tomarConfirmacionYMododeNotificacion(){
+
+    public Boolean tomarConfirmacionYMododeNotificacion() {
         return null;
     }
 
-    public void registrarReservaTurno(){}
+    public void registrarReservaTurno() {
+    }
 
-    public Estado buscarEstadoReservado(){
+
+    public Estado buscarEstadoReservado() {
         return null;
     }
 
-    public void notificarCientifico(){}
 
-    public void finCU(){}
+    public void notificarCientifico() {
+    }
+
+
+    public void finCU() {
+    }
 }
+
