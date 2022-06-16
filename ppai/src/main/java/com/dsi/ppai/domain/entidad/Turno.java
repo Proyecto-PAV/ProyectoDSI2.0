@@ -47,8 +47,8 @@ public class Turno {
     @JoinColumn(name = "numero_rt")
     private RecursoTecnologico recursoTecnologicoDelTurno;
 
-    //@Column(name = "cambio_estado_actual")
-    //private CambioEstadoTurno cambioEstadoActual;
+
+    private CambioEstadoTurno cambioEstadoActual;
 
     public boolean estoyDisponible(){
         if (fechaHoraFin == null) {
@@ -88,6 +88,16 @@ public class Turno {
 //        arrayDatos.add(getFechaHoraInicio(), getFechaHoraFin(), this.estadoActual);
 //        return arrayDatos;
 //    }
+
+    public void reservar(){
+        this.cambioEstadoActual.setFechaHoraHasta(this.fechaHoraFin);
+
+        CambioEstadoTurno nuevoCambioEstadoTurno = new CambioEstadoTurno();
+        nuevoCambioEstadoTurno.setFechaHoraDesde(this.fechaHoraFin);
+        nuevoCambioEstadoTurno.setFechaHoraHasta(null);
+        nuevoCambioEstadoTurno.setEstado(Estado.builder().nombre("Reservado").build()); //Estado hardcodeado
+        nuevoCambioEstadoTurno.setTurno(Turno.builder().build()); //Turno hardcodeado
+    }
 
 
 }

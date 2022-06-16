@@ -105,13 +105,20 @@ public class GestorReservaTurno {
         return null;
     };
 
-    public void registrarReservaTurno(){};
+    public void registrarReservaTurno(){
+
+
+        this.recursoTecnologicoSeleccionado.reservar(turnoSeleccionado, cientificoLogueado);
+    };
 
     public Estado buscarEstadoReservado(){
         return null;
     };
 
-    public void notificarCientifico(){};
+    public void notificarCientifico(){
+        InterfazEmail email = new InterfazEmail();
+        email.enviarEmail(emailCientifico);
+    }
 
-    public void finCU(){};
+    public void finCU(){}
 }

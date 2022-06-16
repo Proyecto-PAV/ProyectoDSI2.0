@@ -80,6 +80,8 @@ public class CentroDeInvestigacion {
         return null;
     }
 
-    public void asignarTurno() {}
+    public void asignarTurno(Turno turnoSeleccionado, String cientificoLogueado) {
+
+    }
 
 }
