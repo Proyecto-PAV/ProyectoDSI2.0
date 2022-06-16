@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 @Data
@@ -24,18 +25,18 @@ public class GestorReservaTurno {
     private List<String> listadoNombresTipoRecurso;
     private List<RecursoTecnologico> listadoRecursosTecnologicos;
     private List<RecursoTecnologico> listadoRecursosTecnologicosActivos;
-    private HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados;
+    private ArrayList<ArrayList<Object>> recursosTecnologicosAgrupados;
     private List<Turno> listadoTurnosRecursoTecnologico;
     private RecursoTecnologico recursoTecnologicoSeleccionado;
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
     private Turno turnoSeleccionado;
     private PantallaReservaTurno pantallaReservaTurno;
-    private HashMap<Integer, List<Turno>> turnosAgrupados;
+    private ArrayList<ArrayList<Object>> turnosAgrupados;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
-        this.buscarTipoRecurso();
         this.pantallaReservaTurno = pantallaReservaTurno;
-        this.pantallaReservaTurno.mostrarTiposRecursos(this.listadoNombresTipoRecurso);
+        this.buscarTipoRecurso();
+        this.pantallaReservaTurno.mostrarTiposRecursos();
     }
 
 
@@ -55,12 +56,9 @@ public class GestorReservaTurno {
 
     public void buscarTipoRecurso() {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
+        this.listadoNombresTipoRecurso = new ArrayList<>();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
-            this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
-
-            //eliminar
-            System.out.println(this.listadoNombresTipoRecurso);
         }
     }
 
@@ -85,7 +83,14 @@ public class GestorReservaTurno {
      */
 
 
-    public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
+    public void tomarSeleccionTipoRecurso(String nombreTipoRT) {
+        TipoRecursoTecnologico tipoRecurso = new TipoRecursoTecnologico();
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
+        for (TipoRecursoTecnologico trt : tipoRecursoTecnologicosBD){
+            if (Objects.equals(trt.getNombre(), nombreTipoRT)){
+                tipoRecurso = trt;
+            }
+        }
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     }
@@ -117,6 +122,7 @@ public class GestorReservaTurno {
 
     public void agruparPorCentroDeInvestigacion() {
         HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados = new HashMap<>();
+        ArrayList<ArrayList<Object>> arrayDeArrays = new ArrayList<>();
         ArrayList<RecursoTecnologico> arrayRecursos = new ArrayList<>();
         for (int i = 0; i < this.listadoRecursosTecnologicos.size(); i++) {
             String rTKey = this.listadoRecursosTecnologicos.get(i).getCentroDeInvestigacion().getIdCentroInvestigacion();
@@ -131,32 +137,27 @@ public class GestorReservaTurno {
                 recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
             }
         }
-        this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
-        this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
+        for (Map.Entry<String, ArrayList<RecursoTecnologico>> entry : recursosTecnologicosAgrupados.entrySet()) {
+            ArrayList<Object> a = new ArrayList<>();
+            String key = entry.getKey();
+            a.add(key);
+            for(Object value: entry.getValue()){
+                a.add(value);
+            }
+            arrayDeArrays.add(a);
+        }
+        this.recursosTecnologicosAgrupados = arrayDeArrays;
+        this.pantallaReservaTurno.mostrarRecursosTecnologicos();
     }
 
 
 
-    public void obtenerTurnosRT() {
+    public void obtenerTurnosRT(RecursoTecnologico recursoTecnologico) {
         this.setFechaHoraActual();
-
-        RecursoTecnologico recursoTecnologico = RecursoTecnologico.builder()
-                .numeroRT(1)
-                .duracionManteniientoPreventivo(5)
-                .fechaAlta(null)
-                .fraccionHorarioTurno(5)
-                .imagenes(null)
-                .periodicidadMantenimientoPreventivo(30)
-                .centroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion("a2cd091e-37f4-4295-8213-68d286a5248a").build())
-                .modelo(Modelo.builder().nombre("MM-400/800").build())
-                .tipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build())
-                .build();
-
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
-
         this.listadoTurnosRecursoTecnologico = this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
-
         agruparYOrdenarTurnos();
+        this.pantallaReservaTurno.pedirSeleccionTurnos();
     }
 
 
@@ -170,6 +171,7 @@ public class GestorReservaTurno {
 
         HashMap<Integer, List<Turno>> hashTurnosAgrupados = new HashMap<>();
         List<Turno> temporal = new ArrayList<>();
+        ArrayList<ArrayList<Object>> arrayDeArrays = new ArrayList<>();
 
         for (int i = 0; i < this.listadoTurnosRecursoTecnologico.size(); i++) {
             Integer dia = this.listadoTurnosRecursoTecnologico.get(i).getFechaHoraInicio().getDate();
@@ -186,13 +188,27 @@ public class GestorReservaTurno {
                 hashTurnosAgrupados.put(dia, temporal);
             }
         }
-
-        this.turnosAgrupados = hashTurnosAgrupados; // Aca agrupamos por dia, pero sin mirar el mes, creemos instancias de un solo mes asi no renegamos
+        for (Map.Entry<Integer, List<Turno>> entry : hashTurnosAgrupados.entrySet()) {
+            ArrayList<Object> a = new ArrayList<>();
+            Integer key = entry.getKey();
+            a.add(key);
+            for(Object value: entry.getValue()){
+                a.add(value);
+            }
+            arrayDeArrays.add(a);
+        }
+        this.turnosAgrupados = arrayDeArrays; // Aca agrupamos por dia, pero sin mirar el mes, creemos instancias de un solo mes asi no renegamos
     }
 
 
 
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
+    public void tomarSeleccionRecursoTecnologico(Integer numeroRT) {
+        RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
+        for (RecursoTecnologico rt : this.listadoRecursosTecnologicos){
+            if (Objects.equals(rt.getNumeroRT(), numeroRT)){
+                recursoTecnologico = rt;
+            }
+        }
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
         this.verificarClienteLogueado(recursoTecnologico);
     }
@@ -209,20 +225,27 @@ public class GestorReservaTurno {
         }
         this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
         PersonalCientifico pc = sesionActual.mostrarCliente();
-        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
+        this.emailCientifico = recursoTecnologico.esCientificoDeTuCI(pc);
+        this.obtenerTurnosRT(recursoTecnologico);
     }
 
 
 
     public Date getFechaHoraActual() {
-        return null;
+        return new Date();
     }
 
 
     //definirColorTurnos
 
-    public Turno tomarSeleccionTurno() {
-        return null;
+    public void tomarSeleccionTurno(String idTurno) {
+        List<Turno> turnos = Repository.findTurnos();
+        for (Turno t : turnos){
+            if (Objects.equals(t.getIdTurno(), idTurno)){
+                this.turnoSeleccionado = t;
+                break;
+            }
+        }
     }
 
 

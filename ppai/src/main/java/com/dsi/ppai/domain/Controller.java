@@ -9,6 +9,7 @@ import com.dsi.ppai.service.impl.CUServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,21 +34,23 @@ public class Controller {
     }
 
     @GetMapping(path = "/tipoRT")
-    public void getTipoRT() {
-        icuService.opcionReservarTurnoRecursoTecnologico();
+    public List<String> getTipoRT() {
+        return icuService.opcionReservarTurnoRecursoTecnologico();
     }
 
-    @GetMapping(path = "/sesion")
-    public void getSesionActual(){
+    @GetMapping(path = "/mostrarRT/{nombreTipoRT}")
+    public ArrayList<ArrayList<Object>> getRecursosTecnologicos(@PathVariable String nombreTipoRT){
+        return icuService.tomarSeleccionTipoRecurso(nombreTipoRT);
     }
 
-    @GetMapping(path = "/mostrarRT")
-    public void getRecursosTecnologicos(){
-        HashMap<String, ArrayList<RecursoTecnologico>> hashMap;
-        PantallaReservaTurno pantallaReservaTurno = new PantallaReservaTurno();
-//        pantallaReservaTurno.mostrarRecursosTecnologicos();
-        hashMap = pantallaReservaTurno.getRecursosTecnologicosAgrupados();
-//        hashMap.forEach((k,v) -> System.out.println("Key: " + k + ": Value: " + v));
+    @GetMapping(path = "/mostrarTurnosRT/{numeroRT}")
+    public ArrayList<ArrayList<Object>> getTurnos(@PathVariable Integer numeroRT){
+        return icuService.tomarSeleccionRecursoTecnologico(numeroRT);
+    }
 
+    @GetMapping(path = "/tuno/{idTurno}")
+    public String getSesionActual(@PathVariable String idTurno){
+        icuService.tomarSeleccionTurno(idTurno);
+        return "ok";
     }
 }

@@ -38,46 +38,33 @@ public class PantallaReservaTurno {
 
     public void habilitarPantalla(){}
 
-    public void mostrarRecursosTecnologicos(HashMap<String, ArrayList<RecursoTecnologico>> hashMap){
+    public ArrayList<ArrayList<Object>> mostrarRecursosTecnologicos(){
 //        this.gestorReservaTurno.obtenerRTActivos(this.tipoRecursoSeleccionado);
 //        this.listadoRecursosTecnologico = this.gestorReservaTurno.getListadoRecursosTecnologicos();
 //        this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
 //        this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
-        this.recursosTecnologicosAgrupados = hashMap;
-        System.out.println(this.recursosTecnologicosAgrupados.toString());
+        return this.gestorReservaTurno.getRecursosTecnologicosAgrupados();
     }
 
-    public void mostrarTiposRecursos(List<String> tipoRecursoTecnologicos){
+    public List<String> mostrarTiposRecursos(){
         //esto eliminar es para probar el flujo
-        this.tomarSeleccionTipoRecurso();
-        //el metodo tomarSeleccionTipoRecurso se ejecuta por un evento del front
+        return this.gestorReservaTurno.getListadoNombresTipoRecurso();
     }
 
 
 
-    public void tomarSeleccionTipoRecurso(){
+    public void tomarSeleccionTipoRecurso(String nombreTipoRT){
         //eliminar cuando obtengamos el tipo recurso seleccionado de pantalla
-        TipoRecursoTecnologico tipoRecursoTecnologicoSelec = TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build();
-
-        this.gestorReservaTurno.tomarSeleccionTipoRecurso(tipoRecursoTecnologicoSelec);
+        this.gestorReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRT);
     }
 
-    public void tomarSeleccionRecursoTecnologico(){
-        RecursoTecnologico recursoTecnologico = RecursoTecnologico.builder()
-                .numeroRT(1)
-                .duracionManteniientoPreventivo(5)
-                .fechaAlta(null)
-                .fraccionHorarioTurno(5)
-                .imagenes(null)
-                .periodicidadMantenimientoPreventivo(30)
-                .centroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion("a2cd091e-37f4-4295-8213-68d286a5248a").build())
-                .modelo(Modelo.builder().nombre("MM-400/800").build())
-                .tipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build())
-                .build();
-        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(recursoTecnologico);
+    public void tomarSeleccionRecursoTecnologico(Integer nombreRT){
+        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(nombreRT);
     }
 
-    public void pedirSeleccionTurnos(){}
+    public ArrayList<ArrayList<Object>> pedirSeleccionTurnos(){
+        return this.gestorReservaTurno.getTurnosAgrupados();
+    }
 
     public void solicitarConfirmacionYModoNotificacion(){
 
@@ -92,5 +79,7 @@ public class PantallaReservaTurno {
 
     public void tomarModoNotificacion(){}
 
-    public void tomarSeleccionTurno(){}
+    public void tomarSeleccionTurno(String idTurno){
+        this.gestorReservaTurno.tomarSeleccionTurno(idTurno);
+    }
 }

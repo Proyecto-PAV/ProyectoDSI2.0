@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/PpaiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/PpaiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/ICUService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/ICUService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/impl/CUServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/impl/CUServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,21 +178,6 @@
           <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Sesion.java</url>
           <line>45</line>
           <option name="timeStamp" value="142" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/CambioEstadoRT.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/CambioEstadoRT.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/CambioEstadoRT.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="153" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

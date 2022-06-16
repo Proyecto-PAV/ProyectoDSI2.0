@@ -5,6 +5,8 @@ import com.dsi.ppai.service.ICUService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CUServiceImpl implements ICUService {
@@ -18,7 +20,26 @@ public class CUServiceImpl implements ICUService {
 
 
     @Override
-    public void opcionReservarTurnoRecursoTecnologico() {
+    public List<String> opcionReservarTurnoRecursoTecnologico() {
         pantallaReservaTurno.opcionReservarTurnoRecursoTecnologico();
+        return pantallaReservaTurno.mostrarTiposRecursos();
+    }
+
+    @Override
+    public ArrayList<ArrayList<Object>> tomarSeleccionTipoRecurso(String nombreTipoRT) {
+        pantallaReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRT);
+        return pantallaReservaTurno.mostrarRecursosTecnologicos();
+    }
+
+    @Override
+    public ArrayList<ArrayList<Object>> tomarSeleccionRecursoTecnologico(Integer numeroRT) {
+        pantallaReservaTurno.tomarSeleccionRecursoTecnologico(numeroRT);
+        return pantallaReservaTurno.pedirSeleccionTurnos();
+    }
+
+    @Override
+    public String tomarSeleccionTurno(String idTurno) {
+        pantallaReservaTurno.tomarSeleccionTurno(idTurno);
+        return null;
     }
 }
