@@ -30,7 +30,6 @@ public class GestorReservaTurno {
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
     private Turno turnoSeleccionado;
     private PantallaReservaTurno pantallaReservaTurno;
-    private Repository repository;
     private HashMap<Integer, List<Turno>> turnosAgrupados;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
@@ -55,11 +54,13 @@ public class GestorReservaTurno {
 
 
     public void buscarTipoRecurso() {
-        this.repository = new Repository();
-        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
             this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
+
+            //eliminar
+            System.out.println(this.listadoNombresTipoRecurso);
         }
     }
 
@@ -89,11 +90,8 @@ public class GestorReservaTurno {
         this.obtenerRTActivos(tipoRecurso);
     }
 
-
-
-
     public void obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
-        List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
+        List<RecursoTecnologico> recursoTecnologicosBD = Repository.findAllRT();
         this.listadoRecursosTecnologicosActivos = new ArrayList<>();
 
         for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
@@ -201,7 +199,7 @@ public class GestorReservaTurno {
 
 
     public void verificarClienteLogueado(RecursoTecnologico recursoTecnologico) {
-        List<Sesion> sesiones = repository.findSesiones();
+        List<Sesion> sesiones = Repository.findSesiones();
         Sesion sesionActual = null;
         for (Sesion sesion : sesiones) {
             if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
@@ -238,9 +236,7 @@ public class GestorReservaTurno {
 
     public void buscarEstadoReservado(){
 
-        this.repository = new Repository();
-
-        List<Estado> estadosBD = this.repository.findEstados();
+        List<Estado> estadosBD = Repository.findEstados();
 
         List<Estado> estadosAmbitoTurno = new ArrayList<>();
 
