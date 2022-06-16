@@ -133,6 +133,7 @@ public class Turno {
         nuevoCambioEstadoTurno.setFechaHoraDesde(fechaHoraActual);
         nuevoCambioEstadoTurno.setFechaHoraHasta(null);
         nuevoCambioEstadoTurno.setEstado(estadoReservado);
+        System.out.println("EStado reservadooausdohaojsd: "+estadoReservado);
         nuevoCambioEstadoTurno.setTurno(this);
         nuevoCambioEstadoTurno.nuevo();
         this.setNombreEstadoCambioEstadoActual(estadoReservado.getNombre());

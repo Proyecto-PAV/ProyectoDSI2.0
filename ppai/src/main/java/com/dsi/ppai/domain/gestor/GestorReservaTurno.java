@@ -238,6 +238,7 @@ public class GestorReservaTurno {
         for (Estado estado : estadosAmbitoTurno) {
             if (estado.esReservado()) {
                 this.estadoReservado = estado;
+                System.out.println("Estado gestor: " + this.estadoReservado);
             }
         }
     }
