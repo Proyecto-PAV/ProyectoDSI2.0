@@ -130,6 +130,8 @@
       <workItem from="1655402856066" duration="3777000" />
       <workItem from="1655408286309" duration="5244000" />
       <workItem from="1655415109859" duration="713000" />
+      <workItem from="1655417410784" duration="1485000" />
+      <workItem from="1655419057906" duration="307000" />
     </task>
     <servers />
   </component>
@@ -152,35 +154,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Sesion.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="142" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="144" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java</url>
-          <line>199</line>
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java</url>
-          <line>239</line>
-          <option name="timeStamp" value="146" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java</url>
-          <line>238</line>
-          <option name="timeStamp" value="147" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.Integer" memberName="value" />

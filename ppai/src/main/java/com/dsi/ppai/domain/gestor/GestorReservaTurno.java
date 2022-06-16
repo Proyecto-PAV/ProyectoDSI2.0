@@ -198,31 +198,6 @@ public class GestorReservaTurno {
 
     public void registrarReservaTurno(){
         this.buscarEstadoReservado();
-
-
-        this.turnoSeleccionado = new Turno();
-        CambioEstadoTurno cambioEstadoTurno = new CambioEstadoTurno();
-        cambioEstadoTurno.setIdCambioEstadoTurno("00002412-e7b6-4c88-8f71-acdf9cb58f63");
-        cambioEstadoTurno.setEstado(new Estado());
-        cambioEstadoTurno.setFechaHoraHasta(null);
-        cambioEstadoTurno.getEstado().setNombre("Disponible");
-        ArrayList<CambioEstadoTurno> arrayList = new ArrayList<>();
-        arrayList.add(cambioEstadoTurno);
-
-        this.turnoSeleccionado.setIdTurno("00001bd4-1d0d-4db6-ad16-74c22a84ec41");
-        this.turnoSeleccionado.setCambiosEstadoTurno(arrayList);
-        this.getFechaHoraActual();
-        List<Sesion> sesiones = Repository.findSesiones();
-        Sesion sesionActual = null;
-        for (Sesion sesion : sesiones) {
-            if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
-                sesionActual = sesion;
-                break;
-            }
-        }
-        this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
-
-        this.recursoTecnologicoSeleccionado = new RecursoTecnologico();
         this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.estadoReservado, this.fechaHoraActual);
     }
 
