@@ -52,11 +52,12 @@ public class Turno {
     @Column(name = "Nombre_estado_actual")
     private String nombreEstadoCambioEstadoActual;
 
-    public boolean estoyDisponible(){
+//    private CambioEstadoTurno cambioEstadoActual;
+
+    public boolean estoyDisponible() {
         if (fechaHoraFin == null) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -70,11 +71,10 @@ public class Turno {
         return fechaHoraFin;
     }
 
-    public boolean esPosteriorFechaActual(Date fechaActual){
-        if (fechaActual.before(this.fechaHoraInicio)){
+    public boolean esPosteriorFechaActual(Date fechaActual) {
+        if (fechaActual.before(this.fechaHoraInicio)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -105,12 +105,11 @@ public class Turno {
             }
         }
 
-        //System.out.println("Nombre estado cambio estado actual " + this.nombreEstadoCambioEstadoActual);
 
         return this;
     }
 
-    private void setCambiosEstadoTurno(){
+    public void setCambiosEstadoTurno() {
         this.cambiosEstadoTurno = Repository.findCETurnos();
 
         List<CambioEstadoTurno> temporal = new ArrayList<>();
@@ -120,10 +119,22 @@ public class Turno {
                 temporal.add(cambioEstadoTurno);
             }
         }
-
         this.cambiosEstadoTurno = temporal;
-
-
-        //System.out.println("Cambios estado turno " + this.cambiosEstadoTurno);
+    }
+    public void reservar (Estado estadoReservado, Date fechaHoraActual) {
+        for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
+            if(cambiosEstadoTurno.get(i).getFechaHoraHasta()==null){
+                this.cambiosEstadoTurno.get(i).setFechaHoraHasta(fechaHoraActual);
+                Repository.actualizarCambioDeEstadoTurno(this.cambiosEstadoTurno.get(i).getIdCambioEstadoTurno(), this.cambiosEstadoTurno.get(i).getFechaHoraHasta());
+            }
+        }
+        CambioEstadoTurno nuevoCambioEstadoTurno = new CambioEstadoTurno();
+        nuevoCambioEstadoTurno.setIdCambioEstadoTurno("000034d9-b875-49b6-952b-005ace8c9999");
+        nuevoCambioEstadoTurno.setFechaHoraDesde(fechaHoraActual);
+        nuevoCambioEstadoTurno.setFechaHoraHasta(null);
+        nuevoCambioEstadoTurno.setEstado(estadoReservado);
+        nuevoCambioEstadoTurno.setTurno(this);
+        nuevoCambioEstadoTurno.nuevo();
+        this.setNombreEstadoCambioEstadoActual(estadoReservado.getNombre());
     }
 }

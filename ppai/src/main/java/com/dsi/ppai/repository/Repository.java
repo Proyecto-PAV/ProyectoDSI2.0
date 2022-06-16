@@ -5,12 +5,10 @@ import com.dsi.ppai.domain.entidad.Sesion;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Repository {
     static Connection con = DBManager.getConnection();
@@ -143,7 +141,6 @@ public class Repository {
             throw new RuntimeException(e);
         }
 
-        System.out.println(arrayEstadosAmbitoTurno.toString());
 
         return arrayEstadosAmbitoTurno;
     }
@@ -190,6 +187,44 @@ public class Repository {
         }
 
         return asignaciones;
+    }
+
+    public static void nuevoCambioEstadoTurno(CambioEstadoTurno cambioEstadoTurno) {
+        try {
+
+            PreparedStatement ps = con.prepareStatement("insert into cambio_estado_turno (`id_cambio_estado_turno`, `fecha_hora_desde`, `fecha_hora_hasta`, `ambito`, `nombre_estado`, `id_turno`)" +
+                    " values (?,?,?,?,?,?)");
+
+            System.out.println(cambioEstadoTurno.getIdCambioEstadoTurno());
+            ps.setString(1, cambioEstadoTurno.getIdCambioEstadoTurno());
+            ps.setDate(2, new Date(cambioEstadoTurno.getFechaHoraDesde().getTime()));
+            System.out.println(cambioEstadoTurno.getFechaHoraDesde());
+            ps.setDate(3, null);
+//            ps.setDate(3, (java.sql.Date) cambioEstadoTurno.getFechaHoraHasta());
+            System.out.println(cambioEstadoTurno.getEstado().getAmbito());
+            ps.setString(4, cambioEstadoTurno.getEstado().getAmbito());
+            ps.setString(5, cambioEstadoTurno.getTurno().getNombreEstadoCambioEstadoActual());
+            ps.setString(6, cambioEstadoTurno.getTurno().getIdTurno());
+            ps.executeQuery();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void actualizarCambioDeEstadoTurno(String id, java.util.Date fechaHasta) {
+        System.out.println("Fecha hora hasta anashex: " + new Date(fechaHasta.getTime()));
+        try {
+            PreparedStatement ps = con.prepareStatement("update CAMBIO_ESTADO_TURNO set fecha_hora_hasta = ? where id_cambio_estado_turno = ?");
+            ps.setDate(1, new Date(fechaHasta.getTime()));
+            ps.setString(2, id);
+            System.out.println(ps);
+            ps.executeQuery();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<String> findIDDelCI() {

@@ -30,15 +30,16 @@ public class PantallaReservaTurno {
     private String ventanaHabilitada;
     private GestorReservaTurno gestorReservaTurno;
 
-    public void opcionReservarTurnoRecursoTecnologico(){
+    public void opcionReservarTurnoRecursoTecnologico() {
         habilitarPantalla();
         this.gestorReservaTurno = new GestorReservaTurno();
-        gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
+        this.gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
     }
 
-    public void habilitarPantalla(){}
+    public void habilitarPantalla() {
+    }
 
-    public ArrayList<ArrayList<Object>> mostrarRecursosTecnologicos(){
+    public ArrayList<ArrayList<Object>> mostrarRecursosTecnologicos() {
 //        this.gestorReservaTurno.obtenerRTActivos(this.tipoRecursoSeleccionado);
 //        this.listadoRecursosTecnologico = this.gestorReservaTurno.getListadoRecursosTecnologicos();
 //        this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
@@ -46,38 +47,38 @@ public class PantallaReservaTurno {
         return this.gestorReservaTurno.getRecursosTecnologicosAgrupados();
     }
 
-    public List<String> mostrarTiposRecursos(){
+    public List<String> mostrarTiposRecursos() {
         //esto eliminar es para probar el flujo
         return this.gestorReservaTurno.getListadoNombresTipoRecurso();
     }
 
 
-
-    public void tomarSeleccionTipoRecurso(String nombreTipoRT){
+    public void tomarSeleccionTipoRecurso(String nombreTipoRT) {
         //eliminar cuando obtengamos el tipo recurso seleccionado de pantalla
         this.gestorReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRT);
     }
 
-    public void tomarSeleccionRecursoTecnologico(Integer nombreRT){
+    public void tomarSeleccionRecursoTecnologico(Integer nombreRT) {
         this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(nombreRT);
     }
 
-    public ArrayList<ArrayList<Object>> pedirSeleccionTurnos(){
+    public ArrayList<ArrayList<Object>> pedirSeleccionTurnos() {
         return this.gestorReservaTurno.getTurnosAgrupados();
     }
 
-    public void solicitarConfirmacionYModoNotificacion(){
+    public void solicitarConfirmacionYModoNotificacion() {
     }
 
-    public void tomarConfirmacionTurno(Boolean confirmacion){
+    public void tomarConfirmacionTurno(Boolean confirmacion) {
         this.gestorReservaTurno.tomarConfirmacionYMododeNotificacion(confirmacion);
 
     }
 
-    public void tomarModoNotificacion(){
+
+    public void tomarSeleccionTurno(String idTurno) {
+        this.gestorReservaTurno.tomarSeleccionTurno(idTurno);
     }
 
-    public void tomarSeleccionTurno(String idTurno){
-        this.gestorReservaTurno.tomarSeleccionTurno(idTurno);
+    public void tomarModoNotificacion() {
     }
 }

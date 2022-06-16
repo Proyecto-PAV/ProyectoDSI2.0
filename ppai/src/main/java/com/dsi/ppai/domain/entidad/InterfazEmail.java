@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class InterfazEmail {
 
-    public void enviarEmail(){}
+    public void enviarEmail(String email){
+    }
 }

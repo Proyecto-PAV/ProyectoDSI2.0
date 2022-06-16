@@ -9,14 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class GestorReservaTurno {
-    private String cientificoLogueado;
+    private PersonalCientifico cientificoLogueado;
     private Boolean confirmacionTurno;
     private String emailCientifico;
     private Estado estadoReservado;
@@ -39,21 +41,6 @@ public class GestorReservaTurno {
         this.pantallaReservaTurno.mostrarTiposRecursos();
     }
 
-
-    /**
-     * reservarTurnoRecurosTecnologico pero con los cambios de la lista de strings
-     */
-
-    /*
-    public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
-        List<String> tipoRecursoTecnologicos = this.buscarTipoRecurso();
-        this.pantallaReservaTurno = pantallaReservaTurno;
-        this.pantallaReservaTurno.mostrarTiposRecursos(tipoRecursoTecnologicos);
-    };
-
-     */
-
-
     public void buscarTipoRecurso() {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
         this.listadoNombresTipoRecurso = new ArrayList<>();
@@ -61,7 +48,6 @@ public class GestorReservaTurno {
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
         }
     }
-
 
     /**
      * buscarTipoRecurso pero te trae una lista de strings, esto sigue el diagrama
@@ -110,7 +96,6 @@ public class GestorReservaTurno {
                 }
             }
         }
-        System.out.println(this.listadoRecursosTecnologicosActivos);
         this.listadoRecursosTecnologicos = new ArrayList<>();
 
         for (RecursoTecnologico recursoTecnologicoActivo : this.listadoRecursosTecnologicosActivos) {
@@ -156,8 +141,7 @@ public class GestorReservaTurno {
         this.setFechaHoraActual();
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
         this.listadoTurnosRecursoTecnologico = this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
-        agruparYOrdenarTurnos();
-        this.pantallaReservaTurno.pedirSeleccionTurnos();
+        this.agruparYOrdenarTurnos();
     }
 
 
@@ -223,16 +207,14 @@ public class GestorReservaTurno {
                 break;
             }
         }
-        this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
+        this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
         PersonalCientifico pc = sesionActual.mostrarCliente();
         this.emailCientifico = recursoTecnologico.esCientificoDeTuCI(pc);
         this.obtenerTurnosRT(recursoTecnologico);
     }
 
-
-
-    public Date getFechaHoraActual() {
-        return new Date();
+    public void getFechaHoraActual() {
+        this.fechaHoraActual = new Date();
     }
 
 
@@ -260,36 +242,43 @@ public class GestorReservaTurno {
     public void registrarReservaTurno(){
         //TODO falta el metodo de los chicos
         this.buscarEstadoReservado();
-    };
+        this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.estadoReservado, this.fechaHoraActual);
+    }
 
     public void buscarEstadoReservado(){
 
         List<Estado> estadosBD = Repository.findEstados();
-
         List<Estado> estadosAmbitoTurno = new ArrayList<>();
-
         for (Estado estado : estadosBD) {
             if (estado.esAmbitoTurno()) {
                 estadosAmbitoTurno.add(estado);
             }
         }
-
         for (Estado estado : estadosAmbitoTurno) {
             if (estado.esReservado()) {
                 this.estadoReservado = estado;
+                System.out.println("Estado gestor: " + this.estadoReservado);
             }
         }
     }
 
-
-
     public void notificarCientifico() {
         InterfazEmail interfazEmail = new InterfazEmail();
-        interfazEmail.enviarEmail();
+        interfazEmail.enviarEmail(this.emailCientifico);
     }
 
+    public void finCU(){}
 
-    public void finCU() {
+    public ArrayList<ArrayList<Object>> getRecursosTecnologicosAgrupados() {
+        return this.recursosTecnologicosAgrupados;
+    }
+
+    public List<String> getListadoNombresTipoRecurso() {
+        return this.listadoNombresTipoRecurso;
+    }
+
+    public ArrayList<ArrayList<Object>> getTurnosAgrupados() {
+        return this.turnosAgrupados;
     }
 }
 

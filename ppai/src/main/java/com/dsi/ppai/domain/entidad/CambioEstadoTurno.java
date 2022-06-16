@@ -41,7 +41,7 @@ public class CambioEstadoTurno {
     @JoinColumn(name = "id_turno")
     private Turno turno;
 
-    private void mostrarCambioEstadoTurno(){
+    public void mostrarCambioEstadoTurno(){
 
     }
 
@@ -52,7 +52,14 @@ public class CambioEstadoTurno {
         return false;
     }
 
+    public void setFechaHoraHasta(){
+
+    }
+
     public String obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
         return cambioEstadoTurno.getEstado().getNombre();
+    }
+    public void nuevo(){
+        Repository.nuevoCambioEstadoTurno(this);
     }
 }

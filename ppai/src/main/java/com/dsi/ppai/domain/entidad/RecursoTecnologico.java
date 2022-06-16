@@ -109,10 +109,13 @@ public class RecursoTecnologico {
         recursoTecnologico.setCambioEstadoRTS(this.getCambioEstadoRTS());
         recursoTecnologico.setCentroDeInvestigacion(this.getCentroDeInvestigacion()); //TODO aca se tiene que invocar al metodo de getNombre en la pantalla
         recursoTecnologico.setModelo(this.getModelo());
-        recursoTecnologico.getModelo().setMarcaDelModelo();
-
         return recursoTecnologico;
     };
+
+    public void reservar(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado, Estado estadoReservado, Date fechaHoraActual) {
+        turnoSeleccionado.reservar(estadoReservado, fechaHoraActual);
+        this.centroDeInvestigacion.asignarTurno(turnoSeleccionado, cientificoLogueado);
+    }
 
     public void nuevoMantenimientoPreventivo(){};
 
@@ -129,7 +132,6 @@ public class RecursoTecnologico {
             }
         }
 
-        //System.out.println("Turnos posterior fecha actual " + turnosPosteriorFechaActual);
 
         return turnosPosteriorFechaActual;
     }
@@ -137,6 +139,13 @@ public class RecursoTecnologico {
     private void setTurnos(){
         this.turnos = Repository.findTurnos();
 
-        //System.out.println("Turnos BD " + this.turnos);
+    }
+    private String mostrarEstado(){
+        for (int i = 0; i < this.cambioEstadoRTS.size(); i++) {
+            if (this.cambioEstadoRTS.get(i).getFechaHoraHasta()==null){
+                return this.cambioEstadoRTS.get(i).getEstado().getNombre();
+            }
+        }
+        return "";
     }
 }

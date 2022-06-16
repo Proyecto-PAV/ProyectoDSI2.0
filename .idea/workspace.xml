@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Turno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="branch-Joel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,6 +56,9 @@
         <option name="workOffline" value="true" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2AP4pwi3ktqDFcb1QdEYik80BvC" />
   <component name="ProjectLevelVcsManager">
@@ -122,8 +127,12 @@
       <workItem from="1655215247144" duration="1528000" />
       <workItem from="1655216811103" duration="8034000" />
       <workItem from="1655241900032" duration="6761000" />
-      <workItem from="1655389854528" duration="1014000" />
-      <workItem from="1655391909321" duration="684000" />
+      <workItem from="1655388604299" duration="2882000" />
+      <workItem from="1655402856066" duration="3777000" />
+      <workItem from="1655408286309" duration="5244000" />
+      <workItem from="1655415109859" duration="713000" />
+      <workItem from="1655417410784" duration="1485000" />
+      <workItem from="1655419057906" duration="307000" />
     </task>
     <servers />
   </component>
@@ -174,17 +183,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java</url>
-          <line>99</line>
+          <line>97</line>
           <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java</url>
-          <line>93</line>
+          <line>91</line>
           <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java</url>
-          <line>128</line>
+          <line>126</line>
           <option name="timeStamp" value="158" />
         </line-breakpoint>
       </breakpoints>

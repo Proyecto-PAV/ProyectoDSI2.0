@@ -11,7 +11,6 @@ public class DBManager {
             Class.forName("org.mariadb.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/ppai?user=root&password=admin123");
         } catch (SQLException ex) {
-            System.out.println(ex);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

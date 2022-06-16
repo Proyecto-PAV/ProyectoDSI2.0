@@ -44,7 +44,7 @@ public class Controller {
     }
 
     @GetMapping(path = "/mostrarTurnosRT/{numeroRT}")
-    public ArrayList<ArrayList<Object>> getTurnos(@PathVariable Integer numeroRT){
+    public ArrayList<ArrayList<Object>> getTurnos(@PathVariable Integer numeroRT) {
         return icuService.tomarSeleccionRecursoTecnologico(numeroRT);
     }
 
