@@ -42,4 +42,11 @@ public class CUServiceImpl implements ICUService {
         pantallaReservaTurno.tomarSeleccionTurno(idTurno);
         return null;
     }
+
+    @Override
+    public String tomarConfirmaciones(Boolean confirmacion) {
+        pantallaReservaTurno.tomarModoNotificacion();
+        pantallaReservaTurno.tomarConfirmacionTurno(confirmacion);
+        return null;
+    }
 }

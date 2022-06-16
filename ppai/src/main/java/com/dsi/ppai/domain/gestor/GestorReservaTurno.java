@@ -246,14 +246,19 @@ public class GestorReservaTurno {
                 break;
             }
         }
+        this.pantallaReservaTurno.solicitarConfirmacionYModoNotificacion();
     }
 
 
-    public Boolean tomarConfirmacionYMododeNotificacion() {
-        return null;
+    public void tomarConfirmacionYMododeNotificacion(Boolean confirmacionTurno) {
+        this.confirmacionTurno = confirmacionTurno;
+        this.registrarReservaTurno();
+        this.notificarCientifico();
+        this.finCU();
     }
 
     public void registrarReservaTurno(){
+        //TODO falta el metodo de los chicos
         this.buscarEstadoReservado();
     };
 
@@ -279,6 +284,8 @@ public class GestorReservaTurno {
 
 
     public void notificarCientifico() {
+        InterfazEmail interfazEmail = new InterfazEmail();
+        interfazEmail.enviarEmail();
     }
 
 

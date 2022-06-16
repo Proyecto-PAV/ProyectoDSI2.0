@@ -49,8 +49,15 @@ public class Controller {
     }
 
     @GetMapping(path = "/tuno/{idTurno}")
-    public String getSesionActual(@PathVariable String idTurno){
+    public String setTurno(@PathVariable String idTurno){
         icuService.tomarSeleccionTurno(idTurno);
         return "ok";
     }
+
+    @GetMapping(path = "/confirmar/{confirmacion}")
+    public String getConfirmaciones(@PathVariable Boolean confirmacion){
+        icuService.tomarConfirmaciones(confirmacion);
+        return "Se ha enviado el mail";
+    }
+
 }

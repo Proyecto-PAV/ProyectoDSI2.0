@@ -10,5 +10,8 @@ public interface ICUService {
     ArrayList<ArrayList<Object>> tomarSeleccionTipoRecurso(String nombreTipoRT);
 
     ArrayList<ArrayList<Object>> tomarSeleccionRecursoTecnologico(Integer numeroRT);
+
     String tomarSeleccionTurno(String idTurno);
+
+    String tomarConfirmaciones(Boolean confirmacion);
 }
