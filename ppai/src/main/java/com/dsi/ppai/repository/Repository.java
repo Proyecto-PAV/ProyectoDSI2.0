@@ -37,7 +37,9 @@ public class Repository {
     public static List<RecursoTecnologico> findAllRT() {
         ArrayList<RecursoTecnologico> arrayRTDelTipoRT = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from RECURSO_TECNOLOGICO");
+            PreparedStatement ps = con.prepareStatement("SELECT RT.*, M.* from RECURSO_TECNOLOGICO RT " +
+                    "INNER JOIN MODELO M ON RT.NOMBRE_MODELO = M.NOMBRE_MODELO" +
+                    "INNER JOIN CENTRO_INVESTIGACION CI ON RT.ID_CENTRO = CI.ID_CENTRO");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 RecursoTecnologico recursoTec = new RecursoTecnologico();
@@ -47,8 +49,8 @@ public class Repository {
                 recursoTec.setFraccionHorarioTurno(rs.getInt(4));
                 recursoTec.setImagenes(rs.getString(5));
                 recursoTec.setPeriodicidadMantenimientoPreventivo(rs.getInt(6));
-                recursoTec.setCentroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion(rs.getString(7)).build());
-                recursoTec.setModelo(Modelo.builder().nombre(rs.getString(8)).build());
+                recursoTec.setCentroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion(rs.getString(7)).nombre(rs.getString(22)).build());
+                recursoTec.setModelo(Modelo.builder().nombre(rs.getString(8)).marcaDelModelo(Marca.builder().nombre(rs.getString(11)).build()).build());
                 recursoTec.setTipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso(rs.getString(9)).build());
                 arrayRTDelTipoRT.add(recursoTec);
             }
