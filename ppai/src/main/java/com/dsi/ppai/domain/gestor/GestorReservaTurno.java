@@ -119,7 +119,7 @@ public class GestorReservaTurno {
 
         this.listadoTurnosRecursoTecnologico = this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
 
-        agruparYOrdenarTurnos();
+        this.agruparYOrdenarTurnos();
     }
 
 
@@ -177,25 +177,56 @@ public class GestorReservaTurno {
 
 
 
-    public Date getFechaHoraActual() {
-        return null;
+    public void getFechaHoraActual() {
+        this.fechaHoraActual = new Date();
     }
 
 
     //definirColorTurnos
 
-    public Turno tomarSeleccionTurno() {
-        return null;
+    public void tomarSeleccionTurno(Turno turno) {
+        this.turnoSeleccionado = turno;
     }
 
 
-    public Boolean tomarConfirmacionYModoDeNotificacion(String modoNotificacion) {
+    public void tomarConfirmacionYModoDeNotificacion(String modoNotificacion, Boolean confirmacion) {
         //TODO Tomar por default el modo de notificacion de mail y enviar un email.
-        return null;
+        this.confirmacionTurno = confirmacion;
+        if (this.confirmacionTurno){
+            this.registrarReservaTurno();
+        }
     }
 
     public void registrarReservaTurno(){
         this.buscarEstadoReservado();
+
+
+//        this.turnoSeleccionado = new Turno();
+        CambioEstadoTurno cambioEstadoTurno = new CambioEstadoTurno();
+        cambioEstadoTurno.setEstado(new Estado());
+        cambioEstadoTurno.setFechaHoraDesde(new Date("2019-11-21 11:10:24.005"));
+        cambioEstadoTurno.setFechaHoraHasta(null);
+        cambioEstadoTurno.getEstado().setNombre("Disponible");
+        ArrayList<CambioEstadoTurno> arrayList = new ArrayList<>();
+        arrayList.add(cambioEstadoTurno);
+        this.turnoSeleccionado.setIdTurno("00001bd4-1d0d-4db6-ad16-74c22a84ec41");
+        this.turnoSeleccionado.setDiaSemana(new Date("2014-11-21 11:10:24.005"));
+        this.turnoSeleccionado.setFechaGeneracion(new Date("2014-11-21 11:10:24.005"));
+        this.turnoSeleccionado.setFechaHoraFin(new Date("2014-11-21 11:10:24.00"));
+        this.turnoSeleccionado.setFechaHoraInicio(new Date("2014-11-21 11:00:24.005"));
+        this.turnoSeleccionado.setCambiosEstadoTurno(arrayList);
+        this.getFechaHoraActual();
+        List<Sesion> sesiones = repository.findSesiones();
+        Sesion sesionActual = null;
+        for (Sesion sesion : sesiones) {
+            if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
+                sesionActual = sesion;
+                break;
+            }
+        }
+        this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
+
+
         this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.estadoReservado, this.fechaHoraActual);
     }
 

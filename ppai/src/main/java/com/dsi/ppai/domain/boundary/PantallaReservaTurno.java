@@ -92,5 +92,8 @@ public class PantallaReservaTurno {
 
     public void tomarModoNotificacion(){}
 
-    public void tomarSeleccionTurno(){}
+    public void tomarSeleccionTurno(){
+        Turno turnoSeleccionado = new Turno();
+        this.gestorReservaTurno.tomarSeleccionTurno(turnoSeleccionado);
+    }
 }

@@ -110,7 +110,7 @@ public class Turno {
         return this;
     }
 
-    private void setCambiosEstadoTurno() {
+    public void setCambiosEstadoTurno() {
         this.cambiosEstadoTurno = Repository.findCETurnos();
 
         List<CambioEstadoTurno> temporal = new ArrayList<>();

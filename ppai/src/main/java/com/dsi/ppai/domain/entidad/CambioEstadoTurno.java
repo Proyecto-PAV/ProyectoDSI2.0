@@ -41,7 +41,7 @@ public class CambioEstadoTurno {
     @JoinColumn(name = "id_turno")
     private Turno turno;
 
-    private void mostrarCambioEstadoTurno(){
+    public void mostrarCambioEstadoTurno(){
 
     }
 
