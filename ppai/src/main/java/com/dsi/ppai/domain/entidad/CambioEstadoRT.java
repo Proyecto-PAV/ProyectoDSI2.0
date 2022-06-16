@@ -54,13 +54,15 @@ public class CambioEstadoRT {
         List<Estado> estadosBD = Repository.findAllEstados();
         //obtengo el CE del estado
         for (Estado estadoBD : estadosBD) {
-            if (estadoBD.getNombre().equals(this.getEstado().getNombre()) || estadoBD.getAmbito().equals("RT")){
+            if (estadoBD.getNombre().equals(this.getEstado().getNombre()) && estadoBD.getAmbito().equals("RT")){
                 estadoDelCE = estadoBD;
             }
         }
         //filtro el estado del CE
+        //eliminar sout
         System.out.println(estadoDelCE);
         this.setEstado(estadoDelCE);
+        //eliminar sout
         System.out.println(this.getEstado().esReservable());
         return this.getEstado().esReservable();
     };
