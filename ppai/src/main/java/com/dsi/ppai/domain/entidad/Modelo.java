@@ -23,8 +23,12 @@ public class Modelo {
     @JoinColumn(name = "nombre_marca")
     private Marca marcaDelModelo;
 
-    public void mostrarMarcaYModelo() {
+    public String mostrarMarcaYModelo() {
         // Aca hay que obtener la marca de ese modelo pero no se como hacerlo por la relacion xd
+        String string = "Modelo: ";
+        string += this.getNombre();
+        string += this.getMarcaDelModelo().getNombre();
+        return string;
     }
 
     public void setMarcaDelModelo() {

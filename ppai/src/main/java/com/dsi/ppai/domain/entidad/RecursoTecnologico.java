@@ -105,8 +105,6 @@ public class RecursoTecnologico {
         recursoTecnologico.setCambioEstadoRTS(this.getCambioEstadoRTS());
         recursoTecnologico.setCentroDeInvestigacion(this.getCentroDeInvestigacion()); //TODO aca se tiene que invocar al metodo de getNombre en la pantalla
         recursoTecnologico.setModelo(this.getModelo());
-        recursoTecnologico.getModelo().setMarcaDelModelo();
-
         return recursoTecnologico;
     };
 
@@ -139,5 +137,13 @@ public class RecursoTecnologico {
         this.turnos = Repository.findTurnos();
 
         //System.out.println("Turnos BD " + this.turnos);
+    }
+    private String mostrarEstado(){
+        for (int i = 0; i < this.cambioEstadoRTS.size(); i++) {
+            if (this.cambioEstadoRTS.get(i).getFechaHoraHasta()==null){
+                return this.cambioEstadoRTS.get(i).getEstado().getNombre();
+            }
+        }
+        return "";
     }
 }
