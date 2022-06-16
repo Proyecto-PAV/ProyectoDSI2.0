@@ -92,8 +92,12 @@ public class CentroDeInvestigacion {
         return mailCientifico;
     }
 
-    public void asignarTurno(Turno turnoSeleccionado, String cientificoLogueado) {
-
+    public void asignarTurno(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado) {
+        for (int i = 0; i < this.cientificos.size(); i++) {
+            if (this.cientificos.get(i).getCientifico().getLegajo().equals(cientificoLogueado.getLegajo())){
+                this.cientificos.get(i).setTurno(turnoSeleccionado);
+            }
+        }
     }
 
 }

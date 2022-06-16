@@ -52,6 +52,10 @@ public class CambioEstadoTurno {
         return false;
     }
 
+    public void setFechaHoraHasta(){
+
+    }
+
     public String obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
         return cambioEstadoTurno.getEstado().getNombre();
     }

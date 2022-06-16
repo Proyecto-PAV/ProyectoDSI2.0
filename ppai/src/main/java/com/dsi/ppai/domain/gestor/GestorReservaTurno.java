@@ -15,7 +15,7 @@ import java.util.*;
 @NoArgsConstructor
 @Builder
 public class GestorReservaTurno {
-    private String cientificoLogueado;
+    private PersonalCientifico cientificoLogueado;
     private Boolean confirmacionTurno;
     private String emailCientifico;
     private Estado estadoReservado;
@@ -209,7 +209,7 @@ public class GestorReservaTurno {
                 break;
             }
         }
-        this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
+        this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
         PersonalCientifico pc = sesionActual.mostrarCliente();
         System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
     }
@@ -228,14 +228,15 @@ public class GestorReservaTurno {
     }
 
 
-    public Boolean tomarConfirmacionYMododeNotificacion() {
+    public Boolean tomarConfirmacionYModoDeNotificacion(String modoNotificacion) {
+        //TODO Tomar por default el modo de notificacion de mail y enviar un email.
         return null;
     }
 
     public void registrarReservaTurno(){
         this.buscarEstadoReservado();
-        this.recursoTecnologicoSeleccionado.reservar(turnoSeleccionado, cientificoLogueado);
-    };
+        this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.estadoReservado, this.fechaHoraActual);
+    }
 
     public void buscarEstadoReservado(){
         this.repository = new Repository();

@@ -110,17 +110,9 @@ public class RecursoTecnologico {
         return recursoTecnologico;
     };
 
-    public void reservar(Turno turnoSeleccionado, String cientificoLogueado) {
-        turnoSeleccionado.reservar();
-        centroDeInvestigacion.asignarTurno(turnoSeleccionado, cientificoLogueado);
-        List<AsignacionCientificoDelCI> lista1 = new ArrayList<>();
-        for(AsignacionCientificoDelCI asignacion : lista1){
-            if(asignacion.getCientifico().getNombre().equals(cientificoLogueado)){
-                asignacion.setTurno(turnoSeleccionado);
-            } else {
-                System.out.println("Vayase a la mierda.");
-            }
-        }
+    public void reservar(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado, Estado estadoReservado, Date fechaHoraActual) {
+        turnoSeleccionado.reservar(estadoReservado, fechaHoraActual);
+        this.centroDeInvestigacion.asignarTurno(turnoSeleccionado, cientificoLogueado);
     }
 
     public void nuevoMantenimientoPreventivo(){};

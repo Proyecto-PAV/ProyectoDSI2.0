@@ -123,13 +123,17 @@ public class Turno {
         this.cambiosEstadoTurno = temporal;
         //System.out.println("Cambios estado turno " + this.cambiosEstadoTurno);
     }
-    public void reservar () {
-//        this.cambioEstadoActual.setFechaHoraHasta(this.fechaHoraFin);
-
+    public void reservar (Estado estadoReservado, Date fechaHoraActual) {
+        for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
+            if(cambiosEstadoTurno.get(i).getFechaHoraHasta()==null){
+                this.cambiosEstadoTurno.get(i).setFechaHoraHasta(fechaHoraActual);
+            }
+        }
         CambioEstadoTurno nuevoCambioEstadoTurno = new CambioEstadoTurno();
-        nuevoCambioEstadoTurno.setFechaHoraDesde(this.fechaHoraFin);
+        nuevoCambioEstadoTurno.setFechaHoraDesde(fechaHoraActual);
         nuevoCambioEstadoTurno.setFechaHoraHasta(null);
-        nuevoCambioEstadoTurno.setEstado(Estado.builder().nombre("Reservado").build()); //Estado hardcodeado
-        nuevoCambioEstadoTurno.setTurno(Turno.builder().build()); //Turno hardcodeado
+        nuevoCambioEstadoTurno.setEstado(estadoReservado);
+        nuevoCambioEstadoTurno.setTurno(this);
+        this.setNombreEstadoCambioEstadoActual(estadoReservado.getNombre());
     }
 }
