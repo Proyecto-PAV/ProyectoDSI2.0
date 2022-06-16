@@ -128,7 +128,6 @@ public class RecursoTecnologico {
             }
         }
 
-        //System.out.println("Turnos posterior fecha actual " + turnosPosteriorFechaActual);
 
         return turnosPosteriorFechaActual;
     }
@@ -136,7 +135,6 @@ public class RecursoTecnologico {
     private void setTurnos(){
         this.turnos = Repository.findTurnos();
 
-        //System.out.println("Turnos BD " + this.turnos);
     }
     private String mostrarEstado(){
         for (int i = 0; i < this.cambioEstadoRTS.size(); i++) {

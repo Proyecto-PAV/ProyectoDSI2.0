@@ -51,7 +51,6 @@ public class CambioEstadoRT {
         Repository repository = new Repository();
         Estado estadoDelRTBD = repository.findEstadoDelCE(this.getEstado().getNombre(), "RT");
         this.setEstado(estadoDelRTBD);
-        System.out.println(this.getEstado().esReservable());
         return this.getEstado().esReservable();
     };
 }

@@ -47,7 +47,6 @@ public class Controller {
         PantallaReservaTurno pantallaReservaTurno = new PantallaReservaTurno();
 //        pantallaReservaTurno.mostrarRecursosTecnologicos();
         hashMap = pantallaReservaTurno.getRecursosTecnologicosAgrupados();
-//        hashMap.forEach((k,v) -> System.out.println("Key: " + k + ": Value: " + v));
 
     }
 }

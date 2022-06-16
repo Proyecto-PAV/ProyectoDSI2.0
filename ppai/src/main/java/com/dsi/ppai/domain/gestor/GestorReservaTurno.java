@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.*;
 
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -68,7 +68,6 @@ public class GestorReservaTurno {
                 }
             }
         }
-        System.out.println(this.listadoRecursosTecnologicosActivos);
         this.listadoRecursosTecnologicos = new ArrayList<>();
 
         for (RecursoTecnologico recursoTecnologicoActivo : this.listadoRecursosTecnologicosActivos) {
@@ -172,7 +171,6 @@ public class GestorReservaTurno {
         }
         this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
         PersonalCientifico pc = sesionActual.mostrarCliente();
-        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
     }
 
 
@@ -201,19 +199,16 @@ public class GestorReservaTurno {
         this.buscarEstadoReservado();
 
 
-//        this.turnoSeleccionado = new Turno();
+        this.turnoSeleccionado = new Turno();
         CambioEstadoTurno cambioEstadoTurno = new CambioEstadoTurno();
+        cambioEstadoTurno.setIdCambioEstadoTurno("00002412-e7b6-4c88-8f71-acdf9cb58f63");
         cambioEstadoTurno.setEstado(new Estado());
-        cambioEstadoTurno.setFechaHoraDesde(new Date("2019-11-21 11:10:24.005"));
         cambioEstadoTurno.setFechaHoraHasta(null);
         cambioEstadoTurno.getEstado().setNombre("Disponible");
         ArrayList<CambioEstadoTurno> arrayList = new ArrayList<>();
         arrayList.add(cambioEstadoTurno);
+
         this.turnoSeleccionado.setIdTurno("00001bd4-1d0d-4db6-ad16-74c22a84ec41");
-        this.turnoSeleccionado.setDiaSemana(new Date("2014-11-21 11:10:24.005"));
-        this.turnoSeleccionado.setFechaGeneracion(new Date("2014-11-21 11:10:24.005"));
-        this.turnoSeleccionado.setFechaHoraFin(new Date("2014-11-21 11:10:24.00"));
-        this.turnoSeleccionado.setFechaHoraInicio(new Date("2014-11-21 11:00:24.005"));
         this.turnoSeleccionado.setCambiosEstadoTurno(arrayList);
         this.getFechaHoraActual();
         List<Sesion> sesiones = repository.findSesiones();
@@ -226,13 +221,12 @@ public class GestorReservaTurno {
         }
         this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
 
-
+        this.recursoTecnologicoSeleccionado = new RecursoTecnologico();
         this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.estadoReservado, this.fechaHoraActual);
     }
 
     public void buscarEstadoReservado(){
-        this.repository = new Repository();
-        List<Estado> estadosBD = this.repository.findEstados();
+        List<Estado> estadosBD = Repository.findEstados();
         List<Estado> estadosAmbitoTurno = new ArrayList<>();
         for (Estado estado : estadosBD) {
             if (estado.esAmbitoTurno()) {

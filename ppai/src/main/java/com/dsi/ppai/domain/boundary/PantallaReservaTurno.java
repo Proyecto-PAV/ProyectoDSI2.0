@@ -44,7 +44,6 @@ public class PantallaReservaTurno {
 //        this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
 //        this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
         this.recursosTecnologicosAgrupados = hashMap;
-        System.out.println(this.recursosTecnologicosAgrupados.toString());
     }
 
     public void mostrarTiposRecursos(List<String> tipoRecursoTecnologicos){

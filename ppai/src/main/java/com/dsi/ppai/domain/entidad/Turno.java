@@ -105,7 +105,6 @@ public class Turno {
             }
         }
 
-        //System.out.println("Nombre estado cambio estado actual " + this.nombreEstadoCambioEstadoActual);
 
         return this;
     }
@@ -121,15 +120,16 @@ public class Turno {
             }
         }
         this.cambiosEstadoTurno = temporal;
-        //System.out.println("Cambios estado turno " + this.cambiosEstadoTurno);
     }
     public void reservar (Estado estadoReservado, Date fechaHoraActual) {
         for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
             if(cambiosEstadoTurno.get(i).getFechaHoraHasta()==null){
                 this.cambiosEstadoTurno.get(i).setFechaHoraHasta(fechaHoraActual);
+                Repository.actualizarCambioDeEstadoTurno(this.cambiosEstadoTurno.get(i).getIdCambioEstadoTurno(), this.cambiosEstadoTurno.get(i).getFechaHoraHasta());
             }
         }
         CambioEstadoTurno nuevoCambioEstadoTurno = new CambioEstadoTurno();
+        nuevoCambioEstadoTurno.setIdCambioEstadoTurno("000034d9-b875-49b6-952b-005ace8c9999");
         nuevoCambioEstadoTurno.setFechaHoraDesde(fechaHoraActual);
         nuevoCambioEstadoTurno.setFechaHoraHasta(null);
         nuevoCambioEstadoTurno.setEstado(estadoReservado);

@@ -6,6 +6,5 @@ import lombok.Data;
 public class InterfazEmail {
 
     public void enviarEmail(String email){
-        System.out.println(email);
     }
 }
