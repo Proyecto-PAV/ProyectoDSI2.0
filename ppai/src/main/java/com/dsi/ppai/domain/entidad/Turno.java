@@ -134,6 +134,7 @@ public class Turno {
         nuevoCambioEstadoTurno.setFechaHoraHasta(null);
         nuevoCambioEstadoTurno.setEstado(estadoReservado);
         nuevoCambioEstadoTurno.setTurno(this);
+        nuevoCambioEstadoTurno.nuevo();
         this.setNombreEstadoCambioEstadoActual(estadoReservado.getNombre());
     }
 }

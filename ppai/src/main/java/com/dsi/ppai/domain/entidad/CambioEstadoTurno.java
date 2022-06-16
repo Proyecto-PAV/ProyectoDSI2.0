@@ -59,4 +59,7 @@ public class CambioEstadoTurno {
     public String obtenerEstado(CambioEstadoTurno cambioEstadoTurno){
         return cambioEstadoTurno.getEstado().getNombre();
     }
+    public void nuevo(){
+        Repository.nuevoCambioEstadoTurno(this);
+    }
 }
