@@ -234,22 +234,18 @@ public class GestorReservaTurno {
 
     public void registrarReservaTurno(){
         this.buscarEstadoReservado();
+        this.recursoTecnologicoSeleccionado.reservar(turnoSeleccionado, cientificoLogueado);
     };
 
     public void buscarEstadoReservado(){
-
         this.repository = new Repository();
-
         List<Estado> estadosBD = this.repository.findEstados();
-
         List<Estado> estadosAmbitoTurno = new ArrayList<>();
-
         for (Estado estado : estadosBD) {
             if (estado.esAmbitoTurno()) {
                 estadosAmbitoTurno.add(estado);
             }
         }
-
         for (Estado estado : estadosAmbitoTurno) {
             if (estado.esReservado()) {
                 this.estadoReservado = estado;
@@ -259,11 +255,11 @@ public class GestorReservaTurno {
 
 
 
-    public void notificarCientifico() {
+    public void notificarCientifico(){
+        InterfazEmail email = new InterfazEmail();
+        email.enviarEmail(emailCientifico);
     }
 
-
-    public void finCU() {
-    }
+    public void finCU(){}
 }
 

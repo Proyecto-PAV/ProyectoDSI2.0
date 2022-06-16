@@ -92,8 +92,8 @@ public class CentroDeInvestigacion {
         return mailCientifico;
     }
 
+    public void asignarTurno(Turno turnoSeleccionado, String cientificoLogueado) {
 
-    public void asignarTurno() {
     }
 
 }

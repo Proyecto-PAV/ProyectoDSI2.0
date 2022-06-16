@@ -52,11 +52,12 @@ public class Turno {
     @Column(name = "Nombre_estado_actual")
     private String nombreEstadoCambioEstadoActual;
 
-    public boolean estoyDisponible(){
+//    private CambioEstadoTurno cambioEstadoActual;
+
+    public boolean estoyDisponible() {
         if (fechaHoraFin == null) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -70,11 +71,10 @@ public class Turno {
         return fechaHoraFin;
     }
 
-    public boolean esPosteriorFechaActual(Date fechaActual){
-        if (fechaActual.before(this.fechaHoraInicio)){
+    public boolean esPosteriorFechaActual(Date fechaActual) {
+        if (fechaActual.before(this.fechaHoraInicio)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -110,7 +110,7 @@ public class Turno {
         return this;
     }
 
-    private void setCambiosEstadoTurno(){
+    private void setCambiosEstadoTurno() {
         this.cambiosEstadoTurno = Repository.findCETurnos();
 
         List<CambioEstadoTurno> temporal = new ArrayList<>();
@@ -120,10 +120,16 @@ public class Turno {
                 temporal.add(cambioEstadoTurno);
             }
         }
-
         this.cambiosEstadoTurno = temporal;
-
-
         //System.out.println("Cambios estado turno " + this.cambiosEstadoTurno);
+    }
+    public void reservar () {
+//        this.cambioEstadoActual.setFechaHoraHasta(this.fechaHoraFin);
+
+        CambioEstadoTurno nuevoCambioEstadoTurno = new CambioEstadoTurno();
+        nuevoCambioEstadoTurno.setFechaHoraDesde(this.fechaHoraFin);
+        nuevoCambioEstadoTurno.setFechaHoraHasta(null);
+        nuevoCambioEstadoTurno.setEstado(Estado.builder().nombre("Reservado").build()); //Estado hardcodeado
+        nuevoCambioEstadoTurno.setTurno(Turno.builder().build()); //Turno hardcodeado
     }
 }
