@@ -25,5 +25,9 @@ public class Marca {
     @OneToMany(mappedBy = "marcaDelModelo")
     private List<Modelo> modelos;
 
+    public String mostrarMarca(){
+        return this.getNombre();
+    }
+
 
 }

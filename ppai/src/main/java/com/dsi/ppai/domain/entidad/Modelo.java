@@ -27,7 +27,7 @@ public class Modelo {
         // Aca hay que obtener la marca de ese modelo pero no se como hacerlo por la relacion xd
         String string = "Modelo: ";
         string += this.getNombre();
-        string += this.getMarcaDelModelo().getNombre();
+        string += this.getMarcaDelModelo().mostrarMarca();
         return string;
     }
 
