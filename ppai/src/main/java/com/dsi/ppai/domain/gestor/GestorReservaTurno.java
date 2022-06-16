@@ -30,7 +30,6 @@ public class GestorReservaTurno {
     private TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado;
     private Turno turnoSeleccionado;
     private PantallaReservaTurno pantallaReservaTurno;
-    private Repository repository;
     private HashMap<Integer, List<Turno>> turnosAgrupados;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
@@ -40,11 +39,13 @@ public class GestorReservaTurno {
     }
 
     public void buscarTipoRecurso() {
-        this.repository = new Repository();
-        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
             this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
+
+            //eliminar
+            System.out.println(this.listadoNombresTipoRecurso);
         }
     }
 
@@ -54,7 +55,7 @@ public class GestorReservaTurno {
     }
 
     public void obtenerRTActivos(TipoRecursoTecnologico tipoRecursoTecnologicoSeleccionado) {
-        List<RecursoTecnologico> recursoTecnologicosBD = this.repository.findRTDelTipo();
+        List<RecursoTecnologico> recursoTecnologicosBD = Repository.findAllRT();
         this.listadoRecursosTecnologicosActivos = new ArrayList<>();
 
         for (RecursoTecnologico recursoTecnologicoBD : recursoTecnologicosBD) {
@@ -161,7 +162,7 @@ public class GestorReservaTurno {
 
 
     public void verificarClienteLogueado(RecursoTecnologico recursoTecnologico) {
-        List<Sesion> sesiones = repository.findSesiones();
+        List<Sesion> sesiones = Repository.findSesiones();
         Sesion sesionActual = null;
         for (Sesion sesion : sesiones) {
             if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
@@ -211,7 +212,7 @@ public class GestorReservaTurno {
         this.turnoSeleccionado.setIdTurno("00001bd4-1d0d-4db6-ad16-74c22a84ec41");
         this.turnoSeleccionado.setCambiosEstadoTurno(arrayList);
         this.getFechaHoraActual();
-        List<Sesion> sesiones = repository.findSesiones();
+        List<Sesion> sesiones = Repository.findSesiones();
         Sesion sesionActual = null;
         for (Sesion sesion : sesiones) {
             if (sesion.getHoraFin() == null && sesion.getHoraFin() == null) {
@@ -226,6 +227,7 @@ public class GestorReservaTurno {
     }
 
     public void buscarEstadoReservado(){
+
         List<Estado> estadosBD = Repository.findEstados();
         List<Estado> estadosAmbitoTurno = new ArrayList<>();
         for (Estado estado : estadosBD) {

@@ -21,8 +21,8 @@ public class Repository {
             while (rs.next()) {
                 TipoRecursoTecnologico tipoRT = new TipoRecursoTecnologico();
                 tipoRT.setIdTipoRecurso(rs.getString(1));
-                tipoRT.setNombre(rs.getString(2));
-                tipoRT.setDescripcion(rs.getString(3));
+                tipoRT.setDescripcion(rs.getString(2));
+                tipoRT.setNombre(rs.getString(3));
                 arrayTipoRT.add(tipoRT);
             }
 
@@ -32,7 +32,7 @@ public class Repository {
         return arrayTipoRT;
     }
 
-    public static List<RecursoTecnologico> findRTDelTipo() {
+    public static List<RecursoTecnologico> findAllRT() {
         ArrayList<RecursoTecnologico> arrayRTDelTipoRT = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement("select * from RECURSO_TECNOLOGICO");
@@ -78,11 +78,10 @@ public class Repository {
         return sesiones;
     }
 
-    public static List<CambioEstadoRT> findCEDelRT(Integer recursoTecnologicoId) {
+    public static List<CambioEstadoRT> findAllCE() {
         ArrayList<CambioEstadoRT> arrayCEDelRT = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM CAMBIO_ESTADO_RT WHERE NUMERO_RT = ?;");
-            ps.setInt(1, recursoTecnologicoId);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM CAMBIO_ESTADO_RT;");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 CambioEstadoRT cambioEstado = new CambioEstadoRT();
@@ -99,38 +98,37 @@ public class Repository {
         return arrayCEDelRT;
     }
 
-    public static Estado findEstadoDelCE(String estadoId, String ambitoRT) {
-        Estado estado = new Estado();
+    public static List<Estado> findAllEstados() {
+        List<Estado> estados = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO WHERE NOMBRE_ESTADO = ? AND AMBITO = ?;");
-            ps.setString(1, estadoId);
-            ps.setString(2, ambitoRT);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO;");
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-
-                estado.setNombre(rs.getString(1));
-                estado.setAmbito(rs.getString(2));
+            while (rs.next()) {
+                Estado estado = new Estado();
+                estado.setNombre(rs.getString(2));
+                estado.setAmbito(rs.getString(1));
                 estado.setDescripcion(rs.getString(3));
                 estado.setEsCancelable(rs.getBoolean(4));
                 estado.setEsReservable(rs.getBoolean(5));
+                estados.add(estado);
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return estado;
+        return estados;
     }
 
 
     public static List<Estado> findEstados() {
         ArrayList<Estado> arrayEstadosAmbitoTurno = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from estado");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Estado estado = new Estado();
-                estado.setAmbito(rs.getString(1));
-                estado.setNombre(rs.getString(2));
+                estado.setNombre(rs.getString(1));
+                estado.setAmbito(rs.getString(2));
                 estado.setDescripcion(rs.getString(3));
                 estado.setEsCancelable(rs.getBoolean(4));
                 estado.setEsReservable(rs.getBoolean(5));

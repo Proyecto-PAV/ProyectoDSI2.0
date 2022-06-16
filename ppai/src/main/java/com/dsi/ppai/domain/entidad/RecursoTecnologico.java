@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "recurso_tecnologico")
@@ -61,18 +62,21 @@ public class RecursoTecnologico {
 
     public Boolean esReservable(){
         CambioEstadoRT actualCE;
-        Repository repository = new Repository();
-        //obtengo todos los cambios de estados del RT
-        List<CambioEstadoRT> cambioEstadoRTS = repository.findCEDelRT(this.numeroRT);
+        Integer numeroRT = this.getNumeroRT();
+        //obtengo todos los cambios de estados
+        List<CambioEstadoRT> cambioEstadoRTS = Repository.findAllCE();
+        //filtro los  CE del RT
+        List<CambioEstadoRT> CEDelRT = cambioEstadoRTS.stream().filter(cambioEstadoRT -> cambioEstadoRT.getRecursoTecnologicoDelCE().getNumeroRT().equals(numeroRT)).toList();
+
         for (CambioEstadoRT cambioEstadoRT : cambioEstadoRTS){
-            //de todos los CE busco el actual
+            //de todos los CE del RT busco el actual
             if(cambioEstadoRT.esActual()){
                 actualCE = cambioEstadoRT;
                 //le seteo al RT el CE actual por si se necesita posteriormente
                 this.cambioEstadoRTS = new ArrayList<>();
                 this.cambioEstadoRTS.add(actualCE);
                 //verifico en el CE actual si su estado es reservable
-                if(actualCE.esReservable()){ //Aca saque el parametro ya que no va, el CE identifica a su objeto
+                if(actualCE.esReservable()){
                     return true;
                 };
             };

@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -47,10 +48,22 @@ public class CambioEstadoRT {
         return this.getFechaHoraHasta() == null;
     };
 
-    public Boolean esReservable(){//En este metodo saque el parametro que tenia pq cada clase identifica a su propio objeto
-        Repository repository = new Repository();
-        Estado estadoDelRTBD = repository.findEstadoDelCE(this.getEstado().getNombre(), "RT");
-        this.setEstado(estadoDelRTBD);
+    public Boolean esReservable(){
+        Estado estadoDelCE = null;
+        //obtengo todos los Estados de la bd
+        List<Estado> estadosBD = Repository.findAllEstados();
+        //obtengo el CE del estado
+        for (Estado estadoBD : estadosBD) {
+            if (estadoBD.getNombre().equals(this.getEstado().getNombre()) && estadoBD.getAmbito().equals("RT")){
+                estadoDelCE = estadoBD;
+            }
+        }
+        //filtro el estado del CE
+        //eliminar sout
+        System.out.println(estadoDelCE);
+        this.setEstado(estadoDelCE);
+        //eliminar sout
+        System.out.println(this.getEstado().esReservable());
         return this.getEstado().esReservable();
     };
 }
