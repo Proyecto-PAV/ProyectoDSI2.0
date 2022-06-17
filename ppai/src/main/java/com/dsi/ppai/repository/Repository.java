@@ -35,8 +35,8 @@ public class Repository {
     public static List<RecursoTecnologico> findAllRT() {
         ArrayList<RecursoTecnologico> arrayRTDelTipoRT = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT RT.*, M.* from RECURSO_TECNOLOGICO RT " +
-                    "INNER JOIN MODELO M ON RT.NOMBRE_MODELO = M.NOMBRE_MODELO" +
+            PreparedStatement ps = con.prepareStatement("SELECT RT.*, M.*, CI.* from RECURSO_TECNOLOGICO RT " +
+                    "INNER JOIN MODELO M ON RT.NOMBRE_MODELO = M.NOMBRE_MODELO " +
                     "INNER JOIN CENTRO_INVESTIGACION CI ON RT.ID_CENTRO = CI.ID_CENTRO");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -129,8 +129,8 @@ public class Repository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Estado estado = new Estado();
-                estado.setNombre(rs.getString(1));
-                estado.setAmbito(rs.getString(2));
+                estado.setAmbito(rs.getString(1));
+                estado.setNombre(rs.getString(2));
                 estado.setDescripcion(rs.getString(3));
                 estado.setEsCancelable(rs.getBoolean(4));
                 estado.setEsReservable(rs.getBoolean(5));

@@ -113,6 +113,7 @@ public class RecursoTecnologico {
     };
 
     public void reservar(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado, Estado estadoReservado, Date fechaHoraActual) {
+        System.out.println("aca: " + turnoSeleccionado.getCambiosEstadoTurno());
         turnoSeleccionado.reservar(estadoReservado, fechaHoraActual);
         this.centroDeInvestigacion.asignarTurno(turnoSeleccionado, cientificoLogueado);
     }

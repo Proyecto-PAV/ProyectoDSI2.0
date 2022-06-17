@@ -120,10 +120,12 @@ public class Turno {
             }
         }
         this.cambiosEstadoTurno = temporal;
+
     }
     public void reservar (Estado estadoReservado, Date fechaHoraActual) {
+        this.setCambiosEstadoTurno();
         for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
-            if(cambiosEstadoTurno.get(i).getFechaHoraHasta()==null){
+            if(this.cambiosEstadoTurno.get(i).getFechaHoraHasta()==null){
                 this.cambiosEstadoTurno.get(i).setFechaHoraHasta(fechaHoraActual);
                 Repository.actualizarCambioDeEstadoTurno(this.cambiosEstadoTurno.get(i).getIdCambioEstadoTurno(), this.cambiosEstadoTurno.get(i).getFechaHoraHasta());
             }

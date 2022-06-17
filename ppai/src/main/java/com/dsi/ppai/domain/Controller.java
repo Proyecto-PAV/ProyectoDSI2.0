@@ -8,10 +8,7 @@ import com.dsi.ppai.service.ICUService;
 import com.dsi.ppai.service.impl.CUServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,13 +45,13 @@ public class Controller {
         return icuService.tomarSeleccionRecursoTecnologico(numeroRT);
     }
 
-    @GetMapping(path = "/tuno/{idTurno}")
+    @GetMapping(path = "/turno/{idTurno}")
     public String setTurno(@PathVariable String idTurno){
         icuService.tomarSeleccionTurno(idTurno);
         return "ok";
     }
 
-    @GetMapping(path = "/confirmar/{confirmacion}")
+    @PostMapping(path = "/confirmar/{confirmacion}")
     public String getConfirmaciones(@PathVariable Boolean confirmacion){
         icuService.tomarConfirmaciones(confirmacion);
         return "Se ha enviado el mail";

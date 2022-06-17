@@ -9,7 +9,7 @@ public class DBManager {
         Connection conn = null;
         try {
             Class.forName("org.mariadb.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/ppai?user=root&password=admin123");
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/ppai?user=root&password=123");
         } catch (SQLException ex) {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
