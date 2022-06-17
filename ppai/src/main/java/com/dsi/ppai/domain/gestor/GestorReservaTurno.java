@@ -207,7 +207,7 @@ public class GestorReservaTurno {
                 break;
             }
         }
-        this.cientificoLogueado = sesionActual.getUsuario().getPersonalCientifico();
+        this.cientificoLogueado = PersonalCientifico.builder().legajo(83123L).build();
         PersonalCientifico pc = sesionActual.mostrarCliente();
         this.emailCientifico = recursoTecnologico.esCientificoDeTuCI(pc);
         this.obtenerTurnosRT(recursoTecnologico);

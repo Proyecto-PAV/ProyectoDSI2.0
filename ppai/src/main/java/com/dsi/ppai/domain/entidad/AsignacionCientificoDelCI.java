@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class AsignacionCientificoDelCI {
     private Date fechaHasta;
 
     @OneToMany(mappedBy = "asignacionCientificoCI")
-    private List<Turno> turnos;
+    private List<Turno> turnos = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "legajo")
