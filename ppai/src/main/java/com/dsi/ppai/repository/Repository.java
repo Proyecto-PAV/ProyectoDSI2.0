@@ -12,7 +12,17 @@ import java.util.List;
 
 public class Repository {
     static Connection con = DBManager.getConnection();
-
+    public static void actualizarTurno(String id, java.util.Date fechaHasta, String idCientifico) {
+        try {
+            PreparedStatement ps = con.prepareStatement("update TURNO set ID_ASIGNACION_CIENTIFICO = ?, FECHA_HORA_INICIO  = ?  where ID_TURNO  = ?");
+            ps.setString(1, idCientifico);
+            ps.setDate(2, new Date(fechaHasta.getTime()));
+            ps.setString(3, id);
+            ps.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static List<TipoRecursoTecnologico> findAllTipoRT() {
         ArrayList<TipoRecursoTecnologico> arrayTipoRT = new ArrayList<>();
         try {

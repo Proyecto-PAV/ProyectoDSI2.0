@@ -131,12 +131,14 @@ public class Turno {
             }
         }
         CambioEstadoTurno nuevoCambioEstadoTurno = new CambioEstadoTurno();
-        nuevoCambioEstadoTurno.setIdCambioEstadoTurno("000034d9-b875-49b6-952b-005ace8c9991");
+        nuevoCambioEstadoTurno.setIdCambioEstadoTurno("000034d9-b875-49b6-952b-005ace8c9988");
         nuevoCambioEstadoTurno.setFechaHoraDesde(fechaHoraActual);
         nuevoCambioEstadoTurno.setFechaHoraHasta(null);
         nuevoCambioEstadoTurno.setEstado(estadoReservado);
         nuevoCambioEstadoTurno.setTurno(this);
         nuevoCambioEstadoTurno.nuevo();
+        System.out.println(nuevoCambioEstadoTurno.toString());
         this.setNombreEstadoCambioEstadoActual(estadoReservado.getNombre());
+        Repository.actualizarTurno(this.idTurno, new Date(), this.asignacionCientificoCI.getId());
     }
 }

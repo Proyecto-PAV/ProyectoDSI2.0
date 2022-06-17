@@ -69,8 +69,8 @@ public class PantallaReservaTurno {
     public void solicitarConfirmacionYModoNotificacion() {
     }
 
-    public void tomarConfirmacionTurno(Boolean confirmacion) {
-        this.gestorReservaTurno.tomarConfirmacionYMododeNotificacion(confirmacion);
+    public String tomarConfirmacionTurno(Boolean confirmacion) {
+        return this.gestorReservaTurno.tomarConfirmacionYMododeNotificacion(confirmacion);
 
     }
 

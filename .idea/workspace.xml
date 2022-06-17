@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d1905509-09d5-487a-b332-77299f45cffb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/AsignacionCientificoDelCI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/AsignacionCientificoDelCI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/RecursoTecnologico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/entidad/Turno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/gestor/GestorReservaTurno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/public/css/reservar.css" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/public/css/reservar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/repository/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/impl/CUServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/service/impl/CUServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/public/js/reservar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/public/js/reservar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppai/src/main/resources/public/reservar.html" beforeDir="false" afterPath="$PROJECT_DIR$/ppai/src/main/resources/public/reservar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,19 +159,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/ppai/src/main/java/com/dsi/ppai/domain/boundary/PantallaReservaTurno.java</url>
-          <line>77</line>
-          <properties class="com.dsi.ppai.domain.boundary.PantallaReservaTurno" method="tomarSeleccionTurno">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.Integer" memberName="value" />

@@ -46,7 +46,7 @@ public class CUServiceImpl implements ICUService {
     @Override
     public String tomarConfirmaciones(Boolean confirmacion) {
         pantallaReservaTurno.tomarModoNotificacion();
-        pantallaReservaTurno.tomarConfirmacionTurno(confirmacion);
-        return null;
+        return pantallaReservaTurno.tomarConfirmacionTurno(confirmacion);
+
     }
 }

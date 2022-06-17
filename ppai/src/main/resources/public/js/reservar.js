@@ -202,6 +202,23 @@ async function confirmarTurno(){
         await axios.post('http://localhost:9090/confirmar/' + this.bandera).then(
             function(response) {
                 mensaje.innerText = response.data;
+                mensaje.style.color = "rgb(80 231 146)"
+            }
+        )
+    }catch (error)
+    {
+        console.log(error);
+    }
+}
+
+
+async function cancelarTurno(){
+    mensaje = document.getElementById("mensaje")
+    try{
+        await axios.post('http://localhost:9090/confirmar/false' ).then(
+            function(response) {
+                mensaje.innerText = response.data;
+                mensaje.style.color = "#e75050";
             }
         )
     }catch (error)

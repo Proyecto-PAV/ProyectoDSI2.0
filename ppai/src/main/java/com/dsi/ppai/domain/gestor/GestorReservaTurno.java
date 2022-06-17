@@ -35,6 +35,8 @@ public class GestorReservaTurno {
     private PantallaReservaTurno pantallaReservaTurno;
     private ArrayList<ArrayList<Object>> turnosAgrupados;
 
+
+
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
         this.pantallaReservaTurno = pantallaReservaTurno;
         this.buscarTipoRecurso();
@@ -70,6 +72,7 @@ public class GestorReservaTurno {
 
 
     public void tomarSeleccionTipoRecurso(String nombreTipoRT) {
+        //todo Corregir
         TipoRecursoTecnologico tipoRecurso = new TipoRecursoTecnologico();
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
         for (TipoRecursoTecnologico trt : tipoRecursoTecnologicosBD){
@@ -232,11 +235,16 @@ public class GestorReservaTurno {
     }
 
 
-    public void tomarConfirmacionYMododeNotificacion(Boolean confirmacionTurno) {
+    public String tomarConfirmacionYMododeNotificacion(Boolean confirmacionTurno) {
         this.confirmacionTurno = confirmacionTurno;
-        this.registrarReservaTurno();
-        this.notificarCientifico();
-        this.finCU();
+        if (!confirmacionTurno){
+            return "Cancelado";
+        }else {
+            this.registrarReservaTurno();
+            this.notificarCientifico();
+            return this.finCU();
+        }
+
     }
 
     public void registrarReservaTurno(){
@@ -267,7 +275,9 @@ public class GestorReservaTurno {
         interfazEmail.enviarEmail(this.emailCientifico);
     }
 
-    public void finCU(){}
+    public String finCU(){
+        return "Finalizado";
+    }
 
     public ArrayList<ArrayList<Object>> getRecursosTecnologicosAgrupados() {
         return this.recursosTecnologicosAgrupados;

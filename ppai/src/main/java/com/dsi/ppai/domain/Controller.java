@@ -53,8 +53,8 @@ public class Controller {
 
     @PostMapping(path = "/confirmar/{confirmacion}")
     public String getConfirmaciones(@PathVariable Boolean confirmacion){
-        icuService.tomarConfirmaciones(confirmacion);
-        return "Se ha enviado el mail";
+        return icuService.tomarConfirmaciones(confirmacion);
+
     }
 
 }
