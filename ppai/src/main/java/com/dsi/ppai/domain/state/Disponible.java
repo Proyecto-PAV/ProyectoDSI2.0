@@ -1,6 +1,7 @@
 package com.dsi.ppai.domain.state;
 
 import com.dsi.ppai.domain.entidad.CambioEstadoRT;
+import com.dsi.ppai.domain.entidad.CambioEstadoTurno;
 import com.dsi.ppai.domain.entidad.EstadoId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,11 @@ public class Disponible extends com.dsi.ppai.domain.entidad.Estado {
 
     public void reservar() {
 
+        obtenerCambiosEstado();
+        buscarCambiosEstado();
+        crearProximoEstado();
+        crearCambioEstado();
+
     }
 
     public void obtenerCambiosEstado() {
@@ -50,7 +56,7 @@ public class Disponible extends com.dsi.ppai.domain.entidad.Estado {
     }
 
     public void crearCambioEstado() {
-
+        new CambioEstadoTurno();
     }
 
 }

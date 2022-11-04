@@ -126,4 +126,8 @@ public class Turno {
 
         //System.out.println("Cambios estado turno " + this.cambiosEstadoTurno);
     }
+
+    public List<CambioEstadoTurno> getCambiosEstado() {
+        return this.cambiosEstadoTurno;
+    }
 }
