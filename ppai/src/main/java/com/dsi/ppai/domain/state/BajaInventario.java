@@ -18,6 +18,5 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BajaInventario extends com.dsi.ppai.domain.entidad.Estado{
-
 }
 
