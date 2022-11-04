@@ -55,10 +55,9 @@ public class GestorReservaTurno {
 
     public void buscarTipoRecurso() {
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
+        this.listadoNombresTipoRecurso = new ArrayList<>();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
-            this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
-
             //eliminar
             System.out.println(this.listadoNombresTipoRecurso);
         }

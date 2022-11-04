@@ -8,3 +8,24 @@ html, body{
 h6{
     margin: 0 !important;
 }
+
+h4{
+    margin: 0 !important;
+}
+
+h5{
+    margin: 0 !important;
+}
+
+.container-usuario{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    border-radius: 12px;
+    margin-bottom: 5px;
+    height: 60px;
+    align-items: center;
+    padding-right: 41px;
+    gap: 9px;
+    background-color: #ffff;
+}

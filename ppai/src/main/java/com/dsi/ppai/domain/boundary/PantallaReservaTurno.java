@@ -20,6 +20,7 @@ public class PantallaReservaTurno {
     private String botonReservarTurno;
     private Boolean confirmacionTurno;
     private List<RecursoTecnologico> listadoRecursosTecnologico;
+    private List<String> tipoNombreRecursoTecnologicos;
     private HashMap<String, ArrayList<RecursoTecnologico>> recursosTecnologicosAgrupados;
     private List<TipoRecursoTecnologico> listadoTipoRecursos;
     private List<Turno> listadoTurno;
@@ -47,9 +48,10 @@ public class PantallaReservaTurno {
         System.out.println(this.recursosTecnologicosAgrupados.toString());
     }
 
-    public void mostrarTiposRecursos(List<String> tipoRecursoTecnologicos){
+    public void mostrarTiposRecursos(List<String> tipoNombreRecursoTecnologicos){
         //esto eliminar es para probar el flujo
-        this.tomarSeleccionTipoRecurso();
+        this.tipoNombreRecursoTecnologicos = tipoNombreRecursoTecnologicos;
+        tomarSeleccionTipoRecurso();
         //el metodo tomarSeleccionTipoRecurso se ejecuta por un evento del front
     }
 

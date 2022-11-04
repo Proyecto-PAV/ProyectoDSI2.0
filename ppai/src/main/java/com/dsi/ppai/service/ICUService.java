@@ -1,6 +1,8 @@
 package com.dsi.ppai.service;
 
+import java.util.List;
+
 public interface ICUService {
 
-    void opcionReservarTurnoRecursoTecnologico();
+    List<String> opcionReservarTurnoRecursoTecnologico();
 }

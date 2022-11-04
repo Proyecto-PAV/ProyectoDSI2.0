@@ -24,8 +24,40 @@
                 <p class="lead">Reserve su turno</p>
 
             </div>
-            <button class="btn btn-primary" onclick="reservar()">Reservar turno de
+            <button type="button" class="btn btn-primary btn-menu" data-bs-toggle="modal" data-bs-target="#myModal">
+                Registrar recurso tecnologico
+            </button>
+
+            <button class="btn btn-primary btn-menu" onclick="reservar()">Reservar turno de
                 recurso tecnológico</button>
+
+            <button type="button" class="btn btn-primary btn-menu" data-bs-toggle="modal" data-bs-target="#myModal">
+                Registrar inicio de uso de recurso tecnologico
+            </button>
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>No disponible</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-mensaje">
+
+                                <img src="assets/hard-work.png">
+                                <h6> Estamos trabajando en ello </h6>
+                                <div class="container-buttons-first-instance container-buttons-navigation">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#myModal">
+                                        Volver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

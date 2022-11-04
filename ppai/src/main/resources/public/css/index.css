@@ -3,10 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 250px;
+    height: 450px;
     padding: 50px;
     border-radius: 20px;
     flex-direction: column;
+    gap: 15px;
 }
 
 .title{
@@ -21,4 +22,21 @@
 .container-title{
     width: 100%;
     margin-bottom: 20px;
+}
+
+.btn-menu{
+    width: 100% !important;
+}
+
+.btn-menu:hover{
+    background-color: #154695;
+    transition: 1s ease;
+}
+
+.container-mensaje{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
