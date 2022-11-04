@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
 
@@ -15,7 +14,7 @@ import javax.persistence.*;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Estado {
+public abstract class Estado {
 
     @Id
     @Column(name = "nombre_estado")
@@ -47,4 +46,53 @@ public class Estado {
         }
         else return false;
     }
+    public void anular(){
+
+    }
+    public void cancelarRerva(){
+
+    }
+    public void crear(){
+
+    }
+    public void ejecutarReserva(){
+
+    }
+    public void elimimnarInventario(){
+
+    }
+    public void finalizarMantenimiento(){
+
+    }
+    public void generarBajaTecnica(){
+
+    }
+    public void habilitar(){
+
+    }
+    public void ingresarMantenimientoCorrectivo(){
+
+    }
+    public void iniciarMantenimiento(){
+
+    }
+    public void mantener(){
+
+    }
+    public void mostrarEstado(){
+
+    }
+    public void noEjecutarReserva(){
+
+    }
+    public void prorrogarMantenimiento(){
+
+    }
+    public void reservar(){
+
+    }
+    public void reservarProvisorio(){
+
+    }
+
 }
