@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@MappedSuperclass
 public abstract class Estado {
 
     @Id
