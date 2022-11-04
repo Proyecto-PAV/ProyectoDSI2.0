@@ -30,55 +30,57 @@ public class PantallaReservaTurno {
     private String ventanaHabilitada;
     private GestorReservaTurno gestorReservaTurno;
 
-    public void opcionReservarTurnoRecursoTecnologico() {
+    public void opcionReservarTurnoRecursoTecnologico(){
         habilitarPantalla();
         this.gestorReservaTurno = new GestorReservaTurno();
-        this.gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
+        gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
+
     }
 
-    public void habilitarPantalla() {
+    public void habilitarPantalla(){}
+
+    public HashMap<String, ArrayList<RecursoTecnologico>> mostrarRecursosTecnologicos(){
+      this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
+      return this.recursosTecnologicosAgrupados;
     }
 
-    public ArrayList<ArrayList<Object>> mostrarRecursosTecnologicos() {
-//        this.gestorReservaTurno.obtenerRTActivos(this.tipoRecursoSeleccionado);
-//        this.listadoRecursosTecnologico = this.gestorReservaTurno.getListadoRecursosTecnologicos();
-//        this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
-//        this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
-        return this.gestorReservaTurno.getRecursosTecnologicosAgrupados();
-    }
-
-    public List<String> mostrarTiposRecursos() {
+    public List<String> mostrarTiposRecursos(){
         //esto eliminar es para probar el flujo
         return this.gestorReservaTurno.getListadoNombresTipoRecurso();
+        //el metodo tomarSeleccionTipoRecurso se ejecuta por un evento del front
     }
 
+<<<<<<< HEAD
 
-    public void tomarSeleccionTipoRecurso(String nombreTipoRT) {
+
+    public void tomarSeleccionTipoRecurso(){
+=======
+    public void tomarSeleccionTipoRecurso(String nombreTipoRecurso){
+>>>>>>> cambios-endpoint
         //eliminar cuando obtengamos el tipo recurso seleccionado de pantalla
-        this.gestorReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRT);
+        //TipoRecursoTecnologico tipoRecursoTecnologicoSelec = TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build();
+        this.gestorReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRecurso);
+        //this.gestorReservaTurno.tomarSeleccionTipoRecurso(tipoRecursoTecnologicoSelec);
     }
 
-    public void tomarSeleccionRecursoTecnologico(Integer nombreRT) {
-        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(nombreRT);
+    public void tomarSeleccionRecursoTecnologico(Integer numRecurso){
+        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(numRecurso);
     }
 
-    public ArrayList<ArrayList<Object>> pedirSeleccionTurnos() {
-        return this.gestorReservaTurno.getTurnosAgrupados();
-    }
+    public void pedirSeleccionTurnos(){}
 
-    public void solicitarConfirmacionYModoNotificacion() {
-    }
-
-    public String tomarConfirmacionTurno(Boolean confirmacion) {
-        return this.gestorReservaTurno.tomarConfirmacionYMododeNotificacion(confirmacion);
+    public void solicitarConfirmacionYModoNotificacion(){
 
     }
 
+    public void tomarConfirmacionTurno(){
 
-    public void tomarSeleccionTurno(String idTurno) {
-        this.gestorReservaTurno.tomarSeleccionTurno(idTurno);
+        this.gestorReservaTurno = new GestorReservaTurno();
+        this.gestorReservaTurno.registrarReservaTurno();
+
     }
 
-    public void tomarModoNotificacion() {
-    }
+    public void tomarModoNotificacion(){}
+
+    public void tomarSeleccionTurno(){}
 }

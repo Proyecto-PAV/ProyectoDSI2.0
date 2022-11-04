@@ -10,7 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PpaiApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(PpaiApplication.class, args);
+<<<<<<< HEAD
+		PantallaReservaTurno pantallaReservaTurno = new PantallaReservaTurno();
+		GestorReservaTurno gestorReservaTurno = new GestorReservaTurno();
+		gestorReservaTurno.obtenerTurnosRT();
+
+=======
+>>>>>>> cambios-endpoint
 	}
 }
