@@ -1,6 +1,15 @@
 package com.dsi.ppai.service;
 
-public interface ICUService {
+import com.dsi.ppai.domain.entidad.RecursoTecnologico;
+import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 
-    void opcionReservarTurnoRecursoTecnologico();
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public interface ICUService {
+    List<String> opcionReservarTurnoRecursoTecnologico();
+
+    HashMap<String, ArrayList<RecursoTecnologico>> tomarSeleccionTipoRecursoTecnologico(String nombreTipoRecurso);
 }

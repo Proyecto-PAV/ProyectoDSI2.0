@@ -34,9 +34,9 @@ public class GestorReservaTurno {
     private HashMap<Integer, List<Turno>> turnosAgrupados;
 
     public void reservarTurnoRecursoTecnologico(PantallaReservaTurno pantallaReservaTurno) {
-        this.buscarTipoRecurso();
         this.pantallaReservaTurno = pantallaReservaTurno;
-        this.pantallaReservaTurno.mostrarTiposRecursos(this.listadoNombresTipoRecurso);
+        this.buscarTipoRecurso();
+        this.pantallaReservaTurno.mostrarTiposRecursos();
     }
 
 
@@ -57,13 +57,15 @@ public class GestorReservaTurno {
     public void buscarTipoRecurso() {
         this.repository = new Repository();
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        this.listadoNombresTipoRecurso = new ArrayList<>();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
-            this.listadoNombresTipoRecurso = new ArrayList<>();
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
         }
+
     }
 
 
+<<<<<<< HEAD
     /**
      * buscarTipoRecurso pero te trae una lista de strings, esto sigue el diagrama
      */
@@ -85,6 +87,16 @@ public class GestorReservaTurno {
 
 
     public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
+=======
+    public void tomarSeleccionTipoRecurso(String nombreTipoRecursso) {
+        TipoRecursoTecnologico tipoRecurso = new TipoRecursoTecnologico();
+        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
+        for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
+            if (tipoRecursoTecnologico.getNombre() == nombreTipoRecursso){
+                tipoRecurso = tipoRecursoTecnologico;
+            }
+        }
+>>>>>>> cambios-endpoint
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     }
@@ -115,6 +127,7 @@ public class GestorReservaTurno {
         }
         //Esto eliminarlo dsp
         this.agruparPorCentroDeInvestigacion();
+        this.pantallaReservaTurno.mostrarRecursosTecnologicos();
     }
 
     public void agruparPorCentroDeInvestigacion() {
@@ -134,10 +147,10 @@ public class GestorReservaTurno {
             }
         }
         this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
-        this.pantallaReservaTurno.mostrarRecursosTecnologicos(this.recursosTecnologicosAgrupados);
     }
 
 
+<<<<<<< HEAD
 
     public void obtenerTurnosRT() {
         this.setFechaHoraActual();
@@ -195,6 +208,15 @@ public class GestorReservaTurno {
 
 
     public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
+=======
+    public void tomarSeleccionRecursoTecnologico(Integer numRecurso) {
+        RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
+        for (RecursoTecnologico rt : this.listadoRecursosTecnologicosActivos) {
+            if (recursoTecnologico.getNumeroRT() == numRecurso){
+                recursoTecnologico = rt;
+            }
+        }
+>>>>>>> cambios-endpoint
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
         this.verificarClienteLogueado(recursoTecnologico);
     }
@@ -211,7 +233,7 @@ public class GestorReservaTurno {
         }
         this.cientificoLogueado = sesionActual.getUsuario().getUsuario();
         PersonalCientifico pc = sesionActual.mostrarCliente();
-        System.out.println(recursoTecnologico.esCientificoDeTuCI(pc));
+        this.emailCientifico = recursoTecnologico.esCientificoDeTuCI(pc);
     }
 
 
