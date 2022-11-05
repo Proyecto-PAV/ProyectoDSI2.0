@@ -43,6 +43,12 @@ public class RecursoTecnologico {
     @OneToMany(mappedBy = "recursoTecnologicoDelCE")
     private List<CambioEstadoRT> cambioEstadoRTS;
 
+    /**
+     * ESTO SERIA LO NUEVO, NO ESTOY SEGURO SI ESTA BIEN CREO QUE SI
+     */
+    @OneToOne(mappedBy = "recursoTecnologicoDelCE")
+    private Estado estado;
+
     @OneToOne
     @JoinColumn(name = "id_tipo_recurso")
     private TipoRecursoTecnologico tipoRecursoTecnologico;
@@ -59,6 +65,9 @@ public class RecursoTecnologico {
         return this.getTipoRecursoTecnologico().getIdTipoRecurso().equals(tipoRecursoTecnologicoSelec);
     };
 
+
+    /*
+    ESTE SERIA EL METODO VIEJO
     public Boolean esReservable(){
         CambioEstadoRT actualCE;
         Repository repository = new Repository();
@@ -79,6 +88,14 @@ public class RecursoTecnologico {
         };
         return false;
     };
+     */
+
+    /**
+     * Este es el metodo nuevo
+     */
+    public Boolean esReservable(){
+        return this.estado.esReservable();
+    }
 
     public String esCientificoDeTuCI(PersonalCientifico personalCientifico){
         return this.centroDeInvestigacion.esAsignado(personalCientifico);
@@ -103,6 +120,13 @@ public class RecursoTecnologico {
         recursoTecnologico.setFraccionHorarioTurno(this.getFraccionHorarioTurno());
         recursoTecnologico.setPeriodicidadMantenimientoPreventivo(this.getPeriodicidadMantenimientoPreventivo());
         recursoTecnologico.setCambioEstadoRTS(this.getCambioEstadoRTS());
+        /**
+         * Aca agregue nuevo este metodo
+         */
+        recursoTecnologico.setEstado(this.getEstado());
+        /**
+         *
+         */
         recursoTecnologico.setCentroDeInvestigacion(this.getCentroDeInvestigacion()); //TODO aca se tiene que invocar al metodo de getNombre en la pantalla
         recursoTecnologico.setModelo(this.getModelo());
         recursoTecnologico.getModelo().setMarcaDelModelo();

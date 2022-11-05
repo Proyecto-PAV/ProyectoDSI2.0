@@ -41,6 +41,12 @@ public class Turno {
     @OneToMany(mappedBy = "turno", fetch = FetchType.LAZY)
     private List<CambioEstadoTurno> cambiosEstadoTurno;
 
+    /**
+     * Esto es lo que agregue nuevo, no se que pingo es eso de fetch pero por las dudas lo copie
+     */
+    @OneToOne(mappedBy = "turno", fetch = FetchType.LAZY)
+    private Estado estado;
+
     @ManyToOne
     @JoinColumn(name = "id_asignacion_cientifico")
     private AsignacionCientificoDelCI asignacionCientificoCI;
