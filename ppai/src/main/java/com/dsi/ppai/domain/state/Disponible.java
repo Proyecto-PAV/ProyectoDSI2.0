@@ -1,6 +1,5 @@
 package com.dsi.ppai.domain.state;
 
-import com.dsi.ppai.domain.entidad.CambioEstadoRT;
 import com.dsi.ppai.domain.entidad.CambioEstadoTurno;
 import com.dsi.ppai.domain.entidad.EstadoId;
 import com.dsi.ppai.domain.entidad.Turno;
