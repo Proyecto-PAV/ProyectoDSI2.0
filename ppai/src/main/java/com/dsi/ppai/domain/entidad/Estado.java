@@ -47,4 +47,11 @@ public class Estado {
         }
         else return false;
     }
+
+    /**
+     * Nuevo
+     */
+    public Estado mostrarDatos() {
+        return this;
+    }
 }
