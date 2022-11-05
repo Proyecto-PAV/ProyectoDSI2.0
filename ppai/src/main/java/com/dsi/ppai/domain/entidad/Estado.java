@@ -16,7 +16,7 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Estado {
+public abstract class Estado {
 
     @Id
     @Column(name = "nombre_estado")
