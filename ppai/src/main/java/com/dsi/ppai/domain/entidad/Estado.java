@@ -42,7 +42,7 @@ public class Estado {
     }
 
     public Boolean esReservado() {
-        if (this.nombre.equals("Reservado")) {
+        if (this.nombre.equals("Ocupado")) {
             return true;
         }
         else return false;

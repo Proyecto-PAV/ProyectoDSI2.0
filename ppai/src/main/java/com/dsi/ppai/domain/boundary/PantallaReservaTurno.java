@@ -30,15 +30,21 @@ public class PantallaReservaTurno {
     private String ventanaHabilitada;
     private GestorReservaTurno gestorReservaTurno;
 
-    public void opcionReservarTurnoRecursoTecnologico(){
+    public void opcionReservarTurnoRecursoTecnologico() {
         habilitarPantalla();
         this.gestorReservaTurno = new GestorReservaTurno();
+<<<<<<< HEAD
         gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
 
+=======
+        this.gestorReservaTurno.reservarTurnoRecursoTecnologico(this);
+>>>>>>> endpoints
     }
 
-    public void habilitarPantalla(){}
+    public void habilitarPantalla() {
+    }
 
+<<<<<<< HEAD
     public HashMap<String, ArrayList<RecursoTecnologico>> mostrarRecursosTecnologicos(){
       this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
       return this.recursosTecnologicosAgrupados;
@@ -60,22 +66,48 @@ public class PantallaReservaTurno {
 
     public void tomarSeleccionRecursoTecnologico(Integer numRecurso){
         this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(numRecurso);
+=======
+    public ArrayList<ArrayList<Object>> mostrarRecursosTecnologicos() {
+//        this.gestorReservaTurno.obtenerRTActivos(this.tipoRecursoSeleccionado);
+//        this.listadoRecursosTecnologico = this.gestorReservaTurno.getListadoRecursosTecnologicos();
+//        this.gestorReservaTurno.agruparPorCentroDeInvestigacion();
+//        this.recursosTecnologicosAgrupados = this.getRecursosTecnologicosAgrupados();
+        return this.gestorReservaTurno.getRecursosTecnologicosAgrupados();
     }
 
-    public void pedirSeleccionTurnos(){}
+    public List<String> mostrarTiposRecursos() {
+        //esto eliminar es para probar el flujo
+        return this.gestorReservaTurno.getListadoNombresTipoRecurso();
+    }
 
-    public void solicitarConfirmacionYModoNotificacion(){
+
+    public void tomarSeleccionTipoRecurso(String nombreTipoRT) {
+        //eliminar cuando obtengamos el tipo recurso seleccionado de pantalla
+        this.gestorReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRT);
+    }
+
+    public void tomarSeleccionRecursoTecnologico(Integer nombreRT) {
+        this.gestorReservaTurno.tomarSeleccionRecursoTecnologico(nombreRT);
+>>>>>>> endpoints
+    }
+
+    public ArrayList<ArrayList<Object>> pedirSeleccionTurnos() {
+        return this.gestorReservaTurno.getTurnosAgrupados();
+    }
+
+    public void solicitarConfirmacionYModoNotificacion() {
+    }
+
+    public String tomarConfirmacionTurno(Boolean confirmacion) {
+        return this.gestorReservaTurno.tomarConfirmacionYMododeNotificacion(confirmacion);
 
     }
 
-    public void tomarConfirmacionTurno(){
 
-        this.gestorReservaTurno = new GestorReservaTurno();
-        this.gestorReservaTurno.registrarReservaTurno();
-
+    public void tomarSeleccionTurno(String idTurno) {
+        this.gestorReservaTurno.tomarSeleccionTurno(idTurno);
     }
 
-    public void tomarModoNotificacion(){}
-
-    public void tomarSeleccionTurno(){}
+    public void tomarModoNotificacion() {
+    }
 }

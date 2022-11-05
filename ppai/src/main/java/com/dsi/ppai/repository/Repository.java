@@ -5,16 +5,24 @@ import com.dsi.ppai.domain.entidad.Sesion;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Repository {
     static Connection con = DBManager.getConnection();
-
+    public static void actualizarTurno(String id, java.util.Date fechaHasta, String idCientifico) {
+        try {
+            PreparedStatement ps = con.prepareStatement("update TURNO set ID_ASIGNACION_CIENTIFICO = ?, FECHA_HORA_INICIO  = ?  where ID_TURNO  = ?");
+            ps.setString(1, idCientifico);
+            ps.setDate(2, new Date(fechaHasta.getTime()));
+            ps.setString(3, id);
+            ps.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static List<TipoRecursoTecnologico> findAllTipoRT() {
         ArrayList<TipoRecursoTecnologico> arrayTipoRT = new ArrayList<>();
         try {
@@ -34,10 +42,12 @@ public class Repository {
         return arrayTipoRT;
     }
 
-    public static List<RecursoTecnologico> findRTDelTipo() {
+    public static List<RecursoTecnologico> findAllRT() {
         ArrayList<RecursoTecnologico> arrayRTDelTipoRT = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from RECURSO_TECNOLOGICO");
+            PreparedStatement ps = con.prepareStatement("SELECT RT.*, M.*, CI.* from RECURSO_TECNOLOGICO RT " +
+                    "INNER JOIN MODELO M ON RT.NOMBRE_MODELO = M.NOMBRE_MODELO " +
+                    "INNER JOIN CENTRO_INVESTIGACION CI ON RT.ID_CENTRO = CI.ID_CENTRO");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 RecursoTecnologico recursoTec = new RecursoTecnologico();
@@ -47,8 +57,8 @@ public class Repository {
                 recursoTec.setFraccionHorarioTurno(rs.getInt(4));
                 recursoTec.setImagenes(rs.getString(5));
                 recursoTec.setPeriodicidadMantenimientoPreventivo(rs.getInt(6));
-                recursoTec.setCentroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion(rs.getString(7)).build());
-                recursoTec.setModelo(Modelo.builder().nombre(rs.getString(8)).build());
+                recursoTec.setCentroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion(rs.getString(7)).nombre(rs.getString(22)).build());
+                recursoTec.setModelo(Modelo.builder().nombre(rs.getString(8)).marcaDelModelo(Marca.builder().nombre(rs.getString(11)).build()).build());
                 recursoTec.setTipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso(rs.getString(9)).build());
                 arrayRTDelTipoRT.add(recursoTec);
             }
@@ -80,11 +90,10 @@ public class Repository {
         return sesiones;
     }
 
-    public static List<CambioEstadoRT> findCEDelRT(Integer recursoTecnologicoId) {
+    public static List<CambioEstadoRT> findAllCE() {
         ArrayList<CambioEstadoRT> arrayCEDelRT = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM CAMBIO_ESTADO_RT WHERE NUMERO_RT = ?;");
-            ps.setInt(1, recursoTecnologicoId);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM CAMBIO_ESTADO_RT;");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 CambioEstadoRT cambioEstado = new CambioEstadoRT();
@@ -101,33 +110,32 @@ public class Repository {
         return arrayCEDelRT;
     }
 
-    public static Estado findEstadoDelCE(String estadoId, String ambitoRT) {
-        Estado estado = new Estado();
+    public static List<Estado> findAllEstados() {
+        List<Estado> estados = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO WHERE NOMBRE_ESTADO = ? AND AMBITO = ?;");
-            ps.setString(1, estadoId);
-            ps.setString(2, ambitoRT);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO;");
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-
-                estado.setNombre(rs.getString(1));
-                estado.setAmbito(rs.getString(2));
+            while (rs.next()) {
+                Estado estado = new Estado();
+                estado.setNombre(rs.getString(2));
+                estado.setAmbito(rs.getString(1));
                 estado.setDescripcion(rs.getString(3));
                 estado.setEsCancelable(rs.getBoolean(4));
                 estado.setEsReservable(rs.getBoolean(5));
+                estados.add(estado);
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return estado;
+        return estados;
     }
 
 
     public static List<Estado> findEstados() {
         ArrayList<Estado> arrayEstadosAmbitoTurno = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from estado");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ESTADO");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Estado estado = new Estado();
@@ -143,7 +151,6 @@ public class Repository {
             throw new RuntimeException(e);
         }
 
-        System.out.println(arrayEstadosAmbitoTurno.toString());
 
         return arrayEstadosAmbitoTurno;
     }
@@ -190,6 +197,44 @@ public class Repository {
         }
 
         return asignaciones;
+    }
+
+    public static void nuevoCambioEstadoTurno(CambioEstadoTurno cambioEstadoTurno) {
+        try {
+
+            PreparedStatement ps = con.prepareStatement("insert into cambio_estado_turno (`id_cambio_estado_turno`, `fecha_hora_desde`, `fecha_hora_hasta`, `ambito`, `nombre_estado`, `id_turno`)" +
+                    " values (?,?,?,?,?,?)");
+
+            System.out.println(cambioEstadoTurno.getIdCambioEstadoTurno());
+            ps.setString(1, cambioEstadoTurno.getIdCambioEstadoTurno());
+            ps.setDate(2, new Date(cambioEstadoTurno.getFechaHoraDesde().getTime()));
+            System.out.println(cambioEstadoTurno.getFechaHoraDesde());
+            ps.setDate(3, null);
+//            ps.setDate(3, (java.sql.Date) cambioEstadoTurno.getFechaHoraHasta());
+            System.out.println(cambioEstadoTurno.getEstado().getAmbito());
+            ps.setString(4, cambioEstadoTurno.getEstado().getAmbito());
+            ps.setString(5, cambioEstadoTurno.getTurno().getNombreEstadoCambioEstadoActual());
+            ps.setString(6, cambioEstadoTurno.getTurno().getIdTurno());
+            ps.executeQuery();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void actualizarCambioDeEstadoTurno(String id, java.util.Date fechaHasta) {
+        System.out.println("Fecha hora hasta anashex: " + new Date(fechaHasta.getTime()));
+        try {
+            PreparedStatement ps = con.prepareStatement("update CAMBIO_ESTADO_TURNO set fecha_hora_hasta = ? where id_cambio_estado_turno = ?");
+            ps.setDate(1, new Date(fechaHasta.getTime()));
+            ps.setString(2, id);
+            System.out.println(ps);
+            ps.executeQuery();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<String> findIDDelCI() {

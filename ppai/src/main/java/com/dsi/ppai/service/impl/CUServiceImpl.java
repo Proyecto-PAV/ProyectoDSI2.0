@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.HashMap;
+=======
+>>>>>>> endpoints
 import java.util.List;
 
 @Service
@@ -26,6 +29,34 @@ public class CUServiceImpl implements ICUService {
     public List<String> opcionReservarTurnoRecursoTecnologico() {
         pantallaReservaTurno.opcionReservarTurnoRecursoTecnologico();
         return pantallaReservaTurno.mostrarTiposRecursos();
+<<<<<<< HEAD
+=======
+    }
+
+    @Override
+    public ArrayList<ArrayList<Object>> tomarSeleccionTipoRecurso(String nombreTipoRT) {
+        pantallaReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRT);
+        return pantallaReservaTurno.mostrarRecursosTecnologicos();
+    }
+
+    @Override
+    public ArrayList<ArrayList<Object>> tomarSeleccionRecursoTecnologico(Integer numeroRT) {
+        pantallaReservaTurno.tomarSeleccionRecursoTecnologico(numeroRT);
+        return pantallaReservaTurno.pedirSeleccionTurnos();
+    }
+
+    @Override
+    public String tomarSeleccionTurno(String idTurno) {
+        pantallaReservaTurno.tomarSeleccionTurno(idTurno);
+        return null;
+    }
+
+    @Override
+    public String tomarConfirmaciones(Boolean confirmacion) {
+        pantallaReservaTurno.tomarModoNotificacion();
+        return pantallaReservaTurno.tomarConfirmacionTurno(confirmacion);
+
+>>>>>>> endpoints
     }
 
     @Override

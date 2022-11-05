@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "recurso_tecnologico")
@@ -70,18 +71,21 @@ public class RecursoTecnologico {
     ESTE SERIA EL METODO VIEJO
     public Boolean esReservable(){
         CambioEstadoRT actualCE;
-        Repository repository = new Repository();
-        //obtengo todos los cambios de estados del RT
-        List<CambioEstadoRT> cambioEstadoRTS = repository.findCEDelRT(this.numeroRT);
+        Integer numeroRT = this.getNumeroRT();
+        //obtengo todos los cambios de estados
+        List<CambioEstadoRT> cambioEstadoRTS = Repository.findAllCE();
+        //filtro los  CE del RT
+        List<CambioEstadoRT> CEDelRT = cambioEstadoRTS.stream().filter(cambioEstadoRT -> cambioEstadoRT.getRecursoTecnologicoDelCE().getNumeroRT().equals(numeroRT)).toList();
+
         for (CambioEstadoRT cambioEstadoRT : cambioEstadoRTS){
-            //de todos los CE busco el actual
+            //de todos los CE del RT busco el actual
             if(cambioEstadoRT.esActual()){
                 actualCE = cambioEstadoRT;
                 //le seteo al RT el CE actual por si se necesita posteriormente
                 this.cambioEstadoRTS = new ArrayList<>();
                 this.cambioEstadoRTS.add(actualCE);
                 //verifico en el CE actual si su estado es reservable
-                if(actualCE.esReservable()){ //Aca saque el parametro ya que no va, el CE identifica a su objeto
+                if(actualCE.esReservable()){
                     return true;
                 };
             };
@@ -129,10 +133,14 @@ public class RecursoTecnologico {
          */
         recursoTecnologico.setCentroDeInvestigacion(this.getCentroDeInvestigacion()); //TODO aca se tiene que invocar al metodo de getNombre en la pantalla
         recursoTecnologico.setModelo(this.getModelo());
-        recursoTecnologico.getModelo().setMarcaDelModelo();
-
         return recursoTecnologico;
     };
+
+    public void reservar(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado, Estado estadoReservado, Date fechaHoraActual) {
+
+        turnoSeleccionado.reservar(estadoReservado, fechaHoraActual);
+        this.centroDeInvestigacion.asignarTurno(turnoSeleccionado, cientificoLogueado);
+    }
 
     public void nuevoMantenimientoPreventivo(){};
 
@@ -149,7 +157,6 @@ public class RecursoTecnologico {
             }
         }
 
-        //System.out.println("Turnos posterior fecha actual " + turnosPosteriorFechaActual);
 
         return turnosPosteriorFechaActual;
     }
@@ -157,6 +164,13 @@ public class RecursoTecnologico {
     private void setTurnos(){
         this.turnos = Repository.findTurnos();
 
-        //System.out.println("Turnos BD " + this.turnos);
+    }
+    private String mostrarEstado(){
+        for (int i = 0; i < this.cambioEstadoRTS.size(); i++) {
+            if (this.cambioEstadoRTS.get(i).getFechaHoraHasta()==null){
+                return this.cambioEstadoRTS.get(i).getEstado().getNombre();
+            }
+        }
+        return "";
     }
 }
