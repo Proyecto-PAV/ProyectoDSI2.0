@@ -65,29 +65,7 @@ public class GestorReservaTurno {
     }
 
 
-<<<<<<< HEAD
-    /**
-     * buscarTipoRecurso pero te trae una lista de strings, esto sigue el diagrama
-     */
-    /*
-    public List<String> buscarTipoRecurso() {
-        this.repository = new Repository();
 
-        List<String> nombresTipoRT = null;
-
-        List<TipoRecursoTecnologico> tipoRecursoTecnologicos = this.repository.findAllTipoRT();
-
-        for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicos) {
-            nombresTipoRT.add(tipoRecursoTecnologico.getNombre());
-        }
-
-        return nombresTipoRT;
-    }
-     */
-
-
-    public void tomarSeleccionTipoRecurso(TipoRecursoTecnologico tipoRecurso) {
-=======
     public void tomarSeleccionTipoRecurso(String nombreTipoRecursso) {
         TipoRecursoTecnologico tipoRecurso = new TipoRecursoTecnologico();
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
@@ -96,7 +74,6 @@ public class GestorReservaTurno {
                 tipoRecurso = tipoRecursoTecnologico;
             }
         }
->>>>>>> cambios-endpoint
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     }
@@ -150,65 +127,6 @@ public class GestorReservaTurno {
     }
 
 
-<<<<<<< HEAD
-
-    public void obtenerTurnosRT() {
-        this.setFechaHoraActual();
-
-        RecursoTecnologico recursoTecnologico = RecursoTecnologico.builder()
-                .numeroRT(1)
-                .duracionManteniientoPreventivo(5)
-                .fechaAlta(null)
-                .fraccionHorarioTurno(5)
-                .imagenes(null)
-                .periodicidadMantenimientoPreventivo(30)
-                .centroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion("a2cd091e-37f4-4295-8213-68d286a5248a").build())
-                .modelo(Modelo.builder().nombre("MM-400/800").build())
-                .tipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso("0000076d-d538-4247-a400-bf156c6d41ed").descripcion("la belu mas piola").nombre("Balanza de Precision").build())
-                .build();
-
-        this.recursoTecnologicoSeleccionado = recursoTecnologico;
-
-        this.listadoTurnosRecursoTecnologico = this.recursoTecnologicoSeleccionado.mostrarTurnos(this.fechaHoraActual);
-
-        agruparYOrdenarTurnos();
-    }
-
-
-
-    public void setFechaHoraActual(){
-        this.fechaHoraActual = new Date();
-    }
-
-    public void agruparYOrdenarTurnos() {
-        listadoTurnosRecursoTecnologico.sort(Comparator.comparing(Turno::getFechaHoraInicio));
-
-        HashMap<Integer, List<Turno>> hashTurnosAgrupados = new HashMap<>();
-        List<Turno> temporal = new ArrayList<>();
-
-        for (int i = 0; i < this.listadoTurnosRecursoTecnologico.size(); i++) {
-            Integer dia = this.listadoTurnosRecursoTecnologico.get(i).getFechaHoraInicio().getDate();
-            Turno turno = this.listadoTurnosRecursoTecnologico.get(i);
-
-            if(!hashTurnosAgrupados.containsKey(dia)) {
-                temporal.add(turno);
-                hashTurnosAgrupados.put(dia, temporal);
-            }
-            else
-            {
-                temporal = hashTurnosAgrupados.get(dia);
-                temporal.add(turno);
-                hashTurnosAgrupados.put(dia, temporal);
-            }
-        }
-
-        this.turnosAgrupados = hashTurnosAgrupados; // Aca agrupamos por dia, pero sin mirar el mes, creemos instancias de un solo mes asi no renegamos
-    }
-
-
-
-    public void tomarSeleccionRecursoTecnologico(RecursoTecnologico recursoTecnologico) {
-=======
     public void tomarSeleccionRecursoTecnologico(Integer numRecurso) {
         RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
         for (RecursoTecnologico rt : this.listadoRecursosTecnologicosActivos) {
@@ -216,7 +134,6 @@ public class GestorReservaTurno {
                 recursoTecnologico = rt;
             }
         }
->>>>>>> cambios-endpoint
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
         this.verificarClienteLogueado(recursoTecnologico);
     }
