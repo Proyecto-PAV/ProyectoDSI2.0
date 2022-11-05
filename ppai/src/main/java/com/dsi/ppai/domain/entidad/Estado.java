@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "estado")
@@ -53,5 +54,9 @@ public class Estado {
      */
     public Estado mostrarDatos() {
         return this;
+    }
+
+    public void reservar(Turno turno, Date fechaHoraActual) {
+
     }
 }

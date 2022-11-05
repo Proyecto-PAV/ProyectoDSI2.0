@@ -101,6 +101,7 @@ public class Turno {
 
     public Turno mostrarDatos() {
 
+        /*
         // Consulta cambios de estado
         this.setCambiosEstadoTurno();
 
@@ -111,6 +112,12 @@ public class Turno {
             }
         }
 
+         */
+
+        /**
+         * Nuevo, aca falta el get fecha hora inicio y fin del turno, no se si el metodo de abajo esta bien
+         */
+        this.estado.mostrarDatos();
 
         return this;
     }
@@ -128,6 +135,7 @@ public class Turno {
         this.cambiosEstadoTurno = temporal;
 
     }
+
     public void reservar (Estado estadoReservado, Date fechaHoraActual) {
         this.setCambiosEstadoTurno();
         for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
@@ -148,7 +156,7 @@ public class Turno {
         Repository.actualizarTurno(this.idTurno, new Date(), this.asignacionCientificoCI.getId());
     }
 
-    public List<CambioEstadoTurno> getCambiosEstado() {
-        return this.cambiosEstadoTurno;
+    public void reservar(Date fechaHoraActual) {
+        this.estado.reservar(this, fechaHoraActual);
     }
 }
