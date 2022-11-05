@@ -44,22 +44,13 @@ public class GestorReservaTurno {
     }
 
     public void buscarTipoRecurso() {
-<<<<<<< HEAD
-        this.repository = new Repository();
-        List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = this.repository.findAllTipoRT();
-=======
         List<TipoRecursoTecnologico> tipoRecursoTecnologicosBD = Repository.findAllTipoRT();
->>>>>>> endpoints
         this.listadoNombresTipoRecurso = new ArrayList<>();
         for (TipoRecursoTecnologico tipoRecursoTecnologico : tipoRecursoTecnologicosBD) {
             this.listadoNombresTipoRecurso.add(tipoRecursoTecnologico.getNombre());
         }
-
     }
 
-<<<<<<< HEAD
-
-=======
     /**
      * buscarTipoRecurso pero te trae una lista de strings, esto sigue el diagrama
      */
@@ -93,7 +84,6 @@ public class GestorReservaTurno {
                 tipoRecurso = trt;
             }
         }
->>>>>>> endpoints
         this.tipoRecursoTecnologicoSeleccionado = tipoRecurso;
         this.obtenerRTActivos(tipoRecurso);
     }
@@ -140,19 +130,6 @@ public class GestorReservaTurno {
                 recursosTecnologicosAgrupados.put(rTKey, arrayRecursos);
             }
         }
-<<<<<<< HEAD
-        this.recursosTecnologicosAgrupados = recursosTecnologicosAgrupados;
-    }
-
-
-    public void tomarSeleccionRecursoTecnologico(Integer numRecurso) {
-        RecursoTecnologico recursoTecnologico = new RecursoTecnologico();
-        for (RecursoTecnologico rt : this.listadoRecursosTecnologicosActivos) {
-            if (recursoTecnologico.getNumeroRT() == numRecurso){
-                recursoTecnologico = rt;
-            }
-        }
-=======
         for (Map.Entry<String, ArrayList<RecursoTecnologico>> entry : recursosTecnologicosAgrupados.entrySet()) {
             ArrayList<Object> a = new ArrayList<>();
             String key = entry.getKey();
@@ -224,7 +201,6 @@ public class GestorReservaTurno {
                 recursoTecnologico = rt;
             }
         }
->>>>>>> endpoints
         this.recursoTecnologicoSeleccionado = recursoTecnologico;
         this.verificarClienteLogueado(recursoTecnologico);
     }
@@ -242,10 +218,7 @@ public class GestorReservaTurno {
         this.cientificoLogueado = PersonalCientifico.builder().legajo(83123L).build();
         PersonalCientifico pc = sesionActual.mostrarCliente();
         this.emailCientifico = recursoTecnologico.esCientificoDeTuCI(pc);
-<<<<<<< HEAD
-=======
         this.obtenerTurnosRT(recursoTecnologico);
->>>>>>> endpoints
     }
 
     public void getFechaHoraActual() {

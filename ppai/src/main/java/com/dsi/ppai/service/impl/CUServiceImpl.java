@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.HashMap;
-=======
->>>>>>> endpoints
 import java.util.List;
 
 @Service
@@ -29,8 +26,6 @@ public class CUServiceImpl implements ICUService {
     public List<String> opcionReservarTurnoRecursoTecnologico() {
         pantallaReservaTurno.opcionReservarTurnoRecursoTecnologico();
         return pantallaReservaTurno.mostrarTiposRecursos();
-<<<<<<< HEAD
-=======
     }
 
     @Override
@@ -55,15 +50,15 @@ public class CUServiceImpl implements ICUService {
     public String tomarConfirmaciones(Boolean confirmacion) {
         pantallaReservaTurno.tomarModoNotificacion();
         return pantallaReservaTurno.tomarConfirmacionTurno(confirmacion);
-
->>>>>>> endpoints
     }
 
+    /* ESTE ME TIRABA ERROR POR ESO LO COMENTE
     @Override
     public HashMap<String, ArrayList<RecursoTecnologico>> tomarSeleccionTipoRecursoTecnologico(String nombreTipoRecurso) {
         pantallaReservaTurno.tomarSeleccionTipoRecurso(nombreTipoRecurso);
         return pantallaReservaTurno.mostrarRecursosTecnologicos();
     }
+     */
 
 
 }
