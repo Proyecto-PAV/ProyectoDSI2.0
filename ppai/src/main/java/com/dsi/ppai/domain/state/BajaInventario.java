@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.state;
 
+import com.dsi.ppai.domain.entidad.Estado;
 import com.dsi.ppai.domain.entidad.EstadoId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,13 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "bajaInventario")
-@IdClass(EstadoId.class)
 @Data
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
-
-public class BajaInventario extends com.dsi.ppai.domain.entidad.Estado{
+public class BajaInventario extends Estado {
 }

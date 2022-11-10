@@ -41,10 +41,11 @@ public class Turno {
     @OneToMany(mappedBy = "turno", fetch = FetchType.LAZY)
     private List<CambioEstadoTurno> cambiosEstadoTurno;
 
-    /**
-     * Esto es lo que agregue nuevo, no se que pingo es eso de fetch pero por las dudas lo copie
-     */
-    @OneToOne(mappedBy = "turno", fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "ambito"),
+            @JoinColumn(name = "nombre_estado")
+    })
     private Estado estado;
 
     @ManyToOne
@@ -100,7 +101,6 @@ public class Turno {
      */
 
     public Turno mostrarDatos() {
-
         /*
         // Consulta cambios de estado
         this.setCambiosEstadoTurno();
@@ -111,9 +111,7 @@ public class Turno {
                 this.nombreEstadoCambioEstadoActual = cambioEstadoActual.obtenerEstado(cambioEstadoActual);
             }
         }
-
          */
-
         /**
          * Nuevo, aca falta el get fecha hora inicio y fin del turno, no se si el metodo de abajo esta bien
          */
@@ -121,7 +119,7 @@ public class Turno {
 
         return this;
     }
-
+    /*
     public void setCambiosEstadoTurno() {
         this.cambiosEstadoTurno = Repository.findCETurnos();
 
@@ -135,7 +133,8 @@ public class Turno {
         this.cambiosEstadoTurno = temporal;
 
     }
-
+     */
+    /*
     public void reservar (Estado estadoReservado, Date fechaHoraActual) {
         this.setCambiosEstadoTurno();
         for (int i = 0; i < this.cambiosEstadoTurno.size(); i++) {
@@ -151,12 +150,18 @@ public class Turno {
         nuevoCambioEstadoTurno.setEstado(estadoReservado);
         nuevoCambioEstadoTurno.setTurno(this);
         nuevoCambioEstadoTurno.nuevo();
-        System.out.println(nuevoCambioEstadoTurno.toString());
         this.setNombreEstadoCambioEstadoActual(estadoReservado.getNombre());
         Repository.actualizarTurno(this.idTurno, new Date(), this.asignacionCientificoCI.getId());
     }
+     */
 
-    public void reservar(Date fechaHoraActual) {
-        this.estado.reservar(this, fechaHoraActual);
+    public void reservar(Date fechaHoraActual, PersonalCientifico cientificoLogueado, RecursoTecnologico recursoTecnologico) {
+        //TODO tiene que ser estado concreto disponible
+        this.estado.reservar(this, fechaHoraActual, cientificoLogueado, recursoTecnologico);
+    }
+
+    public void agregarCambioEstado(CambioEstadoTurno cambioEstadoAntiguo, CambioEstadoTurno cambioEstadoActual){
+        Repository.actualizarCambioDeEstadoTurno(cambioEstadoAntiguo.getIdCambioEstadoTurno(), cambioEstadoAntiguo.getFechaHoraHasta());
+        Repository.nuevoCambioEstadoTurno(cambioEstadoActual);
     }
 }

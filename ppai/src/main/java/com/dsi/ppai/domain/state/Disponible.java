@@ -1,8 +1,6 @@
 package com.dsi.ppai.domain.state;
 
-import com.dsi.ppai.domain.entidad.CambioEstadoTurno;
-import com.dsi.ppai.domain.entidad.EstadoId;
-import com.dsi.ppai.domain.entidad.Turno;
+import com.dsi.ppai.domain.entidad.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,19 +10,13 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "disponible")
-@IdClass(EstadoId.class)
 @Data
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class Disponible extends com.dsi.ppai.domain.entidad.Estado {
+public class Disponible extends Estado {
 
-    @Id
-    @Column(name = "nombre_estado")
     private String nombre;
-    @Id
+
     private String ambito;
 
     private String descripcion;
@@ -33,40 +25,62 @@ public class Disponible extends com.dsi.ppai.domain.entidad.Estado {
 
     private Boolean esReservable;
 
-    private List<CambioEstadoTurno> cambioEstadoTurno;
+    private List<CambioEstadoTurno> cambiosEstadoTurno;
+
+    private CambioEstadoTurno cambioEstadoAntiguo;
+
+    private CambioEstadoTurno cambioEstadoActual;
+
+    private Estado estadoCreado;
 
 
     /**
      * Esto no esta terminado, falta por hacer pero es lo ultimo
      */
     
-    public void reservar(Turno turno, Date fechaHoraActual) {
-
-        obtenerCambiosEstado(turno);
-        buscarCambiosEstado();
-        crearProximoEstado();
-        crearCambioEstado();
+    public void reservar(Turno turno, Date fechaHoraActual, PersonalCientifico cientificoLogueado, RecursoTecnologico recursoTecnologico) {
+        this.obtenerCambiosEstado(turno);
+        this.buscarCambiosEstado(fechaHoraActual);
+        this.crearProximoEstado(cientificoLogueado, recursoTecnologico);
+        this.crearCambioEstado(turno);
+        this.setNuevosEstados(turno);
 
     }
 
     public void obtenerCambiosEstado(Turno turno) {
-        cambioEstadoTurno = turno.getCambiosEstadoTurno();
+        this.cambiosEstadoTurno = turno.getCambiosEstadoTurno();
     }
 
-    public void buscarCambiosEstado() {
-        for (CambioEstadoTurno cambioEstadoTurno : cambioEstadoTurno) {
+    public void buscarCambiosEstado(Date fechaHoraActual) {
+        CambioEstadoTurno cambioEstadoActual = null;
+        for (CambioEstadoTurno cambioEstadoTurno : this.cambiosEstadoTurno) {
             if (cambioEstadoTurno.esActual()) {
-                CambioEstadoTurno cambioEstadoActual;
+                cambioEstadoActual = cambioEstadoTurno;
+                break;
             }
         }
+        cambioEstadoActual.setFechaHoraHasta(fechaHoraActual);
+
+        this.cambioEstadoAntiguo = cambioEstadoActual;
     }
 
-    public void crearProximoEstado() {
+    public void crearProximoEstado(PersonalCientifico cientificoLogueado, RecursoTecnologico recursoTecnologico){
+        if (recursoTecnologico.getCentroDeInvestigacion().getCientificos().contains(cientificoLogueado)){
+            this.estadoCreado = new ConReservaConfirmada("ConReservaConfirmada", "TURNO", null, false, true);
+        }else{
+            this.estadoCreado = new PendienteConfirmacionReserva("PendienteConfirmacionReserva", "TURNO", null, false, true);
+        }
 
     }
 
-    public void crearCambioEstado() {
-        new CambioEstadoTurno();
+    public void crearCambioEstado(Turno turno) {
+        CambioEstadoTurno cambioEstadoTurno = new CambioEstadoTurno("00002412-e7b6-4c88-8f71-abcf5az24g11", this.cambioEstadoAntiguo.getFechaHoraHasta(), null, this.estadoCreado, turno);
+        this.cambioEstadoActual = cambioEstadoTurno;
+    }
+
+    public void setNuevosEstados(Turno turno){
+        turno.agregarCambioEstado(cambioEstadoAntiguo, cambioEstadoActual);
+        turno.setEstado(this.estadoCreado);
     }
 
 }

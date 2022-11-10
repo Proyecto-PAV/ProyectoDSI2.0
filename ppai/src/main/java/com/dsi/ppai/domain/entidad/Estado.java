@@ -13,9 +13,6 @@ import java.util.Date;
 @Table(name = "estado")
 @IdClass(EstadoId.class)
 @Data
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
 public abstract class Estado {
 
     @Id
@@ -32,7 +29,7 @@ public abstract class Estado {
 
     public Boolean esReservable(){
         return this.getEsReservable();
-    };
+    }
 
     public Boolean esAmbitoTurno() {
 
@@ -56,7 +53,55 @@ public abstract class Estado {
         return this;
     }
 
-    public void reservar(Turno turno, Date fechaHoraActual) {
+
+    public void reservar(Turno turno, Date fechaHoraActual, PersonalCientifico cientificoLogueado, RecursoTecnologico recursoTecnologico) {
+    }
+
+    public void anular(){
 
     }
+    public void cancelarRerva(){
+
+    }
+    public void crear(){
+
+    }
+    public void ejecutarReserva(){
+
+    }
+    public void eliminarInventario(){
+
+    }
+    public void finalizarMantenimiento(){
+
+    }
+    public void generarBajaTecnica(){
+
+    }
+    public void habilitar(){
+
+    }
+    public void ingresarMantenimientoCorrectivo(){
+
+    }
+    public void iniciarMantenimiento(){
+
+    }
+    public void mantener(){
+
+    }
+    public void mostrarEstado(){
+
+    }
+    public void noEjecutarReserva(){
+
+    }
+    public void prorrogarMantenimiento(){
+
+    }
+
+    public void reservarProvisorio(){
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.dsi.ppai.domain.entidad;
 
+import com.dsi.ppai.domain.state.Disponible;
 import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,7 +48,12 @@ public class RecursoTecnologico {
     /**
      * ESTO SERIA LO NUEVO, NO ESTOY SEGURO SI ESTA BIEN CREO QUE SI
      */
-    @OneToOne(mappedBy = "recursoTecnologicoDelCE")
+
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "ambito"),
+            @JoinColumn(name = "nombre_estado")
+    })
     private Estado estado;
 
     @OneToOne
@@ -98,7 +104,7 @@ public class RecursoTecnologico {
      * Este es el metodo nuevo
      */
     public Boolean esReservable(){
-        return this.estado.esReservable();
+       return this.estado.esReservable();
     }
 
     public String esCientificoDeTuCI(PersonalCientifico personalCientifico){
@@ -136,9 +142,9 @@ public class RecursoTecnologico {
         return recursoTecnologico;
     };
 
-    public void reservar(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado, Estado estadoReservado, Date fechaHoraActual) {
+    public void reservar(Turno turnoSeleccionado, PersonalCientifico cientificoLogueado, Date fechaHoraActual) {
 
-        turnoSeleccionado.reservar(estadoReservado, fechaHoraActual);
+        turnoSeleccionado.reservar(fechaHoraActual, cientificoLogueado, this);
         this.centroDeInvestigacion.asignarTurno(turnoSeleccionado, cientificoLogueado);
     }
 

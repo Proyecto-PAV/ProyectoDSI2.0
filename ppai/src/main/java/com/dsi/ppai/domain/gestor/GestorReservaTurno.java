@@ -2,6 +2,9 @@ package com.dsi.ppai.domain.gestor;
 
 import com.dsi.ppai.domain.boundary.PantallaReservaTurno;
 import com.dsi.ppai.domain.entidad.*;
+import com.dsi.ppai.domain.state.Disponible;
+import com.dsi.ppai.domain.state.EnMantenimiento;
+import com.dsi.ppai.domain.state.IngresadoMantenimientoCorrectivo;
 import com.dsi.ppai.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -253,11 +256,10 @@ public class GestorReservaTurno {
     }
 
     public void registrarReservaTurno(){
-        //TODO falta el metodo de los chicos
-        this.buscarEstadoReservado();
-        this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.estadoReservado, this.fechaHoraActual);
+        //this.buscarEstadoReservado();
+        this.recursoTecnologicoSeleccionado.reservar(this.turnoSeleccionado, this.cientificoLogueado, this.fechaHoraActual);
     }
-
+    /*
     public void buscarEstadoReservado(){
 
         List<Estado> estadosBD = Repository.findEstados();
@@ -273,7 +275,7 @@ public class GestorReservaTurno {
                 System.out.println("Estado gestor: " + this.estadoReservado);
             }
         }
-    }
+     */
 
     public void notificarCientifico() {
         InterfazEmail interfazEmail = new InterfazEmail();

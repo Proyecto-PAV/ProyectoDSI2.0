@@ -1,22 +1,66 @@
 package com.dsi.ppai.domain.state;
 
+import com.dsi.ppai.domain.entidad.CambioEstadoTurno;
+import com.dsi.ppai.domain.entidad.Estado;
 import com.dsi.ppai.domain.entidad.EstadoId;
+import com.dsi.ppai.domain.entidad.Turno;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name = "enMantenimiento")
-@IdClass(EstadoId.class)
 @Data
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
+public class EnMantenimiento extends Estado {
 
-public class EnMantenimiento extends com.dsi.ppai.domain.entidad.Estado{
+    private String nombre;
+
+    private String ambito;
+
+    private String descripcion;
+
+    private Boolean esCancelable;
+
+    private Boolean esReservable;
+
+    private List<CambioEstadoTurno> cambioEstadoTurno;
+
+
+    /**
+     * Esto no esta terminado, falta por hacer pero es lo ultimo
+     */
+
+    public void reservar(Turno turno, Date fechaHoraActual) {
+
+        obtenerCambiosEstado(turno);
+        buscarCambiosEstado();
+        crearProximoEstado();
+        crearCambioEstado();
+
+    }
+
+    public void obtenerCambiosEstado(Turno turno) {
+        cambioEstadoTurno = turno.getCambiosEstadoTurno();
+    }
+
+    public void buscarCambiosEstado() {
+        for (CambioEstadoTurno cambioEstadoTurno : cambioEstadoTurno) {
+            if (cambioEstadoTurno.esActual()) {
+                CambioEstadoTurno cambioEstadoActual;
+            }
+        }
+    }
+
+    public void crearProximoEstado() {
+
+    }
+
+    public void crearCambioEstado() {
+        new CambioEstadoTurno();
+    }
 }

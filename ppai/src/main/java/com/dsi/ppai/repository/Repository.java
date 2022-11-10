@@ -4,6 +4,7 @@ import com.dsi.ppai.domain.entidad.*;
 import com.dsi.ppai.domain.entidad.Sesion;
 import com.dsi.ppai.domain.entidad.TipoRecursoTecnologico;
 import com.dsi.ppai.domain.entidad.Usuario;
+import com.dsi.ppai.domain.state.Disponible;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -45,9 +46,10 @@ public class Repository {
     public static List<RecursoTecnologico> findAllRT() {
         ArrayList<RecursoTecnologico> arrayRTDelTipoRT = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT RT.*, M.*, CI.* from RECURSO_TECNOLOGICO RT " +
+            PreparedStatement ps = con.prepareStatement("SELECT RT.*, M.*, CI.*, E.* from RECURSO_TECNOLOGICO RT " +
                     "INNER JOIN MODELO M ON RT.NOMBRE_MODELO = M.NOMBRE_MODELO " +
-                    "INNER JOIN CENTRO_INVESTIGACION CI ON RT.ID_CENTRO = CI.ID_CENTRO");
+                    "INNER JOIN CENTRO_INVESTIGACION CI ON RT.ID_CENTRO = CI.ID_CENTRO " +
+                    "INNER JOIN ESTADO E ON RT.AMBITO = E.AMBITO AND RT.NOMBRE_ESTADO = E.NOMBRE_ESTADO");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 RecursoTecnologico recursoTec = new RecursoTecnologico();
@@ -57,9 +59,10 @@ public class Repository {
                 recursoTec.setFraccionHorarioTurno(rs.getInt(4));
                 recursoTec.setImagenes(rs.getString(5));
                 recursoTec.setPeriodicidadMantenimientoPreventivo(rs.getInt(6));
-                recursoTec.setCentroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion(rs.getString(7)).nombre(rs.getString(22)).build());
-                recursoTec.setModelo(Modelo.builder().nombre(rs.getString(8)).marcaDelModelo(Marca.builder().nombre(rs.getString(11)).build()).build());
-                recursoTec.setTipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso(rs.getString(9)).build());
+                recursoTec.setCentroDeInvestigacion(CentroDeInvestigacion.builder().idCentroInvestigacion(rs.getString(7)).nombre(rs.getString(24)).build());
+                recursoTec.setModelo(Modelo.builder().nombre(rs.getString(10)).marcaDelModelo(Marca.builder().nombre(rs.getString(13)).build()).build());
+                recursoTec.setTipoRecursoTecnologico(TipoRecursoTecnologico.builder().idTipoRecurso(rs.getString(11)).build());
+                recursoTec.setEstado(Disponible.builder().ambito(rs.getString(31)).nombre("Disponible").descripcion(rs.getString(33)).esCancelable(rs.getBoolean(34)).esReservable(rs.getBoolean(35)).build());
                 arrayRTDelTipoRT.add(recursoTec);
             }
         } catch (SQLException e) {
@@ -90,6 +93,7 @@ public class Repository {
         return sesiones;
     }
 
+    /*
     public static List<CambioEstadoRT> findAllCE() {
         ArrayList<CambioEstadoRT> arrayCEDelRT = new ArrayList<>();
         try {
@@ -109,7 +113,8 @@ public class Repository {
         }
         return arrayCEDelRT;
     }
-
+     */
+    /*
     public static List<Estado> findAllEstados() {
         List<Estado> estados = new ArrayList<>();
         try {
@@ -130,8 +135,9 @@ public class Repository {
         }
         return estados;
     }
+     */
 
-
+    /*
     public static List<Estado> findEstados() {
         ArrayList<Estado> arrayEstadosAmbitoTurno = new ArrayList<>();
         try {
@@ -154,6 +160,7 @@ public class Repository {
 
         return arrayEstadosAmbitoTurno;
     }
+     */
 
     public static List<Turno> findTurnos() {
         ArrayList<Turno> turnos = new ArrayList<>();
@@ -167,9 +174,9 @@ public class Repository {
                 turno.setFechaGeneracion(rs.getDate(3));
                 turno.setFechaHoraFin(rs.getDate(4));
                 turno.setFechaHoraInicio(rs.getDate(5));
-                turno.setNombreEstadoCambioEstadoActual(rs.getString(6));
+                turno.setNombreEstadoCambioEstadoActual(rs.getString(9));
                 turno.setAsignacionCientificoCI(AsignacionCientificoDelCI.builder().id(rs.getString(7)).build());
-                turno.setRecursoTecnologicoDelTurno(RecursoTecnologico.builder().numeroRT(rs.getInt(8)).build());
+                turno.setRecursoTecnologicoDelTurno(RecursoTecnologico.builder().numeroRT(rs.getInt(10)).build());
                 turnos.add(turno);
             }
         } catch (SQLException e) {
@@ -273,7 +280,7 @@ public class Repository {
 
         return usuarios;
     }
-
+    /*
     public static  List<CambioEstadoTurno> findCETurnos(){
         ArrayList<CambioEstadoTurno> cETurnos = new ArrayList<>();
         try{
@@ -293,6 +300,7 @@ public class Repository {
         }
         return cETurnos;
     }
+     */
 
 
     public static List<PersonalCientifico> findPersonalCientifico() {
