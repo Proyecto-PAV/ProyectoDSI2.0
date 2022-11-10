@@ -163,7 +163,6 @@ public class RecursoTecnologico {
             }
         }
 
-
         return turnosPosteriorFechaActual;
     }
 

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<html lang="en"><!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>CU23</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/reservar.css" />
     <link rel="stylesheet" href="css/general.css" />
@@ -14,175 +15,173 @@
 
 <body onload="cargarPagina()">
 
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div>
-            <div class="container-usuario">
-                <h5>Fontao, Alejo</h5>
-                <img src="assets/user-profile.png">
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div>
+        <div class="container-usuario">
+            <h5>Yammal, Belen</h5>
+            <img src="assets/user-profile.png">
+
+        </div>
+        <div class="container-reservar-turno" id="container-reservar-turno">
+            <div class="container-selectores-recurso">
+
+                <h6>Seleccione el tipo de recurso: </h6>
+                <select name="tipoRecursos" id="selectTiposRecurso">
+
+                </select>
+
+                <button class="btn btn-primary" onclick="obtenerRecursosTecnologicos()">Buscar</button>
+            </div>
+
+
+
+            <div class="container-mostrar-recursos" id="container-mostrar-recursos">
+                <table class="table table-striped" id="tablaRecursosTecnologicos">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Numero inventario</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Centro Investigacion</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="calendario">
+                <div class="month">
+                    <ul>
+                        <li class="prev">&#10094;</li>
+                        <li class="next">&#10095;</li>
+                        <li>Junio<br><span style="font-size:18px">2022</span></li>
+                    </ul>
+                </div>
+
+                <ul class="weekdays">
+                    <li>Mo</li>
+                    <li>Tu</li>
+                    <li>We</li>
+                    <li>Th</li>
+                    <li>Fr</li>
+                    <li>Sa</li>
+                    <li>Su</li>
+                </ul>
+
+                <ul class="days" id="days">
+                    <button class="dia-mes-anterior">29</button>
+                    <button class="dia-mes-anterior">30</button>
+                    <button class="dia-mes-anterior">31</button>
+                    <button onClick="elegirDia(this)" id="1">1</button>
+                    <button onClick="elegirDia(this)" id="2">2</button>
+                    <button onClick="elegirDia(this)" id="3">3</button>
+                    <button onClick="elegirDia(this)" id="4">4</button>
+                    <button onClick="elegirDia(this)" id="5">5</button>
+                    <button onClick="elegirDia(this)" id="6">6</button>
+                    <button onClick="elegirDia(this)" id="7">7</button>
+                    <button onClick="elegirDia(this)" id="8">8</button>
+                    <button onClick="elegirDia(this)" id="9">9</button>
+                    <button onClick="elegirDia(this)" id="10">10
+                        <!--<div class="active">10</div>-->
+                    </button>
+                    <button onClick="elegirDia(this)" id="11">11</button>
+                    <button onClick="elegirDia(this)" id="12">12</button>
+                    <button onClick="elegirDia(this)" id="13">13</button>
+                    <button onClick="elegirDia(this)" id="14">14</button>
+                    <button onClick="elegirDia(this)" id="15">15</button>
+                    <button onClick="elegirDia(this)" id="16">16</button>
+                    <button onClick="elegirDia(this)" id="17">17</button>
+                    <button onClick="elegirDia(this)" id="18">18</button>
+                    <button onClick="elegirDia(this)" id="19">19 </button>
+                    <button onClick="elegirDia(this)" id="20">20</button>
+                    <button onClick="elegirDia(this)" id="21">21</button>
+                    <button onClick="elegirDia(this)" id="22">22</button>
+                    <button onClick="elegirDia(this)" id="23">23</button>
+                    <button onClick="elegirDia(this)" id="24">24</button>
+                    <button onClick="elegirDia(this)" id="25">25</button>
+                    <button onClick="elegirDia(this)" id="26">26</button>
+                    <button onClick="elegirDia(this)" id="27">27</button>
+                    <button onClick="elegirDia(this)" id="28">28</button>
+                    <button onClick="elegirDia(this)" id="29">29</button>
+                    <button onClick="elegirDia(this)" id="30">30</button>
+                    <button class="dia-mes-anterior">1</button>
+                    <button class="dia-mes-anterior">2</button>
+
+
+                </ul>
 
             </div>
-            <div class="container-reservar-turno" id="container-reservar-turno">
-                <div class="container-selectores-recurso">
+            <div class="container-referencias">
+                <div class="referencias-disponible"></div>
+                <h6>Disponible</h6>
+                <div class="referencias-no-disponible"></div>
+                <h6>No disponible</h6>
+            </div>
+            <div class="container-buttons-first-instance container-buttons-navigation">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onClick="cargarTablaTurnos()">
+                    Turnos
+                </button>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5>Turnos Disponible</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-mostrar-turnos">
+                                    <table class="table table-striped" id="tablaTurnosHorarios" >
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Fecha inicio</th>
+                                            <th scope="col">Fecha fin</th>
+                                            <th scope="col">Accion</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-                    <h6>Seleccione el tipo de recurso: </h6>
-                    <select name="tipoRecursos" id="selectTiposRecurso">
+                                        </tbody>
+                                    </table>
+                                    <div class="container-buttons-first-instance container-buttons-navigation">
+                                        <button class="btn btn-primary" onClick="confirmarTurno()">Confirmar</button>
+                                        <button type="button" class="btn btn-primary"  onclick="cancelarTurno()">
+                                            Cancelar
+                                        </button>
 
-                    </select>
-
-                    <button class="btn btn-primary" onclick="obtenerRecursosTecnologicos()">Buscar</button>
-                </div>
-
-
-
-                <div class="container-mostrar-recursos" id="container-mostrar-recursos">
-                    <table class="table table-striped" id="tablaRecursosTecnologicos">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Numero inventario</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Modelo</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Centro Investigacion</th>
-                                <th scope="col">Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                        </tbody>
-                    </table>
-                </div>
-
-
-                <div class="calendario">
-                    <div class="month">
-                        <ul>
-                            <li class="prev">&#10094;</li>
-                            <li class="next">&#10095;</li>
-                            <li>Noviembre<br><span style="font-size:18px">2022</span></li>
-                        </ul>
-                    </div>
-
-                    <ul class="weekdays">
-                        <li>Mo</li>
-                        <li>Tu</li>
-                        <li>We</li>
-                        <li>Th</li>
-                        <li>Fr</li>
-                        <li>Sa</li>
-                        <li>Su</li>
-                    </ul>
-
-                    <ul class="days" id="days">
-                        <button class="dia-mes-anterior">29</button>
-                        <button class="dia-mes-anterior">30</button>
-                        <button class="dia-mes-anterior">31</button>
-                        <button onClick="elegirDia(this)" id="1">1</button>
-                        <button onClick="elegirDia(this)" id="2">2</button>
-                        <button onClick="elegirDia(this)" id="3">3</button>
-                        <button onClick="elegirDia(this)" id="4">4</button>
-                        <button onClick="elegirDia(this)" id="5">5</button>
-                        <button onClick="elegirDia(this)" id="6">6</button>
-                        <button onClick="elegirDia(this)" id="7">7</button>
-                        <button onClick="elegirDia(this)" id="8">8</button>
-                        <button onClick="elegirDia(this)" id="9">9</button>
-                        <button onClick="elegirDia(this)" id="10">10
-                            <!--<div class="active">10</div>-->
-                        </button>
-                        <button onClick="elegirDia(this)" id="11">11</button>
-                        <button onClick="elegirDia(this)" id="12">12</button>
-                        <button onClick="elegirDia(this)" id="13">13</button>
-                        <button onClick="elegirDia(this)" id="14">14</button>
-                        <button onClick="elegirDia(this)" id="15">15</button>
-                        <button onClick="elegirDia(this)" id="16">16</button>
-                        <button onClick="elegirDia(this)" id="17">17</button>
-                        <button onClick="elegirDia(this)" id="18">18</button>
-                        <button onClick="elegirDia(this)" id="19">19 </button>
-                        <button onClick="elegirDia(this)" id="20">20</button>
-                        <button onClick="elegirDia(this)" id="21">21</button>
-                        <button onClick="elegirDia(this)" id="22">22</button>
-                        <button onClick="elegirDia(this)" id="23">23</button>
-                        <button onClick="elegirDia(this)" id="24">24</button>
-                        <button onClick="elegirDia(this)" id="25">25</button>
-                        <button onClick="elegirDia(this)" id="26">26</button>
-                        <button onClick="elegirDia(this)" id="27">27</button>
-                        <button onClick="elegirDia(this)" id="28">28</button>
-                        <button onClick="elegirDia(this)" id="29">29</button>
-                        <button onClick="elegirDia(this)" id="30">30</button>
-                        <button class="dia-mes-anterior">1</button>
-                        <button class="dia-mes-anterior">2</button>
-
-
-                    </ul>
-
-                </div>
-                <div class="container-referencias">
-                    <div class="referencias-disponible"></div>
-                    <h6>Disponible</h6>
-                    <div class="referencias-no-disponible"></div>
-                    <h6>No disponible</h6>
-                </div>
-                <div class="container-buttons-first-instance container-buttons-navigation">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
-                        onClick="cargarTablaTurnos()">
-                        Turnos
-                    </button>
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5>Turnos Disponible</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-mostrar-turnos">
-                                        <table class="table table-striped" id="tablaTurnosHorarios">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th scope="col">Fecha inicio</th>
-                                                    <th scope="col">Fecha fin</th>
-                                                    <th scope="col">Accion</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-                                        </table>
-                                        <div class="container-buttons-first-instance container-buttons-navigation">
-                                            <button class="btn btn-primary"
-                                                onClick="confirmarTurno()">Confirmar</button>
-                                            <button type="button" class="btn btn-primary" onclick="cancelarTurno()">
-                                                Cancelar
-                                            </button>
-
-                                        </div>
-                                        <div class="container-mensaje">
-                                            <h5 id="mensaje"></h5>
-                                        </div>
+                                    </div>
+                                    <div class="container-mensaje">
+                                        <h5 id="mensaje"></h5>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" onClick="volver()">Volver</button>
                 </div>
+                <button class="btn btn-primary" onClick="volver()">Volver</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
+<script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.0/mark.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.0/mark.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/reservar.js" async></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/reservar.js" async></script>
 
 </body>
 
-</html>
+</html></html>

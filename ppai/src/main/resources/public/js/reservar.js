@@ -13,9 +13,9 @@ function volver() {
 
 function pintarDiaOcupado(dia){
     diaBtn = document.getElementById(dia);
-    diaBtn.style.backgroundColor = "#e75050";
+    diaBtn.style.backgroundColor = "#0d6efd";
     diaBtn.className = "ocupado";
-    diaBtn.style.color = "#ffff"
+    diaBtn.style.color = "#ffff";
 
 }
 
@@ -24,8 +24,8 @@ function pintarDiasLibres(){
         diaBtn = document.getElementById(i.toString());
 
         if(diaBtn.className !== "ocupado") {
-            diaBtn.style.backgroundColor = "#0d6efd";
-            diaBtn.style.color = "#ffff"
+            diaBtn.style.backgroundColor = "#e75050";
+            diaBtn.style.color = "#ffff";
         }
     }
 }
@@ -46,10 +46,17 @@ function cargarDias(){
         calendario.appendChild(dia);
     }
 }
-
+dia = null
 function elegirDia(btn) {
-    if (btn.className != "ocupado") {
-        btn.style.backgroundColor = "rgb(80 231 146)"
+    //FALTARIA RECORRER Y VER SI YA NO HAY UNO SELECCIONADO PARA DESMARCARLO
+    if(dia === null) {
+        document.getElementById(dia)
+        btn.style.backgroundColor = "#0d6efd";
+    }
+    if (btn.className == "ocupado") {
+        btn.style.backgroundColor = "rgb(80 231 146)";
+        this.dia = btn.id;
+        console.log(this.dia)
     }
 }
 
@@ -80,11 +87,14 @@ async function getTiposRecurso() {
     }
 }
 
-async function obtenerTurnos() {
-    try {
-        await axios.get('http://localhost:9090/sesion').then(function (response) {
-            response.data.forEach(function (arrayTurnos) { //array
+numeroRT = null
+async function obtenerTurnos(btn) {
 
+    this.numeroRT = btn.value;
+    console.log(numeroRT);
+    try {
+        await axios.get('http://localhost:9090/mostrarTurnosRT/' + numeroRT).then(function (response) {
+            response.data.forEach(function (arrayTurnos) { //array
                 for(var i=1; i < arrayTurnos.length; i++){
                     pintarDiaOcupado(arrayTurnos[i].fechaHoraInicio.charAt(8) + arrayTurnos[i].fechaHoraInicio.charAt(9))
                 }
@@ -96,21 +106,18 @@ async function obtenerTurnos() {
     catch (error) {
         console.log(error);
     }
-
 }
 
-async function obtener(tipoRt){
-
+async function obtenerRecursosTecnologicos(){
+    tipoRt = document.getElementById("selectTiposRecurso").value
+    console.log(tipoRt);
     try{
-        await axios.get('http://localhost:9090/mostrarRecursoTecnologico/' + tipoRt).then(function (response){
+        await axios.get('http://localhost:9090/mostrarRT/' + tipoRt).then(function (response){
             response.data.forEach(function(centro){
-                centro.forEach(function (recursoTecnologico) {
-                        armarTablaRecursos(recursoTecnologico)
-                    }
-                )
-
+                for(var i=1; i < centro.length; i++){
+                    armarTablaRecursos(centro[i])
+                }
             });
-
         })
     }catch(error) {
         console.log(error);
@@ -120,11 +127,99 @@ async function obtener(tipoRt){
 function armarTablaRecursos(recursoTecnologico){
     var tabla = document.getElementById('tablaRecursosTecnologicos');
     var row = tabla.insertRow(-1);
+
     row.innerHTML = '<tr> <td>' + recursoTecnologico.numeroRT
-        + '</td> <td>' + recursoTecnologico.modelo.marca
-        + '</td> <td>' + recursoTecnologico.modelo.modelo
-        + '</td> <td>' + recursoTecnologico.cambioEstadoRTS.estado.nombre
+        + '</td> <td>' + recursoTecnologico.modelo.marcaDelModelo.nombre
+        + '</td> <td>' + recursoTecnologico.modelo.nombre
+        + '</td> <td>' + recursoTecnologico.estado.ambito
         + '</td> <td>' +recursoTecnologico.centroDeInvestigacion.nombre
-        + '</td> <td> <input className="form-check-input" type="radio" name="flexRadioDefault"> </td>'
+        + '</td> <td> <button class="btn btn-primary" value = "' + recursoTecnologico.numeroRT + '"  onClick="obtenerTurnos(this)">Consultar</button> </td>'
         + '</tr>'
+}
+
+async function cargarTablaTurnos(){
+    try {
+        console.log(this.numeroRT)
+        await axios.get('http://localhost:9090/mostrarTurnosRT/' + this.numeroRT).then(function (response) {
+            response.data.forEach(function (arrayTurnos) { //array
+                for(var i=1; i < arrayTurnos.length; i++) {
+                    console.log(arrayTurnos[0])
+                    console.log(this.dia)
+                    armarTablaTurnos(arrayTurnos[i], i)
+                }
+            });
+
+        });
+        pintarTablaTurnos();
+
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+function armarTablaTurnos(turno, rowId){
+
+    var tabla = document.getElementById('tablaTurnosHorarios')
+    var row = tabla.insertRow(-1)
+    if(turno.fechaHoraFin == null){
+        estadoFechaHoraFin = "Sin terminar";
+    }
+    row.innerHTML = '<tr class="row' + rowId + '"><td>' + turno.fechaHoraInicio
+        +'</td><td>' + estadoFechaHoraFin
+        + '</td><td><button class="btn btn-primary" id="'+ turno.idTurno + '" onclick="seleccionarTurno(this)">Seleccionar</td></tr>'
+}
+
+function pintarTablaTurnos(){
+
+}
+
+bandera = false;
+async function seleccionarTurno(btn){
+    console.log(btn.id)
+    idTurno = btn.id;
+    try{
+        await axios.get('http://localhost:9090/turno/' + idTurno).then(
+            function(response) {
+                console.log(response.data);
+                if(response.data == "ok"){
+                    this.bandera = true;
+                }
+            }
+        )
+    }catch (error)
+    {
+        console.log(error);
+    }
+}
+
+async function confirmarTurno(){
+    mensaje = document.getElementById("mensaje")
+    try{
+        await axios.post('http://localhost:9090/confirmar/' + this.bandera).then(
+            function(response) {
+                mensaje.innerText = response.data;
+                mensaje.style.color = "rgb(80 231 146)"
+            }
+        )
+    }catch (error)
+    {
+        console.log(error);
+    }
+}
+
+
+async function cancelarTurno(){
+    mensaje = document.getElementById("mensaje")
+    try{
+        await axios.post('http://localhost:9090/confirmar/false' ).then(
+            function(response) {
+                mensaje.innerText = response.data;
+                mensaje.style.color = "#e75050";
+            }
+        )
+    }catch (error)
+    {
+        console.log(error);
+    }
 }
