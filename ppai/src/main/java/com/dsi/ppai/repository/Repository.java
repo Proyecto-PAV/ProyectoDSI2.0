@@ -213,13 +213,11 @@ public class Repository {
             PreparedStatement ps = con.prepareStatement("insert into cambio_estado_turno (`id_cambio_estado_turno`, `fecha_hora_desde`, `fecha_hora_hasta`, `ambito`, `nombre_estado`, `id_turno`)" +
                     " values (?,?,?,?,?,?)");
 
-            System.out.println(cambioEstadoTurno.getIdCambioEstadoTurno());
             ps.setString(1, cambioEstadoTurno.getIdCambioEstadoTurno());
             ps.setDate(2, new Date(cambioEstadoTurno.getFechaHoraDesde().getTime()));
             System.out.println(cambioEstadoTurno.getFechaHoraDesde());
             ps.setDate(3, null);
 //            ps.setDate(3, (java.sql.Date) cambioEstadoTurno.getFechaHoraHasta());
-            System.out.println(cambioEstadoTurno.getEstado().getAmbito());
             ps.setString(4, cambioEstadoTurno.getEstado().getAmbito());
             ps.setString(5, cambioEstadoTurno.getTurno().getNombreEstadoCambioEstadoActual());
             ps.setString(6, cambioEstadoTurno.getTurno().getIdTurno());
@@ -281,18 +279,18 @@ public class Repository {
 
         return usuarios;
     }
-    /*
+
     public static  List<CambioEstadoTurno> findCETurnos(){
         ArrayList<CambioEstadoTurno> cETurnos = new ArrayList<>();
         try{
-            PreparedStatement ps = con.prepareStatement("select  * from cambio_estado_turno");
+            PreparedStatement ps = con.prepareStatement("select  * from cambio_estado_turno ce inner join estado e on ce.ambito = e.ambito and ce.nombre_estado = e.nombre_estado");
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 CambioEstadoTurno cambioEstado = new CambioEstadoTurno();
                 cambioEstado.setIdCambioEstadoTurno(rs.getString(1));
                 cambioEstado.setFechaHoraDesde(rs.getDate(2));
                 cambioEstado.setFechaHoraHasta(rs.getDate(3));
-                cambioEstado.setEstado(Estado.builder().ambito(rs.getString(4)).nombre(rs.getString(5)).build());
+                cambioEstado.setEstado(Disponible.builder().ambito(rs.getString(7)).nombre("Disponible").descripcion(rs.getString(9)).esCancelable(rs.getBoolean(10)).esReservable(rs.getBoolean(11)).build());
                 cambioEstado.setTurno(Turno.builder().idTurno(rs.getString(6)).build());
                 cETurnos.add(cambioEstado);
             }
@@ -301,7 +299,7 @@ public class Repository {
         }
         return cETurnos;
     }
-     */
+
 
 
     public static List<PersonalCientifico> findPersonalCientifico() {

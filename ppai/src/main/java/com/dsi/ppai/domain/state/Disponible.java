@@ -65,10 +65,12 @@ public class Disponible extends Estado {
     }
 
     public void crearProximoEstado(PersonalCientifico cientificoLogueado, RecursoTecnologico recursoTecnologico){
-        if (recursoTecnologico.getCentroDeInvestigacion().getCientificos().contains(cientificoLogueado)){
-            this.estadoCreado = new ConReservaConfirmada("ConReservaConfirmada", "TURNO", null, false, true);
-        }else{
-            this.estadoCreado = new PendienteConfirmacionReserva("PendienteConfirmacionReserva", "TURNO", null, false, true);
+        for (int i = 0; i < recursoTecnologico.getCentroDeInvestigacion().getCientificos().size(); i++) {
+            if (recursoTecnologico.getCentroDeInvestigacion().getCientificos().get(i).getCientifico().equals(cientificoLogueado)){
+                this.estadoCreado = new ConReservaConfirmada("ConReservaConfirmada", "TURNO", null, false, true);
+            }else{
+                this.estadoCreado = new PendienteConfirmacionReserva("PendienteConfirmacionReserva", "TURNO", null, false, true);
+            }
         }
 
     }

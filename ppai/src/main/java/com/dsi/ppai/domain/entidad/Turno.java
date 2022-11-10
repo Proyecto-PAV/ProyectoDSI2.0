@@ -119,7 +119,7 @@ public class Turno {
 
         return this;
     }
-    /*
+
     public void setCambiosEstadoTurno() {
         this.cambiosEstadoTurno = Repository.findCETurnos();
 
@@ -133,7 +133,6 @@ public class Turno {
         this.cambiosEstadoTurno = temporal;
 
     }
-     */
     /*
     public void reservar (Estado estadoReservado, Date fechaHoraActual) {
         this.setCambiosEstadoTurno();
@@ -157,6 +156,7 @@ public class Turno {
 
     public void reservar(Date fechaHoraActual, PersonalCientifico cientificoLogueado, RecursoTecnologico recursoTecnologico) {
         //TODO tiene que ser estado concreto disponible
+        this.setCambiosEstadoTurno();
         this.estado.reservar(this, fechaHoraActual, cientificoLogueado, recursoTecnologico);
     }
 
