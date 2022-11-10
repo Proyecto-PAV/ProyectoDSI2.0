@@ -1,42 +1,45 @@
 
-function cargarPagina() {
+function cargarPagina(){
     getTiposRecurso();
     //cargarDias();
 }
+
+
 
 function volver() {
     window.location.href = "http://localhost:9090/index.html";
 }
 
 
-function pintarDiaOcupado(dia) {
+function pintarDiaOcupado(dia){
     diaBtn = document.getElementById(dia);
-    diaBtn.style.backgroundColor = "#0d6efd";
+    diaBtn.style.backgroundColor = "#e75050";
     diaBtn.className = "ocupado";
-    diaBtn.style.color = "#ffff";
+    diaBtn.style.color = "#ffff"
+
 }
 
-function pintarDiasLibres() {
-    for (var i = 1; i <= 30; i++) {
+function pintarDiasLibres(){
+    for(var i = 1; i <= 30; i++){
         diaBtn = document.getElementById(i.toString());
 
-        if (diaBtn.className !== "ocupado") {
-            diaBtn.style.backgroundColor = "#e75050";
-            diaBtn.style.color = "#ffff";
+        if(diaBtn.className !== "ocupado") {
+            diaBtn.style.backgroundColor = "#0d6efd";
+            diaBtn.style.color = "#ffff"
         }
     }
 }
 
-function cargarDias() {
+function cargarDias(){
     calendario = document.getElementById("days");
 
-    for (var i = 1; i <= 30; i++) {
+    for(var i = 1; i <=30; i++){
         var dia = document.createElement('button')
         dia.innerText = i;
         dia.id = i;
         calendario.appendChild(dia);
     }
-    for (var i = 1; i <= 2; i++) {
+    for(var i = 1; i <=2; i++){
         var dia = document.createElement('button')
         dia.innerText = i;
         dia.id = i;
@@ -44,17 +47,9 @@ function cargarDias() {
     }
 }
 
-dia = null
 function elegirDia(btn) {
-    //FALTARIA RECORRER Y VER SI YA NO HAY UNO SELECCIONADO PARA DESMARCARLO
-    if (dia === null) {
-        document.getElementById(dia)
-        btn.style.backgroundColor = "#0d6efd";
-    }
-    if (btn.className == "ocupado") {
-        btn.style.backgroundColor = "rgb(80 231 146)";
-        this.dia = btn.id;
-
+    if (btn.className != "ocupado") {
+        btn.style.backgroundColor = "rgb(80 231 146)"
     }
 }
 
@@ -71,29 +66,26 @@ async function getTiposRecurso() {
         await axios.get('http://localhost:9090/tipoRT').then(function (response) {
 
 
-            response.data.forEach(function (nombreTipoRecurso) {
-                var opt = document.createElement('option');
-                opt.value = nombreTipoRecurso;
-                opt.innerHTML = nombreTipoRecurso;
-                select.appendChild(opt);
-            })
+                response.data.forEach(function (nombreTipoRecurso) {
+                    var opt = document.createElement('option');
+                    opt.value = nombreTipoRecurso;
+                    opt.innerHTML = nombreTipoRecurso;
+                    select.appendChild(opt);
+                })
 
-        }
+            }
         )
     } catch (error) {
         console.error(error);
     }
 }
 
-numeroRT = null
-async function obtenerTurnos(btn) {
-
-    this.numeroRT = btn.value;
-
+async function obtenerTurnos() {
     try {
-        await axios.get('http://localhost:9090/mostrarTurnosRT/' + numeroRT).then(function (response) {
+        await axios.get('http://localhost:9090/sesion').then(function (response) {
             response.data.forEach(function (arrayTurnos) { //array
-                for (var i = 1; i < arrayTurnos.length; i++) {
+
+                for(var i=1; i < arrayTurnos.length; i++){
                     pintarDiaOcupado(arrayTurnos[i].fechaHoraInicio.charAt(8) + arrayTurnos[i].fechaHoraInicio.charAt(9))
                 }
             });
@@ -104,107 +96,35 @@ async function obtenerTurnos(btn) {
     catch (error) {
         console.log(error);
     }
+
 }
 
-async function obtenerRecursosTecnologicos() {
-    tipoRt = document.getElementById("selectTiposRecurso").value
-    try {
-        await axios.get('http://localhost:9090/mostrarRT/' + tipoRt).then(function (response) {
-            console.log(response)
-            response.data.forEach(function (centro) {
-                for (var i = 1; i < centro.length; i++) {
-                    armarTablaRecursos(centro[i])
-                }
+async function obtener(tipoRt){
+
+    try{
+        await axios.get('http://localhost:9090/mostrarRecursoTecnologico/' + tipoRt).then(function (response){
+            response.data.forEach(function(centro){
+                centro.forEach(function (recursoTecnologico) {
+                        armarTablaRecursos(recursoTecnologico)
+                    }
+                )
+
             });
+
         })
-    } catch (error) {
+    }catch(error) {
         console.log(error);
     }
 }
 
-function armarTablaRecursos(recursoTecnologico) {
+function armarTablaRecursos(recursoTecnologico){
     var tabla = document.getElementById('tablaRecursosTecnologicos');
     var row = tabla.insertRow(-1);
-
     row.innerHTML = '<tr> <td>' + recursoTecnologico.numeroRT
-        + '</td> <td>' + recursoTecnologico.modelo.marcaDelModelo.nombre
-        + '</td> <td>' + recursoTecnologico.modelo.nombre
-        + '</td> <td>' + recursoTecnologico.estado.ambito
-        + '</td> <td>' + recursoTecnologico.centroDeInvestigacion.nombre
-        + '</td> <td> <button class="btn btn-primary" value = "' + recursoTecnologico.numeroRT + '"  onClick="obtenerTurnos(this)">Consultar</button> </td>'
+        + '</td> <td>' + recursoTecnologico.modelo.marca
+        + '</td> <td>' + recursoTecnologico.modelo.modelo
+        + '</td> <td>' + recursoTecnologico.cambioEstadoRTS.estado.nombre
+        + '</td> <td>' +recursoTecnologico.centroDeInvestigacion.nombre
+        + '</td> <td> <input className="form-check-input" type="radio" name="flexRadioDefault"> </td>'
         + '</tr>'
-}
-
-async function cargarTablaTurnos() {
-    try {
-        await axios.get('http://localhost:9090/mostrarTurnosRT/' + this.numeroRT).then(function (response) {
-            response.data.forEach(function (arrayTurnos) { //array
-                for (var i = 1; i < arrayTurnos.length; i++) {
-                    armarTablaTurnos(arrayTurnos[i], i)
-                }
-            });
-        });
-        pintarTablaTurnos();
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
-
-function armarTablaTurnos(turno, rowId) {
-
-    var tabla = document.getElementById('tablaTurnosHorarios')
-    var row = tabla.insertRow(-1)
-    if (turno.fechaHoraFin == null) {
-        estadoFechaHoraFin = "Sin terminar";
-    }
-    row.innerHTML = '<tr class="row' + rowId + '"><td>' + turno.fechaHoraInicio
-        + '</td><td>' + estadoFechaHoraFin
-        + '</td><td><button class="btn btn-primary" id="' + turno.idTurno + '" onclick="seleccionarTurno(this)">Seleccionar</td></tr>'
-}
-
-
-bandera = false;
-async function seleccionarTurno(btn) {
-    idTurno = btn.id;
-    try {
-        await axios.get('http://localhost:9090/turno/' + idTurno).then(
-            function (response) {
-                if (response.data == "ok") {
-                    this.bandera = true;
-                }
-            }
-        )
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-async function confirmarTurno() {
-    mensaje = document.getElementById("mensaje")
-    try {
-        await axios.post('http://localhost:9090/confirmar/' + this.bandera).then(
-            function (response) {
-                mensaje.innerText = response.data;
-                mensaje.style.color = "rgb(80 231 146)"
-            }
-        )
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-async function cancelarTurno() {
-    mensaje = document.getElementById("mensaje")
-    try {
-        await axios.post('http://localhost:9090/confirmar/false').then(
-            function (response) {
-                mensaje.innerText = response.data;
-                mensaje.style.color = "#e75050";
-            }
-        )
-    } catch (error) {
-        console.log(error);
-    }
 }
