@@ -165,7 +165,7 @@ public class Repository {
     public static List<Turno> findTurnos() {
         ArrayList<Turno> turnos = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from turno");
+            PreparedStatement ps = con.prepareStatement("select * from turno inner join estado e on turno.ambito = e.ambito and turno.nombre_estado = e.nombre_estado");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Turno turno = new Turno();
@@ -177,6 +177,7 @@ public class Repository {
                 turno.setNombreEstadoCambioEstadoActual(rs.getString(9));
                 turno.setAsignacionCientificoCI(AsignacionCientificoDelCI.builder().id(rs.getString(7)).build());
                 turno.setRecursoTecnologicoDelTurno(RecursoTecnologico.builder().numeroRT(rs.getInt(10)).build());
+                turno.setEstado(Disponible.builder().ambito(rs.getString(11)).nombre("Disponible").descripcion(rs.getString(13)).esCancelable(rs.getBoolean(14)).esReservable(rs.getBoolean(15)).build());
                 turnos.add(turno);
             }
         } catch (SQLException e) {
